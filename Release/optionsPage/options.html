@@ -1,0 +1,299 @@
+<html>
+	<head>
+		<title>My Test Extension Options</title>
+		<link href="../styles/optionsPage.css" rel="stylesheet" type="text/css"></link>
+		<script src="options.js"></script>
+	</head>
+	
+	<body>
+	<div id="header_wrapper">
+		<div id="header">
+			<div id="site_title"><a href="">You<span>TWEAK</span></a></div>
+				<div id="menu" class="menu">
+					<ul>
+						<li><a href="http://youtube.com/mattie432">Youtube</a></li>
+						<li><a href="http://twitter.com/mattie432">Twitter</a></li>
+						<li><a href="http://mattie432.com/applications/youtweak-chrome-extension/">Website</a></li>
+						<li><a href="https://www.facebook.com/pages/Youtweak/126246684237377">Facebook</a></li>
+					</ul>
+				</div>
+		</div> <!-- END of header -->
+	</div>
+	
+		
+	<div id="top_note">
+		<div  class="note">
+			<p style="font-weight:bold">
+				This page saves automatically upon exit.
+			</p>
+			<a href="http://www.howtogeek.com/howto/37911/google-chrome-adds-two-ways-to-hide-extension-icons/">Learn how to hide the toolbar icon.</a>
+			<br><br>
+			<p>
+				This extension now focuses on the removal of watched videos. If you would like automatic quality select, full buffering and many more features I suggest you look at <a href="http://userscripts.org/scripts/show/114002">this extension.</a>
+			</p>
+		</div>
+		
+
+	</div>
+	
+	
+	<div id="main">
+		
+		<div class="option">
+			<p class="optionDescription">
+				This adds a 'remove' button next to each video from your subscriptions. When clicked the video is removed using youtubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="deleteSubsBtn">
+					Enable the 'Remove' button next to each video.
+				</input>
+			</div>
+		</div>
+			
+		<div class="option">
+			<p class="optionDescription">
+				Change the YouTube icon URL - This changes the page that clicking the YouTube icon (top left of all youtube pages) takes you to. Usualy this will take you to "youtube.com" which shows you the "whats new" page. Enabling this will allow you to change the page that this icon takes you, to the one specified in the textbox below.
+			</p>
+			<p class="optionDescription">
+				Redirect "youtube.com" - If your browser takes you to "YouTube.com" then you will <b>always</b> be redirected to the URL below. 
+			</p>
+			
+			<div class="selection">
+				<input type="checkbox" id="changeIconURL">
+					Change the YouTube icon URL.
+				</input><br>
+				<input type="checkbox" id="redirectYouTube">
+					Redirect "YouTube.com"
+				</input><br>
+				<input id="iconURL" type="text" name="fname" disabled="true" value="http://www.youtube.com/feed/subscriptions">
+			<button id="editTxt">Edit</button>
+			<button id="resetTxt"disabled="true">Restore default</button><br>
+			</div>
+		</div>
+			
+		<div class="option">
+			<p class="optionDescription">
+				This allows the user to remove any previously watched videos from there home-feed in one of two ways. When in non-automatic mode, it adds a button to the left side of the home page which says 'Remove watched videos'. When clicked it will hide all watched videos from you subscriptions.In automatic mode, all watched videos will be removed automatically when you load the YouTube homepage.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="deleteWatchedVids">
+					Enable "Remove all watched videos".
+				</input></br>
+				<input type="checkbox" id="deleteWatchedVidsAutomated">
+					Automatically remove watched videos.
+				</input>
+			</div>
+		</div>
+
+		<div class="option">
+			<p class="optionDescription">
+				This removes all of your subscriptions videos from the homepage. Clearing all your subscription videos can be useful if your homepage has become cluttered or if you simply wish to start afreash. (There is a confirmation box which will appear before your videos are cleared)
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="clearAllVideos">
+					Clear all videos from subscripton page.
+				</input>
+			</div>
+		</div>
+
+		<div class="option">
+			<p class="optionDescription">
+				This loads all of your subscription videos into view on your homepage, allowing you to view them all in one continuous feed. This can be used to browse through your rescent subscriptions to remove any you dont want or find those you may have missed.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="loadAllVideos">
+					Load all videos to your subscription page.
+				</input>
+			</div>
+		</div>
+		
+		<div class="option">
+			<p class="optionDescription">
+				This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="removeRecomendedChannels">
+					Remove "Recomended Channels" from the homepage.
+				</input>
+			</div>
+		</div>
+		
+		<div class="option">
+			<p class="optionDescription">
+				Upon watching a video from a user with their name in this list the video is automatically 'liked'. Useful to help out those youtubers that you constantly watch content from.
+				
+				<b>Please add one per line. These <u>are</u> case sensitive.</b>
+			</p>
+			<textarea id="autoLikeTextBox" rows="10" cols="50"></textarea>
+			<div class="selection">
+				<input type="checkbox" id="autoLike">
+					Enable autolike.
+				</input>
+			</div>
+		</div>
+
+
+<!--		<div class="option">
+			<p class="optionDescription">
+				This allows you to specify the quality that YouTube videos will play in. If the quality you selected is not available for a specific video then the next best quality will be used (this 'next best' quality will always be lower than the one you selected).
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="setPlaybackQuality">
+					<select id="qualitySelect">
+						<option value="highres">>1080p</option>
+						<option value="hd1080">1080p</option>
+						<option value="hd720">720p</option>
+						<option value="large">480p</option>
+						<option value="medium">360p</option>
+						<option value="small">240p</option>
+					</select>
+					Set the defult playback quality.
+				</input>
+				
+				
+			</div>
+		</div>
+				
+		<div class="option">
+			<p class="optionDescription">
+				This allows you to specify the size that YouTube videos will play in. The YouTube player will automatically be expanded to that size when you start to watch any YouTube video.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="setVideoSizeCheck">
+					<select id="setVideoSize">
+						<option value="large">Large</option>
+						<option value="small">Small</option>
+					</select>
+					Set the defult playback size.
+				</input>
+			</div>
+		</div>
+		
+		<div class="option">
+			<p class="optionDescription">
+				This disables YouTubes auto play feature when opening a new YouTube video but still allows the video to be buffered. This means that the video will still load and be ready for you when you click play.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="pauseVideos">
+					Stop autoplay of videos.
+				</input>
+			</div>
+		</div>
+
+		
+
+		
+		<div class="option">
+			<p class="optionDescription">
+				This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="removeRecomendedChannels">
+					Remove "Recomended Channels" from the homepage.
+				</input>
+			</div>
+		</div>
+		
+		<div class="option">
+			<p class="optionDescription">
+				This adds a button below the video player (next to the like/dislike buttons) which is a toggle button. When clicked the playing video will loop back to the beginning when it reaches the end and will continue playing.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="repeatVideos">
+					Repeat video button.
+				</input>
+			</div>
+		</div>
+		
+		
+		<div class="option">
+			<p class="optionDescription">
+				This center aligns the home/subscriptions page so that the white space is even on either side.
+			</p>
+			<div class="selection">
+				<input type="checkbox" id="centerHomePage">
+					Center the home page.
+				</input>
+			</div>
+		</div>-->
+		
+		
+		
+		
+		
+		
+		<div>
+			<button id="save">
+				Save
+			</button>
+			<button id="contact">
+				Contact me
+			</button>
+			<button id="review">
+				Leave a review
+			</button>
+			<button id="errorBtn" style="float: right;margin-right: 15px">
+				Error Reports
+			</button>
+			<button id="bugsFixesBtn" style="float: right;margin-right: 15px">
+				Known Bugs / Fixes
+			</button>
+
+		</div>
+		
+					
+		<div id="faq_message_container">
+			<div  class="message_container">
+				<p style="font-weight:bold">
+					FAQ's and Client side fixes.
+				</p>
+				<div id="faq_description" style="display: none">
+					<div class="faqListItem" style="text-align: left; margin-left: 15px">
+						<p style="font-weight: bold;margin-bottom:0">
+							Settings not saving
+						</p>
+						<p style="margin-top: 0">
+							This can be caused by a sync error between local and cloud storage for the settings of the extension. For a fix for this please look <a href="https://docs.google.com/document/d/16uFMdNrVSBAo6wMZVB8RPS4bmApqWqgjB1kl7OsD1sg/edit?usp=sharing">here.</a>
+						</p>
+					</div>
+					
+				</div>
+			
+			</div>
+		</div>
+				
+		<div id="error_message_container">
+			<div  class="message_container">
+				<p style="font-weight:bold">
+					Please read when reporting errors/bugs.
+				</p>
+				<p id="error_description" style="display: none">
+					When reporting errors with YouTweak it is very helpful to me when fixing them if
+					a list of any errors was included with the description of the problem.<br><br>
+					To do this press <span style="font-weight: bold">Ctrl + Shift + J</span> to open the console,
+					here any errors will be listed. A copy-paste of this infomation will help identify the problem. I would suggest
+					using the site <a href="http://pastebin.com/">PasteBin</a> and to include the share link in the problems description.
+					To all those who do submit error reports thank you for helping to make this extension better.
+				</p>
+			
+			</div>
+		</div>
+			
+	
+	</div>
+		
+		
+	<div id="footer_wrapper">
+		<div id="footer">
+			<ul>
+				<li>Chrome YouTube extention</li>
+				<li>&#169 2013</li>
+				<li>Extension Webpage</li>
+			</ul>
+			<div class="footerDescription">
+				This extension was created my Mattie432. Hope you enjoy and feel free to contact me with suggestions ;)
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

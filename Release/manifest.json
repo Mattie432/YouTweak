@@ -1,0 +1,82 @@
+{
+"name": "YouTweak for YouTube\u2122 - Remove watched videos",
+"version": "3.9",
+"manifest_version": 2,
+  
+"options_page": "optionsPage/options.html",
+"background": {
+    "scripts": ["backgroundPage/eventPage.js"]
+  },
+  
+"permissions": ["notifications", "storage", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "http://mattie432.com/*"],
+
+"browser_action": {
+    "default_icon": "images/icon.png"
+  },
+  
+"icons": { "16": "images/icon.png",
+           "48": "images/icon.png",
+          "128": "images/icon.png" },
+
+"description": "Adds a bunch of useful tweaks to pages on the youtube site. Remove subscriptions, clear watched videos & more!",
+ 
+"web_accessible_resources": ["images/icon.png", "contextScripts/videoplayer.js"],
+
+"content_scripts": [
+    {
+      "matches": [
+		"*://*.youtube.com/",
+		"*://*.youtube.com.br/",
+		"*://*.youtube.fr/",
+		"*://*.youtube.jp/",
+		"*://*.youtube.nl/",
+		"*://*.youtube.pl/",
+		"*://*.youtube.ie/",
+		"*://*.youtube.co.uk/",
+		"*://*.youtube.es/",
+		"*://*.youtube.it/",
+
+		"*://*.youtube.com/feed/*",
+		"*://*.youtube.com.br/feed/*",
+		"*://*.youtube.fr/feed/*",
+		"*://*.youtube.jp/feed/*",
+		"*://*.youtube.nl/feed/*",
+		"*://*.youtube.pl/feed/*",
+		"*://*.youtube.ie/feed/*",
+		"*://*.youtube.co.uk/feed/*",
+		"*://*.youtube.es/feed/*",
+		"*://*.youtube.it/feed/*"
+	  ],
+      "js": ["contextScripts/homepage.js"]
+    },{
+      "matches": [
+		"*://*.youtube.com/*",
+		"*://*.youtube.com.br/*",
+		"*://*.youtube.fr/*",
+		"*://*.youtube.jp/*",
+		"*://*.youtube.nl/*",
+		"*://*.youtube.pl/*",
+		"*://*.youtube.ie/*",
+		"*://*.youtube.co.uk/*",
+		"*://*.youtube.es/*",
+		"*://*.youtube.it/*"
+	  ],
+      "js": ["contextScripts/versioncheck.js", "/contextScripts/everypage.js"]
+    },{
+      "matches": [
+		"*://*.youtube.com/watch*",
+		"*://*.youtube.com.br/watch*",
+		"*://*.youtube.fr/watch*",
+		"*://*.youtube.jp/watch*",
+		"*://*.youtube.nl/watch*",
+		"*://*.youtube.pl/watch*",
+		"*://*.youtube.ie/watch*",
+		"*://*.youtube.co.uk/watch*",
+		"*://*.youtube.es/watch*",
+		"*://*.youtube.it/watch*"
+	  ],
+    "js": ["contextScripts/loadvideoplayer.js", "contextScripts/videoplayer.js"],
+    "run_at": "document_end"
+    }
+  ]
+}
