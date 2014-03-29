@@ -1,44 +1,32 @@
-/********************************************************************/
-/*                                                                  */
-/*  Copyright (c) 2013 Mattie432                                    */
-/*                                                                  */
-/*  This code was created by Mattie432 for the extension */
-/*  YouTweak. This may not be used in part or in its entirety       */
-/*  without the creators permission.                                */
-/*                                                                  */
-/*  http://www.mattie432.com/                                       */
-/*                                                                  */
-/********************************************************************/
-
-
 initAutoLike();
 console.log("STaring autolike!!")
+
+/**
+ *	Initialises the autolike option. Checks if the user is one to be automatically liked or not.
+ */
 function initAutoLike(){
     try{
 	var q = document.getElementById("autoLike").getAttribute("value");
 	if (q == true || q == "true") {
-	  
+
 	  var channelName;
 	  var names = document.getElementById("autoLikeNames").getAttribute("value");
 	  var namesArray = names.split('\n');
-	  
+
 	  var watch7userheader = document.getElementById("watch7-user-header");
 	  for(var i = 0; i< watch7userheader.childNodes.length; i++){
-	    
+
 	    try{
 	     if(watch7userheader.children[i].className.indexOf("g-hovercard yt-uix-sessionlink yt-user-name") != -1){
 		channelName = watch7userheader.children[i].text;
 	     }
 	    }catch(ex){
-		
+
 	    }
 	  }
-	  
-	  
-		    
-	  
-	//  alert(channelName);
-	  
+
+	  //  alert(channelName);
+
 	  if(document.getElementById("watch-like").className.search("yt-uix-button-toggled")<0) {
 	     for(var j = 0; j < namesArray.length; j++){
 		if(namesArray[j] == channelName){
@@ -49,7 +37,7 @@ function initAutoLike(){
 		}
 	     }
 	  }
-	  
+
 	  //document.getElementById("autoLike").setAttribute("value","");
 	}
     }catch (ex){
@@ -68,7 +56,7 @@ function initAutoLike(){
 
 
 //Loads when the player can accept api input (buggy)
- function onYouTubePlayerAPIReady() {  
+ function onYouTubePlayerAPIReady() {
     console.log("onYouTubePlayerAPIReady");
     //initQualitySelect();
    // initSetPlayerPaused();
@@ -99,15 +87,15 @@ function onStateChange(event) {
     states[5]= "";
     states[6]= "video cued";    // 5
     console.log("State changed to: " + states[event+1]);
-    
+
     prevState = event;
-    
+
     if (event == 0) {
         //ended
     }else if(event == 2){
 	//playing
     }
-    
+
 }
 function repeatVideo() {
     var btn = document.getElementById("repeatBtn");
@@ -130,14 +118,14 @@ function onApiChange(event) {
 ////////////////////////////////////////////////
 function initSizeSelect(){
      var s = document.getElementById("setVideoSize").getAttribute("value");
-    
+
     if (s) {
         setSize(s);
     }
 }
 function setSize(size) {
     if (size == "large") {
-        
+
         if (document.getElementById("watch7-container").className.indexOf("watch-wide") == -1) {
             document.getElementById("watch7-container").className += " watch-wide ";
         }
@@ -147,19 +135,19 @@ function setSize(size) {
         if (document.getElementById("player").className.indexOf("watch-playlist-collapsed") == -1) {
             document.getElementById("player").className += " watch-playlist-collapsed ";
         }
-        
+
     }else if (size == "small") {
         var tmp1 = document.getElementById("watch7-container").className;
         var tmp2 = document.getElementById("player").className;
         tmp1 = tmp1.replace("watch-wide","");
         tmp2 = tmp2.replace("watch-medium","");
-        
-        
+
+
         document.getElementById("watch7-container").className = tmp1;
         document.getElementById("player").className = tmp2;
-        
+
     }
-}	
+}
 
 
 ////////////////////////////////////////////////
@@ -170,16 +158,16 @@ function initQualitySelect(){
     if (qualityWanted) {
       document.getElementById("savedQualitySetting").setAttribute("value","");
 	var YP = new Object();
-	
+
 	// Quality options available from Youtube API
 	YP.quality_options = ['highres', 'hd1080', 'hd720', 'large', 'medium', 'small', 'default'];
-	
+
 	// Playback quality (must be one of the above)
 	YP.quality = qualityWanted;
-	
+
 	// Number of times to check for player before giving up
 	YP.max_attempts = 50;
-	
+
 	// Initialize player, and make sure API is ready
 	YP.init = function() {
 		// Get player
@@ -194,7 +182,7 @@ function initQualitySelect(){
 		else {
 			return false;
 		}
-	
+
 		// Check for HTML5 player
 		this.html5 = this.player.getElementsByTagName('video').length ? true : false;
 
@@ -202,20 +190,20 @@ function initQualitySelect(){
 		if (typeof this.player.pauseVideo === 'undefined') {
 			return false;
 		}
-	
+
 		// Pause to avoid flicker caused be loading a different quality
 		this.player.pauseVideo();
-	
+
 		// In Chrome Flash player, player.setQualityLevel() doesn't seem to work unless video has started playing (or is paused)
 		// In Firefox HTML5 player, player.getPlayerState() returns -1 even if player is paused
 		if (!this.html5 && this.player.getPlayerState() < 1) {
 			return false;
 		}
-	
+
 		// Everything is good to go
 		return true;
 	};
-	
+
 	// Set video quality to YP.quality or highest available
 	YP.setQuality = function() {
 		// Get available quality levels
@@ -230,17 +218,17 @@ function initQualitySelect(){
 		// Play video
 		this.player.playVideo();
 	}
-	
+
         YP.refresh = function(){
           try {
             this.player.stopVideo();
             this.player.clearVideo();
             this.player.playVideo();
           }catch(err){
-            
+
           }
         }
-        
+
 	// Start execution
 	YP.start = function(attempts) {
 		// Initialize self (look for player)
@@ -257,12 +245,12 @@ function initQualitySelect(){
 			YP.start(++attempts);
 		}, 200);
 	}
-	
+
 	// Main
 	YP.start(0);
 
         console.log("Quality set to " + qualityWanted);
-       
+
        YP.refresh();
     }
 }
@@ -275,9 +263,9 @@ function qualityLevels(availableQualitys, wantedQuality){
     qualityList[4] = "medium";	// 360p
     qualityList[5] = "small";	// 240p
     qualityList[6] = "default";	// default quality
-    
+
     var index = qualityList.indexOf("wantedQuality");
-    
+
     if(availableQualitys.indexOf(wantedQuality) != -1){
         //Can select quality
         return wantedQuality;
@@ -288,7 +276,7 @@ function qualityLevels(availableQualitys, wantedQuality){
                         return qualityList[i];
                 }
         }
-        
+
         //not found, return defult quality
         return qualityList[6];
     }
@@ -320,10 +308,10 @@ function setPlayerPaused(){
 
 	if ( !typeOfPlayer && !isPlayList ) {
             var playerElem=document.getElementById("movie_player");
-            //mute volume before starts playing. 
+            //mute volume before starts playing.
             playerElem.pauseVideo();
 	}
-	
+
 	if ( typeOfPlayer && !isPlayList ) {
 		tubestoploop = setInterval(function () {
 			try {
@@ -338,8 +326,8 @@ function setPlayerPaused(){
 			}
 		},100);
 	}
-	
-	
+
+
 }
 
 
@@ -359,7 +347,7 @@ function addRepeatBtn() {
 	var div = document.createElement("div");
 	div.style.paddingTop = "2px";
 	div.style.display = "inline";
-	
+
 	var icon = document.createElement("img");
 	icon.src = "http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/512/Media-Controls-Repeat-icon.png";
 	icon.style.height = "14px";
@@ -377,23 +365,23 @@ function addRepeatBtn() {
 	btn.style.display = "inline-block";
 	btn.style.marginTop = "2px";
 	btn.title = "Enable repeat of video"
-	
+
 	var textSpan = document.createElement("span");
 	textSpan.value = "test";
-	
+
 	btn.appendChild(icon);
 	btn.appendChild(textSpan);
-	
+
 	div.appendChild(btn);
 	var container = document.getElementById("watch7-secondary-actions");
 	insertAfter(container,div);
-	
+
 
 }
 function repeatBtnClick() {
 	var btn = document.getElementById("repeatBtn");
 	var currentClass = btn.className;
-	
+
 	if (currentClass == "up") {
 		//set to off
 		btn.className = "down";
@@ -426,7 +414,7 @@ function addCSSToPage() {
 	var css = document.createElement("style");
 	css.type = "text/css";
 	css.innerHTML = cssText;
-	document.body.appendChild(css);	
+	document.body.appendChild(css);
 
 }
 function insertAfter(referenceNode, newNode) {

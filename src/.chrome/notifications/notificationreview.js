@@ -1,16 +1,3 @@
-/********************************************************************/
-/*                                                                  */
-/*  Copyright (c) 2013 Mattie432                                    */
-/*                                                                  */
-/*  This obfuscated code was created by Mattie432 for the extension */
-/*  YouTweak. This may not be used in part or in its entirety       */
-/*  without the creators permission.                                */
-/*                                                                  */
-/*  http://www.mattie432.com/                                       */
-/*                                                                  */
-/********************************************************************/
-
-
 document.addEventListener('DOMContentLoaded', init);
 
 
@@ -35,7 +22,6 @@ function clickLater(){
 document.getElementById("laterBtn").onclick = later;
 }
 
-
 function openReviewPage(){
 	var options = "https://chrome.google.com/webstore/detail/youtweak-for-youtube/cfgpigllcihcpkbokdnmpkjobnebflgh/reviews";
 	window.open(options,'_newtab');
@@ -52,20 +38,20 @@ function no(){
 function later(){
    //sets install date to today.
 	var setDays = convertDateToDays(new Date());
-	
+
    chrome.storage.sync.set({
 		'reviewed' : false,
 		'reviewDateDays' : setDays
 	}, function() {
 		// Notify that we saved.
 	});
-	
+
 	window.close();
 }
 function review(){
    //sets install date to today.
 	var setDays = convertDateToDays(new Date());
-	
+
    chrome.storage.sync.set({
 		'reviewed' : true
 	}, function() {

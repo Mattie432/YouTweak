@@ -13,19 +13,6 @@ function initialize() {
 	//toggleDeleteWatchedVidsAutomatic();
 };
 
-/********************************************************************/
-/*                                                                  */
-/*  Copyright (c) 2013 Mattie432                                    */
-/*                                                                  */
-/*  This obfuscated code was created by Mattie432 for the extension */
-/*  YouTweak. This may not be used in part or in its entirety       */
-/*  without the creators permission.                                */
-/*                                                                  */
-/*  http://www.mattie432.com/                                       */
-/*                                                                  */
-/********************************************************************/
-
-
 // Saves options to localStorage.
 function save_options() {
 
@@ -50,17 +37,17 @@ function save_options() {
 	//		if(document.getElementById("setPlaybackQuality").checked == false){
 	//		    qualitySelect = "";
 	//		}else{
-	//		    qualitySelect = document.getElementById("qualitySelect").value;  
+	//		    qualitySelect = document.getElementById("qualitySelect").value;
 	//		}
 	//var setVideoSize;
 	//		if(document.getElementById("setVideoSizeCheck").checked == false){
 	//		    setVideoSize = "";
 	//		}else{
-	//		    setVideoSize = document.getElementById("setVideoSize").value;  
+	//		    setVideoSize = document.getElementById("setVideoSize").value;
 	//		}
 	//var repeatVideos = document.getElementById("repeatVideos").checked;
 	//var centerHomePage = document.getElementById("centerHomePage").checked;
-	
+
 	if(isValidURL(iconURLLink)){
 	chrome.storage.sync.set({
 		'reviewed' : "false",
@@ -71,16 +58,11 @@ function save_options() {
 		'iconURLTxt' : iconURLLink,
 		//lastversion not used
 		'lastVersion' : version,
-		//'pauseVideos' : pauseVideos,
 		'clearAllVideos' : clearAllVideos,
 		'loadAllVideos' : loadAllVideos,
 		'deleteWatchedVidsAutomated' : deleteWatchedVidsAutomated,
 		'removeRecomendedChannels' : removeRecomendedChannels,
-		//'qualitySelect' : qualitySelect,
-		//'repeatVideos' : repeatVideos,
 		'redirectYouTube' : redirectYouTube,
-		//'setVideoSize' : setVideoSize,
-		//'centerHomePage' : centerHomePage,
 		'autoLike' : autoLike,
 		'autoLikeNames' : autoLikeNames
 	}, function() {
@@ -105,51 +87,29 @@ function restore_options() {
 			document.getElementById("autoLikeTextBox").value = (r.autoLikeNames.replace(",", /\n/));
 			document.getElementById("changeIconURL").checked = (r.changeIconURL);
 			document.getElementById("deleteSubsBtn").checked = (r.deleteSubsBtn);
-			//document.getElementById("pauseVideos").checked = (r.pauseVideos);
 			document.getElementById("clearAllVideos").checked = (r.clearAllVideos);
 			document.getElementById("loadAllVideos").checked = (r.loadAllVideos);
 			document.getElementById("deleteWatchedVidsAutomated").checked = (r.deleteWatchedVidsAutomated);
 			document.getElementById("removeRecomendedChannels").checked = (r.removeRecomendedChannels);
-			//document.getElementById("repeatVideos").checked = (r.repeatVideos);
 			document.getElementById("redirectYouTube").checked = (r.redirectYouTube);
-			//document.getElementById("centerHomePage").checked = (r.centerHomePage);
 			if(r.iconURLTxt === undefined || r.iconURLTxt == ""){
 				 document.getElementById("iconURL").value = "http://www.youtube.com/feed/subscriptions";
 			}else{
 				 document.getElementById("iconURL").value  = r.iconURLTxt;
 			}
-			
+
 			if (r.removeWatchedVideos) {
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			}else{
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			    document.getElementById("deleteWatchedVidsAutomated").setAttribute("disabled","true");
 			}
-			
-			
-			//if(r.qualitySelect === undefined || r.qualitySelect == ""){
-			//    document.getElementById("setPlaybackQuality").checked = false;
-			//    document.getElementById("qualitySelect").setAttribute("disabled","true");
-			//}else{
-			//    document.getElementById("qualitySelect").removeAttribute("disabled");
-			//    document.getElementById("setPlaybackQuality").checked = true;
-			//    document.getElementById("qualitySelect").value = r.qualitySelect; 
-			//}
-			//
-			//if(r.setVideoSize === undefined || r.setVideoSize == ""){
-			//    document.getElementById("setVideoSizeCheck").checked = false;
-			//    document.getElementById("setVideoSize").setAttribute("disabled","true");
-			//}else{
-			//    document.getElementById("setVideoSize").removeAttribute("disabled");
-			//    document.getElementById("setVideoSizeCheck").checked = true;
-			//    document.getElementById("setVideoSize").value = r.setVideoSize; 
-			//}
 	});
-	
+
 }
 
 function updateVersion(){
-	var vers = chrome.app.getDetails().version;	
+	var vers = chrome.app.getDetails().version;
 	chrome.storage.sync.set({
 		'lastVersion' : vers
 	}, function() {
@@ -239,7 +199,7 @@ function contactShow(){
 }
 function toggleEnabled(c){
     if(c.getAttribute("disabled")){
-	c.removeAttribute("disabled");	
+	c.removeAttribute("disabled");
     }else{
 	c.setAttribute("disabled","true");
     }
