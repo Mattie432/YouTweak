@@ -3,7 +3,7 @@
 ## Overview
 This extension aims to provide an improved experience for the popular video site, YouTube. First a little about me, I am a university student currently studying an MEng in Computer Science in the UK. I have been coding for the past 5 years and throughout that time I have been an avid creator and consumer of YouTube content. The reason for making this extension was to improve my experience when using YouTube and I have finally decided to submit this to the Chrome extension store in the hopes that it will aid you in the same way.
 
-![Image](https://lh5.googleusercontent.com/SVNLkAQ2zql9a_qDjIyOHBmrqkeG-0OICTtY2XeK_CxA_UrA0IuSD3vLsV5fElGayZwvCrZk1bE=s640-h400-e365-rw)
+![Image](https://raw.githubusercontent.com/Mattie432/YouTweak/master/images/screenshot1.png?token=3811007__eyJzY29wZSI6IlJhd0Jsb2I6TWF0dGllNDMyL1lvdVR3ZWFrL21hc3Rlci9pbWFnZXMvc2NyZWVuc2hvdDEucG5nIiwiZXhwaXJlcyI6MTM5NjczODEzNH0%3D--09f9c6759aab0fde62362e5ccc9cc0f713d501ca)
 
 ## Features
 
