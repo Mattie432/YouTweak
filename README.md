@@ -1,12 +1,10 @@
 # YouTweak
------------
 
 ## Overview
 This extension aims to provide an improved experience for the popular video site, YouTube. First a little about me, I am a university student currently studying an MEng in Computer Science in the UK. I have been coding for the past 5 years and throughout that time I have been an avid creator and consumer of YouTube content. The reason for making this extension was to improve my experience when using YouTube and I have finally decided to submit this to the Chrome extension store in the hopes that it will aid you in the same way.
 
 ![Image](https://lh5.googleusercontent.com/SVNLkAQ2zql9a_qDjIyOHBmrqkeG-0OICTtY2XeK_CxA_UrA0IuSD3vLsV5fElGayZwvCrZk1bE=s640-h400-e365-rw)
 
------------
 ## Features
 
 * #### Remove Subscription Videos
@@ -30,19 +28,13 @@ This removes the "Recommended Channels" box from the homepage increasing the amo
 * #### Auto like videos
 This feature allows you to enter the names of channels you wish to automatically like upon watching their video
 
--------------
-
 ## Updates
 Due to the constant changes implemented by YouTube it will be necessary to update this extension to reflect these changes. Rest assured that I am highly motivated to keep this app up to date as I am myself a fellow user.
 
 The code for this extension is open source and will be commited to this GutHub repo whenever there is an update or a significant change has been made.
 
--------------
-
 ## Notes
 Please understand that this extension relies on YouTube's ability to hide videos from their homepage. If for some reason the site has a problem with this feature then this extension may not function properly. If this is the case then we both have to wait for YouTube to fix their problem.
-
--------------
 
 ## Links
 [Download from Chrome Webstore](https://chrome.google.com/webstore/detail/youtweak-for-youtube-remo/cfgpigllcihcpkbokdnmpkjobnebflgh)
