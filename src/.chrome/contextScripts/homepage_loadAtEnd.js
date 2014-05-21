@@ -48,25 +48,13 @@ function initClearAllVideos() {
 				allLoadedForClear = false;
 				document.body.style.cursor = "wait";
 				loadAllIntervalForClear = setInterval(function() {
+					
+					loadAllVideos();
 
-					var loadContainer = searchAllChildrenFor(document, "class", "feed-load-more-container", true);
-
-					if (loadContainer.className.indexOf("loading") != -1) {
-						//currently loading
-					} else if (loadContainer.className.indexOf("hid") != -1) {
-						//done loading
-						window.clearInterval(loadAllIntervalForClear);
-						alert("Subscriptions fully loaded.");
-						allLoadedForClear = true;
-						document.body.style.cursor = "default";
-					} else {
-						//not loading
-						loadContainer.firstElementChild.click();
-					}
 				}, 100);
 
 				clearAllIntervalForClear = setInterval(function() {
-					if (allLoadedForClear) {
+					if (allLoaded) {
 						alert("Now removing all subscription videos.");
 						clearAllVideos();
 						alert("All videos removed.");
