@@ -4,7 +4,7 @@
 		<link href="../styles/optionsPage.css" rel="stylesheet" type="text/css"></link>
 		<script src="options.js"></script>
 	</head>
-	
+
 	<body>
 	<div id="header_wrapper">
 		<div id="header">
@@ -19,8 +19,8 @@
 				</div>
 		</div> <!-- END of header -->
 	</div>
-	
-		
+
+
 	<div id="top_note">
 		<div  class="note">
 			<p style="font-weight:bold">
@@ -29,16 +29,16 @@
 			<a href="http://www.howtogeek.com/howto/37911/google-chrome-adds-two-ways-to-hide-extension-icons/">Learn how to hide the toolbar icon.</a>
 			<br><br>
 			<p>
-				This extension now focuses on the removal of watched videos. If you would like automatic quality select, full buffering and many more features I suggest you look at <a href="http://userscripts.org/scripts/show/114002">this extension.</a>
+				This extension is focused around the 'heavy' subscription user, the majority of these tweaks change how you interact with your subscriptions videos. If you would like automatic quality select, full buffering and many more features focused more around watching videos I suggest you look at the <a href="https://github.com/YePpHa/YouTubeCenter/wiki">Youtube Center extension.</a>
 			</p>
 		</div>
-		
+
 
 	</div>
-	
-	
+
+
 	<div id="main">
-		
+
 		<div class="option">
 			<p class="optionDescription">
 				This adds a 'remove' button next to each video from your subscriptions. When clicked the video is removed using youtubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
@@ -49,15 +49,15 @@
 				</input>
 			</div>
 		</div>
-			
+
 		<div class="option">
 			<p class="optionDescription">
 				Change the YouTube icon URL - This changes the page that clicking the YouTube icon (top left of all youtube pages) takes you to. Usualy this will take you to "youtube.com" which shows you the "whats new" page. Enabling this will allow you to change the page that this icon takes you, to the one specified in the textbox below.
 			</p>
 			<p class="optionDescription">
-				Redirect "youtube.com" - If your browser takes you to "YouTube.com" then you will <b>always</b> be redirected to the URL below. 
+				Redirect "youtube.com" - If your browser takes you to "YouTube.com" then you will <b>always</b> be redirected to the URL below.
 			</p>
-			
+
 			<div class="selection">
 				<input type="checkbox" id="changeIconURL">
 					Change the YouTube icon URL.
@@ -70,7 +70,7 @@
 			<button id="resetTxt"disabled="true">Restore default</button><br>
 			</div>
 		</div>
-			
+
 		<div class="option">
 			<p class="optionDescription">
 				This allows the user to remove any previously watched videos from there home-feed in one of two ways. When in non-automatic mode, it adds a button to the left side of the home page which says 'Remove watched videos'. When clicked it will hide all watched videos from you subscriptions.In automatic mode, all watched videos will be removed automatically when you load the YouTube homepage.
@@ -106,7 +106,7 @@
 				</input>
 			</div>
 		</div>
-		
+
 		<div class="option">
 			<p class="optionDescription">
 				This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
@@ -117,11 +117,11 @@
 				</input>
 			</div>
 		</div>
-		
+
 		<div class="option">
 			<p class="optionDescription">
 				Upon watching a video from a user with their name in this list the video is automatically 'liked'. Useful to help out those youtubers that you constantly watch content from.
-				
+
 				<b>Please add one per line. These <u>are</u> case sensitive.</b>
 			</p>
 			<textarea id="autoLikeTextBox" rows="10" cols="50"></textarea>
@@ -149,11 +149,11 @@
 					</select>
 					Set the defult playback quality.
 				</input>
-				
-				
+
+
 			</div>
 		</div>
-				
+
 		<div class="option">
 			<p class="optionDescription">
 				This allows you to specify the size that YouTube videos will play in. The YouTube player will automatically be expanded to that size when you start to watch any YouTube video.
@@ -168,7 +168,7 @@
 				</input>
 			</div>
 		</div>
-		
+
 		<div class="option">
 			<p class="optionDescription">
 				This disables YouTubes auto play feature when opening a new YouTube video but still allows the video to be buffered. This means that the video will still load and be ready for you when you click play.
@@ -180,9 +180,9 @@
 			</div>
 		</div>
 
-		
 
-		
+
+
 		<div class="option">
 			<p class="optionDescription">
 				This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
@@ -193,7 +193,7 @@
 				</input>
 			</div>
 		</div>
-		
+
 		<div class="option">
 			<p class="optionDescription">
 				This adds a button below the video player (next to the like/dislike buttons) which is a toggle button. When clicked the playing video will loop back to the beginning when it reaches the end and will continue playing.
@@ -204,8 +204,8 @@
 				</input>
 			</div>
 		</div>
-		
-		
+
+
 		<div class="option">
 			<p class="optionDescription">
 				This center aligns the home/subscriptions page so that the white space is even on either side.
@@ -216,12 +216,12 @@
 				</input>
 			</div>
 		</div>-->
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		<div>
 			<button id="save">
 				Save
@@ -240,8 +240,8 @@
 			</button>
 
 		</div>
-		
-					
+
+
 		<div id="faq_message_container">
 			<div  class="message_container">
 				<p style="font-weight:bold">
@@ -256,12 +256,12 @@
 							This can be caused by a sync error between local and cloud storage for the settings of the extension. For a fix for this please look <a href="https://docs.google.com/document/d/16uFMdNrVSBAo6wMZVB8RPS4bmApqWqgjB1kl7OsD1sg/edit?usp=sharing">here.</a>
 						</p>
 					</div>
-					
+
 				</div>
-			
+
 			</div>
 		</div>
-				
+
 		<div id="error_message_container">
 			<div  class="message_container">
 				<p style="font-weight:bold">
@@ -274,15 +274,17 @@
 					here any errors will be listed. A copy-paste of this infomation will help identify the problem. I would suggest
 					using the site <a href="http://pastebin.com/">PasteBin</a> and to include the share link in the problems description.
 					To all those who do submit error reports thank you for helping to make this extension better.
+					<br><br>
+					Submit feedback here: <a href="https://chrome.google.com/webstore/support/cfgpigllcihcpkbokdnmpkjobnebflgh?hl=en&gl=GB#bug">Feedback page.</a>
 				</p>
-			
+
 			</div>
 		</div>
-			
-	
+
+
 	</div>
-		
-		
+
+
 	<div id="footer_wrapper">
 		<div id="footer">
 			<ul>
