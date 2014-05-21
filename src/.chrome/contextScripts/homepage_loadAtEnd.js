@@ -142,22 +142,28 @@ function initLoadAllVideos() {
  */
 function loadAllVideos() {
 	allLoaded = false;
-
-	var loadContainer = searchAllChildrenFor(document, "class", "feed-load-more-container", true);
+	
+	var feedlist = searchForTagAndClass("ul", "browse-items-primary");
+	pageCount1 = feedlist.length;
+	
+	var loadContainer = searchAllChildrenFor(document, "class", "load-more-button", true);
 
 	if (loadContainer.className.indexOf("loading") != -1) {
 		//currently loading
-	} else if (loadContainer.className.indexOf("hid") != -1) {
+		var a = 1;
+	} else if (pageCount1 == prevPage) {
 		//done loading
 		window.clearInterval(loadAllInterval);
 		alert("Subscriptions fully loaded.");
 		allLoaded = true;
 	} else {
 		//not loading
+		prevPage = feedlist.length;
 		loadContainer.firstElementChild.click();
 	}
 }
-
+var prevPage = -1;
+var pageCount1 = 0;
 var allLoaded = false;
 var loadAllInterval;
 
