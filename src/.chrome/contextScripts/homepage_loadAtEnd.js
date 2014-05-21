@@ -194,7 +194,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
 	enclosingDiv.className = "enclosingDiv";
 	enclosingDiv.style.height = "15px";
 	enclosingDiv.appendChild(btn);
-
+	
 	btn.onclick = function() {
 
 		try {
