@@ -199,6 +199,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
 
 		try {
 			clickableHideBtn.click();
+			videoElement.remove();
 
 		} catch(ex) {
 			console.log("Error clicking remove button.");
