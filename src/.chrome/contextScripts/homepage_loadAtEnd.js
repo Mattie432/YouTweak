@@ -262,18 +262,22 @@ function initremoveAllWatchedVideos() {
  */
 function initremoveWatchedVideosAutomated() {
 
-	var feedlist = searchForTagAndClass("ul", "feed-list");
+	var feedlist = searchForTagAndClass("ul", "browse-items-primary");
 
-	if (feedlist[0].children.length > countRemovedWatchedVideosAutomated) {
-		//alert(feedPages.length);
-		try {
-			removeAllWatched(false);
-			countRemovedWatchedVideosAutomated = feedlist[0].children.length;
-		} catch(err) {
-			console.log("Error in deleting watched vids automated...");
+	for(var i = 0; i < feedlist.length; i++){
+		var feedListElem = feedlist[i]
+		var elemChildren = feedListElem.children;
+		
+		if (feedlist.length > countRemovedWatchedVideosAutomated) {
+			//alert(feedPages.length);
+			try {
+				var removedVideos = removeAllWatched(false);
+				countRemovedWatchedVideosAutomated = feedlist.length;
+			} catch(err) {
+				console.log("Error in deleting watched vids automated...");
+			}
 		}
 	}
-
 }
 
 var countRemovedWatchedVideosAutomated = 0;
@@ -283,6 +287,8 @@ var countRemovedWatchedVideosAutomated = 0;
  * @param {Object} scrollToTop : Boolean - scroll to top of page after.
  */
 function removeAllWatched(scrollToTop) {
+
+	var removedVideos = false;
 
 	//Find all the video elements
 	var videoItems = searchForTagAndClass("li", "feed-item-container");
@@ -299,8 +305,10 @@ function removeAllWatched(scrollToTop) {
 			vidHideBtn.click();
 
 			//get dismissal notice
-			var dismissalNotice = searchAllChildrenFor(videoItems[i], "class", "feed-item-dismissal-notices", true);
-			dismissalNotice.remove();
+			videoItems[i].remove();
+			
+			//update return
+			removedVideos = true;
 
 		}
 
@@ -314,6 +322,8 @@ function removeAllWatched(scrollToTop) {
 			console.log("scroll error...");
 		}
 	}
+	
+	return removedVideos;
 }
 
 ///////////////////////////////////////////////////////////////////////////
