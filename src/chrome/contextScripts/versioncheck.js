@@ -1,4 +1,4 @@
-var xmlURL = "http://mattie432.com/YouTweak/message.xml";
+var xmlURL = "https://mattie432.com/YouTweak/message.xml";
 checkReview();
 requestMsg();
 chrome.runtime.sendMessage({method: "checkReview"}, function() {});

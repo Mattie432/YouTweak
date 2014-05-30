@@ -14,23 +14,25 @@ function notify(title, message, decay, onClick) {
 		decay = 30000;
 	}
 
-	var notification = webkitNotifications.createNotification(chrome.extension.getURL('images/icon.png'), title, message);
+	var opt = {
+        type: "basic",
+        title: title,
+        message: message,
+        iconUrl: chrome.extension.getURL('images/icon.png')
+     };
+
+	var notification = chrome.notifications.create(title, opt, function(){});
+	//chrome.notifications.create(chrome.extension.getURL('images/icon.png'), title, message);
 
 	if (onClick == "showOptionsPage") {
-		notification.onclick = function() {
-			showOptions();
-			notification.cancel();
-		};
+		chrome.notifications.onClicked.addListener(function(notificationId){
+			if(notificationId == title){
+				showOptions();
+				notification.cancel();
+			}
+		});
 	}
 
-	notification.show();
-	//negative decay means the user will have to close the window.
-	if (decay != -1) {
-		setTimeout(function() {
-			notification.cancel();
-		}, decay);
-		//setTimeout(function(){ notification.onclick() }, decay);
-	}
 }
 
 
@@ -68,8 +70,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	} else if (request.method == "reviewNotify") {
 		reviewNotify(request.decay);
 	} else if (request.method == "requestXMLMsg") {
-		var xml = retrieveXML(request.url);
-		checkMsg(xml);
+		retrieveXML(request.url);
 	} else if (request.method == "getTabUrl") {
 		redirectYouTube();
 	}
@@ -105,6 +106,8 @@ function httpGet(theUrl) {
 	xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", theUrl, false);
 	xmlHttp.send(null);
+
+	xmlHttp.overrideMimeType('text/xml');
 	return xmlHttp.responseText;
 }
 
@@ -127,11 +130,23 @@ function checkMsg(xml1) {
  * @param {Object} url
  */
 function retrieveXML(url) {
+	/**
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', url);
 	xhr.overrideMimeType('text/xml');
 	xhr.send(null);
 	return xhr;
+	*/
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState == 4) {
+	    // innerText does not let the attacker inject HTML elements.
+	    checkMsg(xhr);
+	  }
+	};
+	xhr.open("GET", url, true);
+	xhr.send();
 }
 
 /**
