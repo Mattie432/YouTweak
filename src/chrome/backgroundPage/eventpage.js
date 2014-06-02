@@ -15,26 +15,26 @@ function notify(title, message, decay, onClick) {
 	}
 
 	var opt = {
-        type: "basic",
-        title: title,
-        message: message,
-        iconUrl: chrome.extension.getURL('images/icon.png')
-     };
+		type : "basic",
+		title : title,
+		message : message,
+		iconUrl : chrome.extension.getURL('images/icon.png')
+	};
 
-	var notification = chrome.notifications.create(title, opt, function(){});
+	var notification = chrome.notifications.create(title, opt, function() {
+	});
 	//chrome.notifications.create(chrome.extension.getURL('images/icon.png'), title, message);
 
 	if (onClick == "showOptionsPage") {
-		chrome.notifications.onClicked.addListener(function(notificationId){
-			if(notificationId == title){
+		chrome.notifications.onClicked.addListener(function(notificationId) {
+			if (notificationId == title) {
 				showOptions();
-				notification.cancel();
+				//notification.cancel();
 			}
 		});
 	}
 
 }
-
 
 /**
  *	Asks the user to review the extension.
@@ -58,6 +58,7 @@ function reviewNotify(decay) {
 		notifications = 1;
 	}
 }
+
 var notifications = 0;
 
 /**
@@ -117,10 +118,17 @@ function httpGet(theUrl) {
  */
 function checkMsg(xml1) {
 	chrome.storage.sync.get(['lastMessageNum'], function(r) {
+		var response;
+
 		if (r.lastMessageNum !== undefined) {
-			getMessages(xml1, r.lastMessageNum);
+			response = getMessages(xml1, r.lastMessageNum);
 		} else {
-			getMessages(xml1, -1);
+			response = getMessages(xml1, -1);
+		}
+
+		if (response.show == "true" && response.num != -1) {
+			notify("Alert!", "New message recieved about YouTweak! To read it head over to the options page or click on this notification.", 60000, "showOptionsPage");
+			updateReadMsg(response.num);
 		}
 	});
 }
@@ -131,19 +139,18 @@ function checkMsg(xml1) {
  */
 function retrieveXML(url) {
 	/**
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', url);
-	xhr.overrideMimeType('text/xml');
-	xhr.send(null);
-	return xhr;
-	*/
+	 var xhr = new XMLHttpRequest();
+	 xhr.open('GET', url);
+	 xhr.overrideMimeType('text/xml');
+	 xhr.send(null);
+	 return xhr;
+	 */
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
-	  if (xhr.readyState == 4) {
-	    // innerText does not let the attacker inject HTML elements.
-	    checkMsg(xhr);
-	  }
+		if (xhr.readyState == 4) {
+			checkMsg(xhr);
+		}
 	};
 	xhr.open("GET", url, true);
 	xhr.send();
@@ -187,20 +194,25 @@ function getMessages(xml1, msgNum) {
 			}
 
 			var case1 = (msgNum == undefined);
-			var case2 = (tempnum > msgNum);
+			var case2 = (tempnum > msgNum);//|| true;
 			var case3 = tempnum > num;
 			if ((case1 || case2) && case3) {
 				num = tempnum;
 				date = tempdate;
 				text = temptext;
+
+				return {
+					show : show,
+					num : num,
+					date : date,
+					message : text
+				};
+
 			}
 
 		}
 	}
-	if (show == "true" && num != -1) {
-		notify("Alert!", text, 60000, "");
-		updateReadMsg(num);
-	}
+
 }
 
 /**
@@ -212,6 +224,7 @@ function updateReadMsg(msgNum) {
 		'lastMessageNum' : msgNum
 	}, function() {
 		// Notify that we saved.
+		console.log("Message number updated");
 	});
 }
 
@@ -261,6 +274,6 @@ function urlMatch(url) {
  *	Adds the endsWith method to the string class.
  * @param {Object} s - the string to check if it ends with
  */
-String.prototype.endsWith = function(s){
+String.prototype.endsWith = function(s) {
 	return this.length >= s.length && this.substr(this.length - s.length) == s;
 };

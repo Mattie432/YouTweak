@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', initialize);
+var xmlURL = "https://mattie432.com/YouTweak/message.xml";
 window.onbeforeunload = function() {
     save_options();
 };
@@ -11,7 +12,129 @@ function initialize() {
 	document.getElementById("save").addEventListener("click", function(){window.close();},false);
 	document.getElementById("contact").addEventListener("click", contactShow,false);
 	//toggleDeleteWatchedVidsAutomatic();
+	checkMessages();
 };
+
+function checkMessages(){
+	var xhr = new XMLHttpRequest();
+		xhr.open("GET", xmlURL, true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				var response = getMessages(xhr);
+
+				if(response.show == "true"){
+					addMessageToPage(response);
+				}
+
+			}
+		};
+		xhr.send();
+}
+
+function addMessageToPage(responseObject){
+	var child = document.createElement("div");
+	child.setAttribute("class", "alert note");
+
+	var icon = document.createElement("div");
+	icon.setAttribute("class", "alertIcon");
+
+	var text = document.createElement("div");
+	text.setAttribute("class","alertText");
+	text.innerHTML = linkify(responseObject.message);
+
+	var br = document.createElement("div");
+
+	var date = document.createElement("div");
+	date.innerText = responseObject.date;
+
+	br.appendChild(date);
+	br.appendChild(text);
+
+	child.appendChild(icon);
+	child.appendChild(br);
+
+	var note = document.getElementById("top_note");
+	note.insertBefore(child, note.firstElementChild);
+
+}
+
+function linkify(inputText) {
+    var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+    //Change email addresses to mailto:: links.
+    replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+    return replacedText;
+}
+
+
+/**
+ *	Gets all messages from the XML
+ * @param {Object} xml1
+ * @param {Object} msgNum
+ */
+function getMessages(xml1, msgNum) {
+
+	var xml = xml1.responseXML.childNodes[0];
+	var messages = xml.childNodes;
+
+	var num = -1;
+	var date;
+	var text;
+	var show;
+
+	for (var i = 0; i < messages.length; i++) {
+		if (messages[i].nodeName == "show") {
+			//show msg
+			show = messages[i].textContent;
+		}
+
+		if (messages[i].nodeName == "message") {
+			var msg = messages[i].childNodes;
+			var tempnum;
+			var tempdate;
+			var temptext;
+
+			for (var j = 0; j < msg.length; j++) {
+				if (msg[j].nodeName == "num") {
+					tempnum = msg[j].textContent;
+				} else if (msg[j].nodeName == "date") {
+					tempdate = msg[j].textContent;
+				} else if (msg[j].nodeName == "text") {
+					temptext = msg[j].textContent;
+				}
+			}
+
+			var case1 = (msgNum == undefined);
+			var case2 = (tempnum > msgNum);//|| true;
+			var case3 = tempnum > num;
+			if ((case1 || case2) && case3) {
+				num = tempnum;
+				date = tempdate;
+				text = temptext;
+
+				return {
+					show : show,
+					num : num,
+					date : date,
+					message : text
+				};
+
+			}
+
+		}
+	}
+
+}
 
 // Saves options to localStorage.
 function save_options() {
