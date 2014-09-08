@@ -6,13 +6,16 @@ init();
 function init() {
 	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels'], function(r) {
 
-		if (r.removeRecomendedChannels) {
-			//removeRecommendedChannels();
-		}
 		if (r.deleteSubsBtn) {
 			initRemoveSingleVideo();
 			setInterval(initRemoveSingleVideo, 1000);
 			addedSeparator = false;
+		}
+		if (r.loadAllVideos) {
+			initLoadAllVideos();
+		}
+		if (r.clearAllVideos) {
+			initClearAllVideos();
 		}
 		if (r.removeWatchedVideos) {
 			if (r.deleteWatchedVidsAutomated) {
@@ -24,12 +27,6 @@ function init() {
 				initremoveAllWatchedVideos();
 				addedSeparator = false;
 			}
-		}
-		if (r.loadAllVideos) {
-			initLoadAllVideos();
-		}
-		if (r.clearAllVideos) {
-			initClearAllVideos();
 		}
 
 		openLinksInSameWindow();
@@ -360,7 +357,7 @@ function addNewMenuBtn(btnText, onClickFunction) {
 	link.appendChild(topSpan);
 	topSpan.appendChild(span);
 	span.appendChild(textDetails);
-	parent.insertBefore(listElem);
+	parent.insertBefore(listElem,parent.children[2]);
 
 }
 

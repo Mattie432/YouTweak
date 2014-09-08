@@ -65,10 +65,8 @@ function initAutoLike(){
    // initSetPlayerPaused();
    // initAutoLike();
 }
-//Loads when the player is ready
-var origOnYouTubePlayerReady = onYouTubePlayerReady;
+
 var onYouTubePlayerReady = function () {
-    origOnYouTubePlayerReady(); //call the original onYouTubePlayerReady
     console.log("Youtube player ready.");
     //Add event listeners here!
     //document.getElementById("movie_player").addEventListener("onStateChange","onStateChange");
@@ -77,7 +75,7 @@ var onYouTubePlayerReady = function () {
     //initSizeSelect();
     //initQualitySelect();
     //initAutoLike();
-}
+};
 
 var prevState;
 function onStateChange(event) {
