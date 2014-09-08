@@ -343,8 +343,7 @@ function toggleDeleteWatchedVidsAutomatic(){
 }
 function contactShow(){
 //	document.getElementById("emf-form").removeAttribute("style");
-	window.open("https://chrome.google.com/webstore/support/cfgpigllcihcpkbokdnmpkjobnebflgh?hl=en&gl=GB#feature",'_newtab');
-	chrome.tabs.create({'url': "http://mattie432.com/contact-form.html"});
+	window.open("../../aboutPage/about.html",'_newtab');
 }
 function toggleEnabled(c){
     if(c.getAttribute("disabled")){

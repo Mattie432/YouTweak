@@ -1,6 +1,4 @@
 initAutoLike();
-console.log("STaring autolike!!")
-
 /**
  *	Initialises the autolike option. Checks if the user is one to be automatically liked or not.
  */
@@ -8,6 +6,8 @@ function initAutoLike(){
     try{
 	var q = document.getElementById("autoLike").getAttribute("value");
 	if (q == true || q == "true") {
+	console.log("Staring autolike");
+	document.getElementById("autoLike").setAttribute("value","false");
 
 	  var channelName;
 	  var names = document.getElementById("autoLikeNames").getAttribute("value");
@@ -17,22 +17,25 @@ function initAutoLike(){
 	  for(var i = 0; i< watch7userheader.childNodes.length; i++){
 
 	    try{
-	     if(watch7userheader.children[i].className.indexOf("g-hovercard yt-uix-sessionlink yt-user-name") != -1){
-		channelName = watch7userheader.children[i].text;
+	     if(watch7userheader.children[i].className.indexOf("yt-user-info") != -1){
+			channelName = watch7userheader.children[i].firstChild.text;
 	     }
 	    }catch(ex){
 
 	    }
 	  }
 
-	  //  alert(channelName);
 
-	  if(document.getElementById("watch-like").className.search("yt-uix-button-toggled")<0) {
+		//check if already liked
+		var tmp = document.getElementById("watch-like").className.search("yt-uix-button-toggled");
+	  	if(tmp <= 0) {
 	     for(var j = 0; j < namesArray.length; j++){
 		if(namesArray[j] == channelName){
+
 		       setTimeout(function(){
 			 document.getElementById("watch-like").click();
-			 console.info("like clicked");
+			 console.info("like clicked : channel - " + channelName);
+
 		       },1000);
 		}
 	     }
@@ -41,7 +44,7 @@ function initAutoLike(){
 	  //document.getElementById("autoLike").setAttribute("value","");
 	}
     }catch (ex){
-	console.log("ERROR: " + ex)
+		console.log("ERROR: " + ex);
     }
 }
 

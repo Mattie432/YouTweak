@@ -48,7 +48,7 @@ function initClearAllVideos() {
 				allLoadedForClear = false;
 				document.body.style.cursor = "wait";
 				loadAllIntervalForClear = setInterval(function() {
-					
+
 					loadAllVideos();
 
 				}, 100);
@@ -130,10 +130,10 @@ function initLoadAllVideos() {
  */
 function loadAllVideos() {
 	allLoaded = false;
-	
+
 	var feedlist = searchForTagAndClass("ul", "browse-items-primary");
 	pageCount1 = feedlist.length;
-	
+
 	var loadContainer = searchAllChildrenFor(document, "class", "load-more-button", true);
 
 	if (loadContainer.className.indexOf("loading") != -1) {
@@ -194,7 +194,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
 	enclosingDiv.className = "enclosingDiv";
 	enclosingDiv.style.height = "15px";
 	enclosingDiv.appendChild(btn);
-	
+
 	btn.onclick = function() {
 
 		try {
@@ -257,12 +257,12 @@ function initremoveAllWatchedVideos() {
  */
 function initremoveWatchedVideosAutomated() {
 
-	var feedlist = searchForTagAndClass("ul", "browse-items-primary");
+	var feedlist = document.getElementById("browse-items-primary").children;
 
 	for(var i = 0; i < feedlist.length; i++){
-		var feedListElem = feedlist[i]
+		var feedListElem = feedlist[i];
 		var elemChildren = feedListElem.children;
-		
+
 		if (feedlist.length > countRemovedWatchedVideosAutomated) {
 			//alert(feedPages.length);
 			try {
@@ -301,7 +301,7 @@ function removeAllWatched(scrollToTop) {
 
 			//get dismissal notice
 			videoItems[i].remove();
-			
+
 			//update return
 			removedVideos = true;
 
@@ -317,7 +317,7 @@ function removeAllWatched(scrollToTop) {
 			console.log("scroll error...");
 		}
 	}
-	
+
 	return removedVideos;
 }
 
