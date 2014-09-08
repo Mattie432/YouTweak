@@ -4,7 +4,6 @@ window.onbeforeunload = function() {
     save_options();
 };
 function initialize() {
-	updateVersion();
 	arrangePage();
 	restore_options();
 	checkForDate();
@@ -85,52 +84,54 @@ function linkify(inputText) {
 function getMessages(xml1, msgNum) {
 
 	var xml = xml1.responseXML.childNodes[0];
-	var messages = xml.childNodes;
+	if(xml !== undefined && xml !== null){
+		var messages = xml.childNodes;
 
-	var num = -1;
-	var date;
-	var text;
-	var show;
+		var num = -1;
+		var date;
+		var text;
+		var show;
 
-	for (var i = 0; i < messages.length; i++) {
-		if (messages[i].nodeName == "show") {
-			//show msg
-			show = messages[i].textContent;
-		}
+		for (var i = 0; i < messages.length; i++) {
+			if (messages[i].nodeName == "show") {
+				//show msg
+				show = messages[i].textContent;
+			}
 
-		if (messages[i].nodeName == "message") {
-			var msg = messages[i].childNodes;
-			var tempnum;
-			var tempdate;
-			var temptext;
+			if (messages[i].nodeName == "message") {
+				var msg = messages[i].childNodes;
+				var tempnum;
+				var tempdate;
+				var temptext;
 
-			for (var j = 0; j < msg.length; j++) {
-				if (msg[j].nodeName == "num") {
-					tempnum = msg[j].textContent;
-				} else if (msg[j].nodeName == "date") {
-					tempdate = msg[j].textContent;
-				} else if (msg[j].nodeName == "text") {
-					temptext = msg[j].textContent;
+				for (var j = 0; j < msg.length; j++) {
+					if (msg[j].nodeName == "num") {
+						tempnum = msg[j].textContent;
+					} else if (msg[j].nodeName == "date") {
+						tempdate = msg[j].textContent;
+					} else if (msg[j].nodeName == "text") {
+						temptext = msg[j].textContent;
+					}
 				}
+
+				var case1 = (msgNum == undefined);
+				var case2 = (tempnum > msgNum);//|| true;
+				var case3 = tempnum > num;
+				if ((case1 || case2) && case3) {
+					num = tempnum;
+					date = tempdate;
+					text = temptext;
+
+					return {
+						show : show,
+						num : num,
+						date : date,
+						message : text
+					};
+
+				}
+
 			}
-
-			var case1 = (msgNum == undefined);
-			var case2 = (tempnum > msgNum);//|| true;
-			var case3 = tempnum > num;
-			if ((case1 || case2) && case3) {
-				num = tempnum;
-				date = tempdate;
-				text = temptext;
-
-				return {
-					show : show,
-					num : num,
-					date : date,
-					message : text
-				};
-
-			}
-
 		}
 	}
 
@@ -145,7 +146,6 @@ function save_options() {
 	var iconURLLink = document.getElementById("iconURL").value;
 	var redirectYouTube = document.getElementById("redirectYouTube").checked;
 	var details = chrome.runtime.getManifest();
-	var version = details.version;
 	var clearAllVideos = document.getElementById("clearAllVideos").checked;
 	var loadAllVideos = document.getElementById("loadAllVideos").checked;
 	var deleteWatchedVidsAutomated = document.getElementById("deleteWatchedVidsAutomated").checked;
@@ -179,8 +179,6 @@ function save_options() {
 		'changeIconURL' : changeIconURLState,
 		'removeWatchedVideos' : removeWatchedVideosState,
 		'iconURLTxt' : iconURLLink,
-		//lastversion not used
-		'lastVersion' : version,
 		'clearAllVideos' : clearAllVideos,
 		'loadAllVideos' : loadAllVideos,
 		'deleteWatchedVidsAutomated' : deleteWatchedVidsAutomated,
@@ -207,7 +205,13 @@ function restore_options() {
 							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames'],
 		function(r) {
 			document.getElementById("autoLike").checked = (r.autoLike);
-			document.getElementById("autoLikeTextBox").value = (r.autoLikeNames.replace(",", /\n/));
+			document.getElementById("autoLikeTextBox").value =(function() {
+																if (r.autoLikeNames !== "" && r.autoLikeNames !== null && r.autoLikeNames !== undefined){
+																	return r.autoLikeNames.replace(",", /\n/);
+																}else{
+																	return "";
+																}
+															})();
 			document.getElementById("changeIconURL").checked = (r.changeIconURL);
 			document.getElementById("deleteSubsBtn").checked = (r.deleteSubsBtn);
 			document.getElementById("clearAllVideos").checked = (r.clearAllVideos);
@@ -229,15 +233,6 @@ function restore_options() {
 			}
 	});
 
-}
-
-function updateVersion(){
-	var vers = chrome.app.getDetails().version;
-	chrome.storage.sync.set({
-		'lastVersion' : vers
-	}, function() {
-		// Notify that we saved.
-	});
 }
 
 //Review
