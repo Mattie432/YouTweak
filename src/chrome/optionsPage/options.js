@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', initialize);
 var xmlURL = "https://mattie432.com/YouTweak/message.xml";
+var lastOpenedOptionsPage;
+
 window.onbeforeunload = function() {
     save_options();
 };
@@ -10,27 +12,68 @@ function initialize() {
 	document.getElementById("changeIconURL").addEventListener("click", arrangePage,false);
 	document.getElementById("save").addEventListener("click", function(){window.close();},false);
 	document.getElementById("contact").addEventListener("click", contactShow,false);
-	//toggleDeleteWatchedVidsAutomatic();
+
+
+
 	checkMessages();
 };
 
 function checkMessages(){
-	var xhr = new XMLHttpRequest();
-		xhr.open("GET", xmlURL, true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				var response = getMessages(xhr);
 
-				if(response.show == "true"){
-					addMessageToPage(response);
+	chrome.storage.sync.get(['lastOpenedOptionsPage'], function(r) {
+
+		var hoursBetweenChecks = 2;
+		var tmp = r.lastOpenedOptionsPage + (30);// * 60 * hoursBetweenChecks);
+		if(tmp < new Date().getTime() / 1000){
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", xmlURL, true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					var response = getMessages(xhr);
+
+
+					if(response.show == "true"){
+						addMessageToPage(response.message,response.date);
+						//save message locally
+					    chrome.storage.local.set({"keyMessage" : response.message});
+						chrome.storage.local.set({"keyDate" : response.date});
+
+					}else{
+						//empty local message
+					    chrome.storage.local.set({"keyMessage" : null});
+						chrome.storage.local.set({"keyDate" : null});
+					}
+
 				}
+			};
+			xhr.send();
 
-			}
-		};
-		xhr.send();
+			lastOpenedOptionsPage = new Date().getTime() / 1000;
+		}else{
+			var keyMessage;
+			var keyDate;
+
+			chrome.storage.local.get("keyMessage", function(result){
+        		keyMessage = result.keyMessage
+    		});
+			chrome.storage.local.get("keyDate", function(result){
+        		keyDate = result.keyDate
+    		});
+
+    		if(keyMessage !== undefined && keyMessage !== null && keyDate !== undefined && keyDate !== null){
+    			//show cached message
+				addMessageToPage(keyMessage,keyDate);
+    		}
+
+		}
+	});
+
+
 }
 
-function addMessageToPage(responseObject){
+
+function addMessageToPage(message,messageDate){
 	var child = document.createElement("div");
 	child.setAttribute("class", "alert note");
 
@@ -39,12 +82,12 @@ function addMessageToPage(responseObject){
 
 	var text = document.createElement("div");
 	text.setAttribute("class","alertText");
-	text.innerHTML = linkify(responseObject.message);
+	text.innerHTML = linkify(message);
 
 	var br = document.createElement("div");
 
 	var date = document.createElement("div");
-	date.innerText = responseObject.date;
+	date.innerText = messageDate;
 
 	br.appendChild(date);
 	br.appendChild(text);
@@ -154,26 +197,13 @@ function save_options() {
 	    autoLikeNames.replace(" ","");
 	    autoLikeNames.replace(",","");
 	    autoLikeNames.replace(/[\n\r]/g,",");
-	//var pauseVideos = document.getElementById("pauseVideos").checked;
 	var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
-	//var qualitySelect;
-	//		if(document.getElementById("setPlaybackQuality").checked == false){
-	//		    qualitySelect = "";
-	//		}else{
-	//		    qualitySelect = document.getElementById("qualitySelect").value;
-	//		}
-	//var setVideoSize;
-	//		if(document.getElementById("setVideoSizeCheck").checked == false){
-	//		    setVideoSize = "";
-	//		}else{
-	//		    setVideoSize = document.getElementById("setVideoSize").value;
-	//		}
-	//var repeatVideos = document.getElementById("repeatVideos").checked;
-	//var centerHomePage = document.getElementById("centerHomePage").checked;
+	//seconds since last page opened
 
 	if(isValidURL(iconURLLink)){
 	chrome.storage.sync.set({
 		'reviewed' : "false",
+		'lastOpenedOptionsPage' : lastOpenedOptionsPage,
 		'reviewDateDays' : setDays,
 		'deleteSubsBtn' : deleteSubsBtnState,
 		'changeIconURL' : changeIconURLState,
@@ -202,8 +232,9 @@ function restore_options() {
 	chrome.storage.sync.get([ 'changeIconURL', 'removeWatchedVideos', 'linksInHD',
 							'deleteSubsBtn', 'iconURLTxt', 'pauseVideos', 'installDate','loadAllVideos',
 							'clearAllVideos','deleteWatchedVidsAutomated', 'removeRecomendedChannels','qualitySelect',
-							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames'],
+							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames','lastOpenedOptionsPage'],
 		function(r) {
+			lastOpenedOptionsPage = r.lastOpenedOptionsPage;
 			document.getElementById("autoLike").checked = (r.autoLike);
 			document.getElementById("autoLikeTextBox").value =(function() {
 																if (r.autoLikeNames !== "" && r.autoLikeNames !== null && r.autoLikeNames !== undefined){
