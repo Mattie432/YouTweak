@@ -163,7 +163,7 @@ function initRemoveSingleVideo() {
 	for (var i = 0; i < videoItems.length; i++) {
 		if (videoItems[i].lastChild.tagName !== "DONE") {
 			//get the hide button
-			var vidHideBtn = searchAllChildrenFor(videoItems[i], "data-action", "hide", true);
+			var vidHideBtn = searchAllChildrenFor(videoItems[i], "class", "yt-ui-menu-item yt-uix-menu-close-on-select dismiss-menu-choice", true);
 
 			//Add the btn to the video
 			addRemoveBtn(videoItems[i], vidHideBtn);
@@ -293,7 +293,7 @@ function removeAllWatched(scrollToTop) {
 			//Video has been watched
 
 			//get the hide button
-			var vidHideBtn = searchAllChildrenFor(videoItems[i], "data-action", "hide", true);
+			var vidHideBtn = searchAllChildrenFor(videoItems[i], "class", "yt-ui-menu-item yt-uix-menu-close-on-select dismiss-menu-choice", true);
 			vidHideBtn.click();
 
 			//get dismissal notice
