@@ -24,7 +24,7 @@ function checkMessages(){
 
 		var hoursBetweenChecks = 2;
 		var tmp = r.lastOpenedOptionsPage + (30);// * 60 * hoursBetweenChecks);
-		if(tmp < new Date().getTime() / 1000){
+		if( isNaN(tmp) |tmp==undefined | tmp==null | tmp == "" | tmp < new Date().getTime() / 1000){
 
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", xmlURL, true);
