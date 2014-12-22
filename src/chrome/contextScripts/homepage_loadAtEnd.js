@@ -263,8 +263,10 @@ function initremoveWatchedVideosAutomated() {
 		if (feedlist.length > countRemovedWatchedVideosAutomated) {
 			//alert(feedPages.length);
 			try {
+				var scrollToY = window.scrollY
 				var removedVideos = removeAllWatched(false);
 				countRemovedWatchedVideosAutomated = feedlist.length;
+				window.scrollTo(0,scrollToY)
 			} catch(err) {
 				console.log("Error in deleting watched vids automated...");
 			}
