@@ -50,7 +50,7 @@
 		"*://*.youtube.es/feed/*",
 		"*://*.youtube.it/feed/*"
 	  ],
-      "js": ["backgroundPage/commonMethods.js", "contextScripts/homepage_loadAtEnd.js"],
+      "js": ["backgroundPage/commonMethods.js", "contextScripts/homepage_loadAtEnd.js","contextScripts/loadvideoplayer.js", "contextScripts/videoplayer.js"],
     "run_at": "document_end"
     },{
       "matches": [
@@ -81,7 +81,7 @@
 		"*://*.youtube.es/watch*",
 		"*://*.youtube.it/watch*"
 	  ],
-    "js": ["backgroundPage/commonMethods.js", "contextScripts/loadvideoplayer.js", "contextScripts/videoplayer.js"],
+    "js": ["backgroundPage/commonMethods.js","contextScripts/loadvideoplayer.js", "contextScripts/videoplayer.js"],
     "run_at": "document_end"
     }
   ]

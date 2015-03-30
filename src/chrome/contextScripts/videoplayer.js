@@ -1,29 +1,29 @@
-initAutoLike();
+timer = setInterval(initAutoLike, 10000);
 /**
  *	Initialises the autolike option. Checks if the user is one to be automatically liked or not.
  */
 function initAutoLike(){
     try{
-	var q = document.getElementById("autoLike").getAttribute("value");
-	if (q == true || q == "true") {
-	console.log("Staring autolike");
-	document.getElementById("autoLike").setAttribute("value","false");
+  	var q = document.getElementById("autoLike").getAttribute("value");
+  	if (q == true || q == "true") {
+  	console.log("YouTweak Autolike - Looking for video");
 
-	  var channelName;
-	  var names = document.getElementById("autoLikeNames").getAttribute("value");
-	  var namesArray = names.split('\n');
+  	  var channelName;
+  	  var names = document.getElementById("autoLikeNames").getAttribute("value");
+  	  var namesArray = names.split('\n');
 
-	  var watch7userheader = document.getElementById("watch7-user-header");
-	  for(var i = 0; i< watch7userheader.childNodes.length; i++){
+  	  var watch7userheader = document.getElementById("watch7-user-header");
+  	  for(var i = 0; i< watch7userheader.childNodes.length; i++){
 
-	    try{
-	     if(watch7userheader.children[i].className.indexOf("yt-user-info") != -1){
-			channelName = watch7userheader.children[i].firstChild.text;
-	     }
-	    }catch(ex){
-
-	    }
-	  }
+  	    try{
+  	     if(watch7userheader.children[i].className.indexOf("yt-user-info") != -1){
+  			      channelName = watch7userheader.children[i].firstElementChild.innerText;
+            	//document.getElementById("autoLike").setAttribute("value","false");
+  	     }
+  	    }catch(ex){
+    		console.log("ERROR: " + ex);
+  	    }
+  	  }
 
 
 		//check if already liked
@@ -34,6 +34,7 @@ function initAutoLike(){
 
 		       setTimeout(function(){
 			 document.getElementById("watch-like").click();
+       //window.clearInterval(timer);
 			 console.info("like clicked : channel - " + channelName);
 
 		       },1000);
