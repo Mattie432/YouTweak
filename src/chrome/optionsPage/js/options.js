@@ -197,7 +197,7 @@ function save_options() {
 	    autoLikeNames.replace(" ","");
 	    autoLikeNames.replace(",","");
 	    autoLikeNames.replace(/[\n\r]/g,",");
-	//var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
+	var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
 	//seconds since last page opened
 
 	if(isValidURL(iconURLLink)){
@@ -212,7 +212,7 @@ function save_options() {
 		'clearAllVideos' : clearAllVideos,
 		'loadAllVideos' : loadAllVideos,
 		'deleteWatchedVidsAutomated' : deleteWatchedVidsAutomated,
-		//'removeRecomendedChannels' : removeRecomendedChannels,
+		'removeRecomendedChannels' : removeRecomendedChannels,
 		'redirectYouTube' : redirectYouTube,
 		'autoLike' : autoLike,
 		'autoLikeNames' : autoLikeNames
@@ -248,7 +248,7 @@ function restore_options() {
 			document.getElementById("clearAllVideos").checked = (r.clearAllVideos);
 			document.getElementById("loadAllVideos").checked = (r.loadAllVideos);
 			document.getElementById("deleteWatchedVidsAutomated").checked = (r.deleteWatchedVidsAutomated);
-			//document.getElementById("removeRecomendedChannels").checked = (r.removeRecomendedChannels);
+			document.getElementById("removeRecomendedChannels").checked = (r.removeRecomendedChannels);
 			document.getElementById("redirectYouTube").checked = (r.redirectYouTube);
 			if(r.iconURLTxt === undefined || r.iconURLTxt == ""){
 				 document.getElementById("iconURL").value = "http://www.youtube.com/feed/subscriptions";

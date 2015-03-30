@@ -23,19 +23,22 @@
 "web_accessible_resources": ["images/icon.png", "contextScripts/videoplayer.js"],
 
 "content_scripts": [
-    {
+  {
+    "matches": [
+  "*://*.youtube.com/*",
+  "*://*.youtube.com.br/*",
+  "*://*.youtube.fr/*",
+  "*://*.youtube.jp/*",
+  "*://*.youtube.nl/*",
+  "*://*.youtube.pl/*",
+  "*://*.youtube.ie/*",
+  "*://*.youtube.co.uk/*",
+  "*://*.youtube.es/*",
+  "*://*.youtube.it/*"
+  ],
+    "js": ["backgroundPage/commonMethods.js", "contextScripts/versioncheck.js", "/contextScripts/everypage.js"]
+  },{
       "matches": [
-		"*://*.youtube.com/",
-		"*://*.youtube.com.br/",
-		"*://*.youtube.fr/",
-		"*://*.youtube.jp/",
-		"*://*.youtube.nl/",
-		"*://*.youtube.pl/",
-		"*://*.youtube.ie/",
-		"*://*.youtube.co.uk/",
-		"*://*.youtube.es/",
-		"*://*.youtube.it/",
-
 		"*://*.youtube.com/feed/*",
 		"*://*.youtube.com.br/feed/*",
 		"*://*.youtube.fr/feed/*",
@@ -51,16 +54,6 @@
     "run_at": "document_end"
     },{
       "matches": [
-		"*://*.youtube.com/",
-		"*://*.youtube.com.br/",
-		"*://*.youtube.fr/",
-		"*://*.youtube.jp/",
-		"*://*.youtube.nl/",
-		"*://*.youtube.pl/",
-		"*://*.youtube.ie/",
-		"*://*.youtube.co.uk/",
-		"*://*.youtube.es/",
-		"*://*.youtube.it/",
 
 		"*://*.youtube.com/feed/*",
 		"*://*.youtube.com.br/feed/*",
@@ -75,20 +68,6 @@
 	  ],
       "js": ["backgroundPage/commonMethods.js", "contextScripts/homepage_loadAtStart.js"],
     "run_at": "document_start"
-    },{
-      "matches": [
-		"*://*.youtube.com/*",
-		"*://*.youtube.com.br/*",
-		"*://*.youtube.fr/*",
-		"*://*.youtube.jp/*",
-		"*://*.youtube.nl/*",
-		"*://*.youtube.pl/*",
-		"*://*.youtube.ie/*",
-		"*://*.youtube.co.uk/*",
-		"*://*.youtube.es/*",
-		"*://*.youtube.it/*"
-	  ],
-      "js": ["backgroundPage/commonMethods.js", "contextScripts/versioncheck.js", "/contextScripts/everypage.js"]
     },{
       "matches": [
 		"*://*.youtube.com/watch*",

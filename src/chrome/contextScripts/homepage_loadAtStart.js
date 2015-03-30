@@ -9,7 +9,7 @@ function init() {
 	chrome.storage.sync.get(['removeRecomendedChannels'], function(r) {
 
 		if (r.removeRecomendedChannels) {
-			//timer = setInterval(removeRecommendedChannels, interval);
+			timer = setInterval(removeRecommendedChannels, interval);
 		}
 	});
 
@@ -22,9 +22,9 @@ function init() {
 var count = 0;
 function removeRecommendedChannels() {
 	try {
-		var recommendedChannels = searchAllChildrenFor(document, "class", "branded-page-v2-secondary-col", true);
+		var recommendedChannels = searchAllChildrenFor(document, "class", "branded-page-related-channels", true);
 		if (recommendedChannels != null) {
-			recommendedChannels.parentNode.removeChild(recommendedChannels);
+			recommendedChannels.parentNode.parentNode.removeChild(recommendedChannels.parentNode);
 			clearInterval(timer);
 		} else if (count == 5000 / interval) {
 			clearInterval(timer);
