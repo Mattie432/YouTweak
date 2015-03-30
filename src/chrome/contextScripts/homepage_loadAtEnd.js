@@ -128,12 +128,12 @@ function initLoadAllVideos() {
 function loadAllVideos() {
 	allLoaded = false;
 
-	var feedlist = searchForTagAndClass("ul", "browse-items-primary");
+	var feedlist = document.getElementById("browse-items-primary").children;
 	pageCount1 = feedlist.length;
 
 	var loadContainer = searchAllChildrenFor(document, "class", "load-more-button", true);
 
-	if (loadContainer.className.indexOf("loading") != -1) {
+	if (loadContainer!= null && loadContainer.className.indexOf("loading") != -1) {
 		//currently loading
 		var a = 1;
 	} else if (pageCount1 == prevPage) {
@@ -144,7 +144,9 @@ function loadAllVideos() {
 	} else {
 		//not loading
 		prevPage = feedlist.length;
-		loadContainer.firstElementChild.click();
+		if(loadContainer != null){
+			loadContainer.firstElementChild.click();
+		}
 	}
 }
 var prevPage = -1;
