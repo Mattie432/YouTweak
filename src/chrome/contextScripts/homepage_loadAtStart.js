@@ -9,7 +9,7 @@ function init() {
 	chrome.storage.sync.get(['removeRecomendedChannels'], function(r) {
 
 		if (r.removeRecomendedChannels) {
-			timer = setInterval(removeRecommendedChannels, interval);
+			//timer = setInterval(removeRecommendedChannels, interval);
 		}
 	});
 
@@ -35,4 +35,3 @@ function removeRecommendedChannels() {
 	}
 	count++;
 }
-
