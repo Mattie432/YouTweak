@@ -263,7 +263,7 @@ img {
 .message_container {
 	margin: 5px 0 10px 0;
 	margin-right: 15px;
-	padding: 8px 0 8px 8px;
+	padding: 8px 0 0 0;
 	text-align: center;
 	background: #c8c8bd;
 	border: 1px solid #ED4337;
@@ -274,3 +274,4 @@ img {
 	text-align: center;
 	width: 660px;
 }
+
