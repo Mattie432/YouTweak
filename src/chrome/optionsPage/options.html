@@ -11,6 +11,7 @@
 				<div id="site_title">
 					<a href="">You<span>TWEAK</span></a>
 				</div>
+				<!--
 				<div id="menu" class="menu">
 					<ul>
 						<li>
@@ -20,13 +21,13 @@
 							<a href="http://twitter.com/mattie432">Twitter</a>
 						</li>
 						<li>
-							<a href="http://mattie432.com/applications/youtweak-chrome-extension/">Website</a>
+							<a href="https://mattie432.com/">Website</a>
 						</li>
 						<li>
 							<a href="https://www.facebook.com/pages/Youtweak/126246684237377">Facebook</a>
 						</li>
 					</ul>
-				</div>
+				</div>-->
 			</div>
 			<!-- END of header -->
 		</div>
@@ -45,32 +46,94 @@
 
 			<div class="option">
 				<p class="optionDescription">
-					This adds a 'remove' button next to each video from your subscriptions. When clicked the video is removed using youtubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
+					This adds a 'Remove' button next to each video from your subscriptions. When clicked the video is removed using YouTubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
+				</p>
+				<p cass="optionDescription">
+					There is no way to re-add removed videos to the "My Subscriptions" page, to find the video again you would have to search the YouTubers channel.
 				</p>
 				<div class="selection">
 					<input type="checkbox" id="deleteSubsBtn">
-					Enable the 'Remove' button next to each video.
+					Enable the 'Remove' button next to each video on subscripton page.
 					</input>
 				</div>
 			</div>
 
 			<div class="option">
 				<p class="optionDescription">
-					Change the YouTube icon URL - This changes the page that clicking the YouTube icon (top left of all youtube pages) takes you to. Usualy this will take you to "youtube.com" which shows you the "whats new" page. Enabling this will allow you to change the page that this icon takes you, to the one specified in the textbox below.
+					This adds a "Remove Watched Videos" button to the side menu on the "My Subscriptions" page. When clicked this will remove all videos that have already been watched from the visible videos on the homepage.
 				</p>
 				<p class="optionDescription">
-					Redirect "youtube.com" - If your browser takes you to "YouTube.com" then you will <b>always</b> be redirected to the URL below.
+					This removes the videos using YouTubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
 				</p>
+				<p class="optionDescription">
+					This will only remove watched videos that are currently visible to the user, if you want to remove all of your watched videos you can combine this button with the "Load All Videos" button.
+				</p>
+				<div class="selection">
+					<input type="checkbox" id="deleteWatchedVids">
+					Enable "Remove all watched videos" button on subscripton page.
+					</input></br>
+				</div>
+				<br>
+				<p class="optionDescription">
+					Enableing this option will, instead of adding a button to the side menu, automatically remove watched videos from the "My Subscriptions" page when the page is first loaded.
+				</p>
+				<div class="selection">
+					<input type="checkbox" id="deleteWatchedVidsAutomated" disabled="">
+					Automatically remove watched videos.
+					</input>
+				</div>
+			</div>
 
+			<div class="option">
+				<p class="optionDescription">
+					This will add a button to the side menu of the "My Subscriptions" page named "Load all videos". When clicked this will load all available subscription videos onto one page for you to browse in one continuous feed.
+				</p>
+				<div class="selection">
+					<input type="checkbox" id="loadAllVideos">
+					Load all videos to your subscription page.
+					</input>
+				</div>
+			</div>
+
+			<div class="option">
+				<p class="optionDescription">
+					This will add a button to the side menu of the "My Subscriptions" page named "Clear All Videos". When clicked this will clear <strong>all</strong> videos from your subscriptions using YouTubes 'Hide video' option.
+				</p>
+				<p class="optioniDescription">
+					Clearing all your subscription videos can be useful if your homepage has become cluttered or if you simply wish to start afreash. (There is a confirmation box which will appear before your videos are cleared)
+				</p>
+				<div class="selection">
+					<input type="checkbox" id="clearAllVideos">
+					Enable "Clear all videos" button on subscripton page.
+					</input>
+				</div>
+			</div>
+
+			<div class="option">
+				<p class="optionDescription">
+					Change the URL of the YouTube icon (top left of every page) to the URL specified in the text box below. By default the icon will take you to the "Whats New" page but this extension allows you to change that to a URL of your choice.
+				</p>
 				<div class="selection">
 					<input type="checkbox" id="changeIconURL">
 					Change the YouTube icon URL.
 					</input>
-					<br>
+					<br><br>
+				</div>
+
+				<p class="optionDescription">
+					Enabling "Redirect youtube.com" will, whenever you access "YouTube.com" it will redirect you to the URL specified in the text box below.
+				</p>
+				<div class="selection">
 					<input type="checkbox" id="redirectYouTube">
 					Redirect "YouTube.com"
 					</input>
 					<br>
+				</div>
+
+				<p class="optionDescription">
+					This is the URL that both of the above options will redirect you to. By default this is set to the "My Subscriptions" page but you can change this to any URL you wish. Clicking "Restore default" will restore the URL to the "My Subscriptions" link.
+				</p>
+				<div class="selection">
 					<input id="iconURL" type="text" name="fname" disabled="true" value="http://www.youtube.com/feed/subscriptions">
 					<button id="editTxt">
 						Edit
@@ -84,47 +147,11 @@
 
 			<div class="option">
 				<p class="optionDescription">
-					This allows the user to remove any previously watched videos from there home-feed in one of two ways. When in non-automatic mode, it adds a button to the left side of the home page which says 'Remove watched videos'. When clicked it will hide all watched videos from you subscriptions.In automatic mode, all watched videos will be removed automatically when you load the YouTube homepage.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="deleteWatchedVids">
-					Enable "Remove all watched videos".
-					</input></br>
-					<input type="checkbox" id="deleteWatchedVidsAutomated">
-					Automatically remove watched videos.
-					</input>
-				</div>
-			</div>
-
-			<div class="option">
-				<p class="optionDescription">
-					This removes all of your subscriptions videos from the homepage. Clearing all your subscription videos can be useful if your homepage has become cluttered or if you simply wish to start afreash. (There is a confirmation box which will appear before your videos are cleared)
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="clearAllVideos">
-					Clear all videos from subscripton page.
-					</input>
-				</div>
-			</div>
-
-			<div class="option">
-				<p class="optionDescription">
-					This loads all of your subscription videos into view on your homepage, allowing you to view them all in one continuous feed. This can be used to browse through your rescent subscriptions to remove any you dont want or find those you may have missed.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="loadAllVideos">
-					Load all videos to your subscription page.
-					</input>
-				</div>
-			</div>
-
-			<div class="option">
-				<p class="optionDescription">
-					This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
+					This removes the "Recommended Channels" box from the "My Subscriptions" page increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
 				</p>
 				<div class="selection">
 					<input type="checkbox" id="removeRecomendedChannels">
-					Remove "Recomended Channels" from the homepage.
+					Remove "Recomended Channels" from the "My Subscriptions" page.
 					</input>
 				</div>
 			</div>
@@ -133,7 +160,8 @@
 				<p class="optionDescription">
 					Upon watching a video from a user with their name in this list the video is automatically 'liked'. Useful to help out those youtubers that you constantly watch content from.
 
-					<b>Please add one per line. These <u>are</u> case sensitive.</b>
+					<br><br><b>
+					Please add one per line. These <u>are</u> case sensitive.</b>
 				</p>
 				<textarea id="autoLikeTextBox" rows="10" cols="50"></textarea>
 				<div class="selection">

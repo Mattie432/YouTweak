@@ -57,13 +57,13 @@
 }
 #site_title a {
 	display: block;
-	color: #fff;
+	color: #FF0000;
 	font-size: 38px;
 	font-weight: 700;
 	line-height: 40px;
 }
 #site_title a span {
-	color: #d6d6ce;
+	color: #fff;
 }
 #site_title a:hover {
 	text-decoration: none;
@@ -77,7 +77,7 @@ body {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 12px;
 	line-height: 1.4em;
-	background-color: #d6d6ce;
+	background-color: #FFFFFF;
 	text-align: justify;
 }
 #main {
@@ -99,7 +99,7 @@ body {
 	margin-right: 15px;
 	padding: 9px;
 	text-align: center;
-	background: #c8c8bd;
+	background: #CCCCCC;
 	border: 1px solid #e8e8e3;
 }
 .alert {
@@ -180,7 +180,7 @@ img {
 
 .optionDescription {
 	padding: 0px;
-	margin: 10px 0 5px 0;
+	margin: 10px 2px 5px 2px;
 }
 .option {
 	padding: 5px 0 5px 0;
@@ -188,7 +188,7 @@ img {
 	margin-right: 15px;
 	padding: 9px;
 	text-align: center;
-	background: #c8c8bd;
+	background: #CCCCCC;
 	border: 1px solid #e8e8e3;
 }
 .selection {
@@ -200,7 +200,7 @@ img {
 	margin-right: 15px;
 	padding: 9px;
 	text-align: center;
-	background: #c8c8bd;
+	background: #CCCCCC;
 	border: 1px solid #e8e8e3;
 }
 #iconURL {
@@ -265,7 +265,7 @@ img {
 	margin-right: 15px;
 	padding: 8px 0 8px 8px;
 	text-align: center;
-	background: #c8c8bd;
+	background: #CCCCCC;
 	border: 1px solid #ED4337;
 }
 

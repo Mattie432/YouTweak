@@ -9,6 +9,7 @@ function initialize() {
 	arrangePage();
 	restore_options();
 	checkForDate();
+  toggleRemoveAutomated()
 	document.getElementById("changeIconURL").addEventListener("click", arrangePage,false);
 	document.getElementById("save").addEventListener("click", function(){window.close();},false);
 	document.getElementById("contact").addEventListener("click", contactShow,false);
@@ -72,6 +73,17 @@ function checkMessages(){
 
 }
 
+function toggleRemoveAutomated(){
+  document.getElementById("deleteWatchedVids").addEventListener('click', function(){
+    automated = document.getElementById("deleteWatchedVidsAutomated");
+    if(automated.getAttribute("disabled") == "true"){
+        automated.setAttribute("disabled","");
+        automated.checked = false;
+    }else{
+        automated.removeAttribute("disabled");
+    }
+  });
+}
 
 function addMessageToPage(message,messageDate){
 	var child = document.createElement("div");
@@ -258,9 +270,9 @@ function restore_options() {
 
 			if (r.removeWatchedVideos) {
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
+          document.getElementById("deleteWatchedVidsAutomated").removeAttribute("disabled");
 			}else{
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
-			    document.getElementById("deleteWatchedVidsAutomated").setAttribute("disabled","true");
 			}
 	});
 
