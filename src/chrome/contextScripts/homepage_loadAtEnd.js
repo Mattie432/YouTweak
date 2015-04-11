@@ -78,7 +78,7 @@ var clearAllIntervalForClear;
 function clearAllVideos() {
 
 	//Find all the video elements
-	var videoItems = searchForTagAndClass("li", "feed-item-container");
+	var videoItems = searchForTagAndClass("div", "feed-item-container");
 
 	//For each video
 	for (var i = 0; i < videoItems.length; i++) {
@@ -128,7 +128,8 @@ function initLoadAllVideos() {
 function loadAllVideos() {
 	allLoaded = false;
 
-	var feedlist = document.getElementById("browse-items-primary").children;
+	var browse_items_primary =  document.getElementById("browse-items-primary");
+	var feedlist = searchAllChildrenFor(browse_items_primary, "class","section-list",true).children;
 	pageCount1 = feedlist.length;
 
 	var loadContainer = searchAllChildrenFor(document, "class", "load-more-button", true);
@@ -159,7 +160,7 @@ var loadAllInterval;
  */
 function initRemoveSingleVideo() {
 	//Find all the video elements
-	var videoItems = searchForTagAndClass("li", "feed-item-container");
+	var videoItems = searchForTagAndClass("div", "feed-item-container");
 
 	//For each video
 	for (var i = 0; i < videoItems.length; i++) {
@@ -181,7 +182,7 @@ function initRemoveSingleVideo() {
  */
 function addRemoveBtn(videoElement, clickableHideBtn) {
 	//Place where the new btn will be added.
-	var appendTo = searchAllChildrenFor(videoElement, "class", "feed-item-main-content", true);
+	var appendTo = searchAllChildrenFor(videoElement, "class", "expanded-shelf", true);
 
 	var btn = createRemoveBtn1();
 	//Used to signify that this video has already had a btn added.
@@ -287,7 +288,7 @@ function removeAllWatched(scrollToTop) {
 	var removedVideos = false;
 
 	//Find all the video elements
-	var videoItems = searchForTagAndClass("li", "feed-item-container");
+	var videoItems = searchForTagAndClass("div", "feed-item-container");
 
 	//For each video
 	for (var i = 0; i < videoItems.length; i++) {
