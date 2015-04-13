@@ -33,9 +33,8 @@ function checkMessages(){
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4) {
 					var response = getMessages(xhr);
-
-
-					if(response.show == "true"){
+          alert("checkttl =" + checkTTL(response.date, response.ttl) + "\n response.date=" + response.date + "\nttl = " + response.ttl) 
+					if(response.show == "true" && checkTTL(response.date, response.ttl)){
 						addMessageToPage(response.message,response.date);
 						//save message locally
 					  chrome.storage.local.set({"keyMessage" : response.message});
@@ -66,6 +65,52 @@ function checkMessages(){
 		}
 	});
 
+
+}
+
+/*
+ * Checks if the current date is within the response date & the time to live of the message.
+ */
+function checkTTL(responseDate, ttl){
+  var responseSplit = responseDate.split(" ");
+  var responseDay = responseSplit[0].substring(0,responseSplit[0].length -2);
+  var responseMonth;
+  if(responseSplit[1].toLowerCase().indexOf("jan") > -1 ){
+    responseMonth = 0;
+  }else if(responseSplit[1].toLowerCase().indexOf("feb") > -1 ){
+    responseMonth = 1;
+  }else if(responseSplit[1].toLowerCase().indexOf("mar") > -1 ){
+    responseMonth = 2;
+  }else if(responseSplit[1].toLowerCase().indexOf("apr") > -1 ){
+    responseMonth = 3;
+  }else if(responseSplit[1].toLowerCase().indexOf("may") > -1 ){
+    responseMonth = 4;
+  }else if(responseSplit[1].toLowerCase().indexOf("jun") > -1 ){
+    responseMonth = 5;
+  }else if(responseSplit[1].toLowerCase().indexOf("jul") > -1 ){
+    responseMonth = 6;
+  }else if(responseSplit[1].toLowerCase().indexOf("aug") > -1 ){
+    responseMonth = 7;
+  }else if(responseSplit[1].toLowerCase().indexOf("sep") > -1 ){
+    responseMonth = 8;
+  }else if(responseSplit[1].toLowerCase().indexOf("oct") > -1 ){
+    responseMonth = 9;
+  }else if(responseSplit[1].toLowerCase().indexOf("nov") > -1 ){
+    responseMonth = 10;
+  }else if(responseSplit[1].toLowerCase().indexOf("dec") > -1 ){
+    responseMonth = 11;
+  }
+
+  var dateFrom = new Date(responseSplit[2], responseMonth, responseDay);
+  var dateTo = new Date(responseSplit[2], responseMonth, responseDay);
+  dateTo.setDate(dateFrom.getDate() + ttl);
+  var today = new Date();
+
+  if( today >= dateFrom && today <= dateTo){
+    return true;
+  }else{
+    return false;
+  }
 
 }
 
@@ -141,6 +186,7 @@ function getMessages(xml1, msgNum) {
 		var num = -1;
 		var date;
 		var text;
+    var ttl;
 		var show;
 
 		for (var i = 0; i < messages.length; i++) {
@@ -154,6 +200,7 @@ function getMessages(xml1, msgNum) {
 				var tempnum;
 				var tempdate;
 				var temptext;
+        var tempttl;
 
 				for (var j = 0; j < msg.length; j++) {
 					if (msg[j].nodeName == "num") {
@@ -162,7 +209,9 @@ function getMessages(xml1, msgNum) {
 						tempdate = msg[j].textContent;
 					} else if (msg[j].nodeName == "text") {
 						temptext = msg[j].textContent;
-					}
+					} else if (msg[j].nodeName == "ttl") {
+            tempttl = msg[j].textContent;
+          }
 				}
 
 				var case1 = (msgNum == undefined);
@@ -172,12 +221,14 @@ function getMessages(xml1, msgNum) {
 					num = tempnum;
 					date = tempdate;
 					text = temptext;
+          ttl = tempttl;
 
 					return {
 						show : show,
 						num : num,
 						date : date,
-						message : text
+						message : text,
+            ttl : ttl
 					};
 
 				}
