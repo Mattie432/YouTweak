@@ -24,8 +24,9 @@ function checkMessages(){
 	chrome.storage.sync.get(['lastOpenedOptionsPage'], function(r) {
 
 		var hoursBetweenChecks = 2;
-		var tmp = r.lastOpenedOptionsPage + (30);// * 60 * hoursBetweenChecks);
-		if( isNaN(tmp) |tmp==undefined | tmp==null | tmp == "" | tmp < new Date().getTime() / 1000){
+		var tmp = r.lastOpenedOptionsPage + (60 * 60 * hoursBetweenChecks);
+    var currentTime = new Date().getTime() / 1000;
+		if( isNaN(tmp) |tmp==undefined | tmp==null | tmp == "" | tmp < currentTime){
 
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", xmlURL, true);
@@ -37,12 +38,12 @@ function checkMessages(){
 					if(response.show == "true"){
 						addMessageToPage(response.message,response.date);
 						//save message locally
-					    chrome.storage.local.set({"keyMessage" : response.message});
+					  chrome.storage.local.set({"keyMessage" : response.message});
 						chrome.storage.local.set({"keyDate" : response.date});
 
 					}else{
 						//empty local message
-					    chrome.storage.local.set({"keyMessage" : null});
+					  chrome.storage.local.set({"keyMessage" : null});
 						chrome.storage.local.set({"keyDate" : null});
 					}
 
@@ -52,20 +53,15 @@ function checkMessages(){
 
 			lastOpenedOptionsPage = new Date().getTime() / 1000;
 		}else{
-			var keyMessage;
-			var keyDate;
-
-			chrome.storage.local.get("keyMessage", function(result){
-        		keyMessage = result.keyMessage
+			chrome.storage.local.get(["keyMessage","keyDate"], function(result){
+            var keyMessage = result.keyMessage
+            var keyDate = result.keyDate
+            if(keyMessage !== undefined && keyMessage !== null && keyDate !== undefined && keyDate !== null){
+        			//show cached message
+              addMessageToPage(keyMessage,keyDate);
+        		}
     		});
-			chrome.storage.local.get("keyDate", function(result){
-        		keyDate = result.keyDate
-    		});
 
-    		if(keyMessage !== undefined && keyMessage !== null && keyDate !== undefined && keyDate !== null){
-    			//show cached message
-				addMessageToPage(keyMessage,keyDate);
-    		}
 
 		}
 	});

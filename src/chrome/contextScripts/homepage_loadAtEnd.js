@@ -29,7 +29,6 @@ function init() {
 			}
 		}
 
-		openLinksInSameWindow();
 		addSeparater();
 	});
 }
@@ -78,17 +77,17 @@ var clearAllIntervalForClear;
 function clearAllVideos() {
 
 	//Find all the video elements
-	var videoItems = searchForTagAndClass("div", "feed-item-container");
+	var videoItems = findAllVideos();
 
 	//For each video
 	for (var i = 0; i < videoItems.length; i++) {
 
 		//get dismissal notice
-		var dismissalNotice = searchAllChildrenFor(videoItems[i], "class", "feed-item-dismissal-notices", true);
+		var dismissalNotice = findVideoDismissalMessage(videoItems[i])
 		//dismissalNotice.remove();
 
 		//get the hide button
-		var vidHideBtn = searchAllChildrenFor(videoItems[i], "data-action", "hide", true);
+		var vidHideBtn = findVideoHideButton(videoItems[i]);
 		vidHideBtn.click();
 
 	}
@@ -101,6 +100,35 @@ function clearAllVideos() {
 	}
 
 }
+
+/**
+ * Returns an array of all video items on the page.
+ */
+function findAllVideos(){
+	return searchForTagAndClass("div", "feed-item-container");
+}
+
+/**
+ * Finds the ascociated dismissal message for a video element item.
+ */
+function findVideoDismissalMessage(videoElement){
+	return searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
+}
+
+/**
+ * Finds the hide button for a video element.
+ */
+function findVideoHideButton(videoElement){
+	return searchAllChildrenFor(videoElement, "data-action", "hide", true)
+}
+
+/**
+ * Get the watched badge for a video element.
+ */
+function findVideoWatchedBadge(videoElement){
+	return searchAllChildrenFor(videoElement, "class", "watched-badge", true)
+}
+
 
 /**
  *	Adds a button to load all videos to the left context bar.
@@ -128,8 +156,7 @@ function initLoadAllVideos() {
 function loadAllVideos() {
 	allLoaded = false;
 
-	var browse_items_primary =  document.getElementById("browse-items-primary");
-	var feedlist = searchAllChildrenFor(browse_items_primary, "class","section-list",true).children;
+	feedlist = getFeedList();
 	pageCount1 = feedlist.length;
 
 	var loadContainer = searchAllChildrenFor(document, "class", "load-more-button", true);
@@ -156,17 +183,26 @@ var allLoaded = false;
 var loadAllInterval;
 
 /**
+ * Gets the 'feed list' of the page. This is all of the video elements
+ */
+function getFeedList(){
+	var browse_items_primary = document.getElementById("browse-items-primary");
+	return feedlist = searchAllChildrenFor(browse_items_primary, "class","section-list",true).children;
+}
+
+
+/**
  *	Adds a remove button to all videos on the homepage.
  */
 function initRemoveSingleVideo() {
 	//Find all the video elements
-	var videoItems = searchForTagAndClass("div", "feed-item-container");
+	var videoItems = findAllVideos();
 
 	//For each video
 	for (var i = 0; i < videoItems.length; i++) {
 		if (videoItems[i].lastChild.tagName !== "DONE") {
 			//get the hide button
-			var vidHideBtn = searchAllChildrenFor(videoItems[i], "data-action", "hide", true);
+			var vidHideBtn = findVideoHideButton(videoItems[i]);
 
 			//Add the btn to the video
 			addRemoveBtn(videoItems[i], vidHideBtn);
@@ -182,12 +218,12 @@ function initRemoveSingleVideo() {
  */
 function addRemoveBtn(videoElement, clickableHideBtn) {
 	//Place where the new btn will be added.
-	var appendTo = searchAllChildrenFor(videoElement, "class", "expanded-shelf", true);
+	var appendTo = findRemoveButtonAppendLocation(videoElement);
 
 	var btn = createRemoveBtn1();
 	//Used to signify that this video has already had a btn added.
 	var doneSpan = document.createElement("DONE");
-	var dismissalNotice = searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
+	var dismissalNotice = findVideoDismissalMessage(videoElement);
 
 	//The div that surrounds the btn, used for css placement
 	var enclosingDiv = document.createElement("div");
@@ -211,6 +247,13 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
 
 	appendTo.appendChild(enclosingDiv);
 	videoElement.appendChild(doneSpan);
+}
+
+/**
+ * Find the location to append the rmo
+ */
+function findRemoveButtonAppendLocation(videoElement){
+	return searchAllChildrenFor(videoElement, "class", "expanded-shelf", true)
 }
 
 /**
@@ -257,11 +300,9 @@ function initremoveAllWatchedVideos() {
  */
 function initremoveWatchedVideosAutomated() {
 
-	var feedlist = document.getElementById("browse-items-primary").children;
-
+	var feedlist = getFeedList();
 	for(var i = 0; i < feedlist.length; i++){
 		var feedListElem = feedlist[i];
-		var elemChildren = feedListElem.children;
 
 		if (feedlist.length > countRemovedWatchedVideosAutomated) {
 			//alert(feedPages.length);
@@ -276,7 +317,6 @@ function initremoveWatchedVideosAutomated() {
 		}
 	}
 }
-
 var countRemovedWatchedVideosAutomated = 0;
 
 /**
@@ -288,17 +328,17 @@ function removeAllWatched(scrollToTop) {
 	var removedVideos = false;
 
 	//Find all the video elements
-	var videoItems = searchForTagAndClass("div", "feed-item-container");
+	var videoItems = findAllVideos();
 
 	//For each video
 	for (var i = 0; i < videoItems.length; i++) {
 		//Check if its watched
-		var watched = searchAllChildrenFor(videoItems[i], "class", "watched-badge", true);
+		var watched = findVideoWatchedBadge(videoItems[i]);
 		if (watched != null) {
 			//Video has been watched
 
 			//get the hide button
-			var vidHideBtn = searchAllChildrenFor(videoItems[i], "data-action", "hide", true);
+			var vidHideBtn = findVideoHideButton(videoItems[i]);
 			vidHideBtn.click();
 
 			//get dismissal notice
@@ -322,7 +362,6 @@ function removeAllWatched(scrollToTop) {
 
 	return removedVideos;
 }
-
 ///////////////////////////////////////////////////////////////////////////
 //			Helper Functions				//
 ///////////////////////////////////////////////////////////////////////////
@@ -335,8 +374,7 @@ function removeAllWatched(scrollToTop) {
  */
 function addNewMenuBtn(btnText, onClickFunction) {
 
-	var parent = searchAllChildrenFor(document, "class", "guide-toplevel", true);
-	parent = parent.firstElementChild;
+	var parent = findMenuAppendLocaiton();
 
 	var listElem = document.createElement("li");
 	listElem.className = "vve-check guide-channel";
@@ -366,6 +404,11 @@ function addNewMenuBtn(btnText, onClickFunction) {
 
 }
 
+function findMenuAppendLocaiton(){
+	var parent = searchAllChildrenFor(document, "class", "guide-toplevel", true);
+	return parent.firstElementChild;
+}
+
 /**
  *	Adds a separator to the left contextbar if there have been any additions by this extension.
  */
@@ -384,22 +427,3 @@ function addSeparater() {
 }
 
 var addedSeparator = true;
-
-/**
- *	Forces all links to open in the same window.
- */
-function openLinksInSameWindow() {
-
-	var links = document.getElementsByTagName("a");
-
-	for (var i = 0; i < links.length; i++) {
-		try {
-			if (links[i].getAttribute("href").indexOf("/watch?") != -1) {
-				links[i].setAttribute("target", "_self");
-			}
-		} catch(ex) {
-
-		}
-	}
-
-}

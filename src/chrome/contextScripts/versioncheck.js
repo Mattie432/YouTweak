@@ -1,6 +1,6 @@
 var xmlURL = "https://mattie432.com/YouTweak/message.xml";
-checkReview();
-requestMsg();
+//checkReview();
+//requestMsg();
 chrome.runtime.sendMessage({method: "checkReview"}, function() {});
 
 /**
@@ -25,10 +25,10 @@ function checkReview(){
 			var daysBetween = (currDaysNum - r.reviewDateDays);
 			if((daysBetween) < 0){
 				//ask to review
-				//askToReview();
+				askToReview();
 			}else if((daysBetween) >= 7){
 				//over 1 week
-				//askToReview();
+				askToReview();
 			}else{
 				//always call, used for testing
 				//askToReview();

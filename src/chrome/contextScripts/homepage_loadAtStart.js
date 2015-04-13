@@ -22,7 +22,7 @@ function init() {
 var count = 0;
 function removeRecommendedChannels() {
 	try {
-		var recommendedChannels = searchAllChildrenFor(document, "class", "branded-page-related-channels", true);
+		var recommendedChannels = findRecomendedChannels();
 		if (recommendedChannels != null) {
 			recommendedChannels.parentNode.parentNode.removeChild(recommendedChannels.parentNode);
 			clearInterval(timer);
@@ -34,4 +34,11 @@ function removeRecommendedChannels() {
 		clearInterval(timer);
 	}
 	count++;
+}
+
+/**
+ * Finds the recomended channels element.
+ */
+function findRecomendedChannels(){
+	return searchAllChildrenFor(document, "class", "branded-page-related-channels", true)
 }
