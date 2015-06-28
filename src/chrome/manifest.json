@@ -1,11 +1,11 @@
 {
 "name": "YouTweak for YouTube\u2122 - Subscription Manager",
-"version": "3.229",
+"version": "3.232",
 "manifest_version": 2,
 
-"options_page": "/optionsPage/options.html",
+"options_page": "/optionspage/options.html",
 "background": {
-    "scripts": ["backgroundPage/eventPage.js"]
+    "scripts": ["backgroundpage/eventpage.js"]
   },
 
 "permissions": ["notifications", "storage", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "*://mattie432.com/*"],
@@ -20,7 +20,7 @@
 
 "description": "Adds many useful tweaks to pages on the youtube site. Remove subscriptions, clear watched videos & more!",
 
-"web_accessible_resources": ["images/icon.png", "contextScripts/videoplayer.js"],
+"web_accessible_resources": ["images/icon.png", "contextscripts/videoplayer.js"],
 
 "content_scripts": [
   {
@@ -36,7 +36,7 @@
   "*://*.youtube.es/*",
   "*://*.youtube.it/*"
   ],
-    "js": ["backgroundPage/commonMethods.js", "contextScripts/versioncheck.js", "/contextScripts/everypage.js"]
+    "js": ["backgroundpage/commonmethods.js", "contextscripts/versioncheck.js", "/contextscripts/everypage.js"]
   },{
       "matches": [
 		"*://*.youtube.com/feed/*",
@@ -50,7 +50,7 @@
 		"*://*.youtube.es/feed/*",
 		"*://*.youtube.it/feed/*"
 	  ],
-      "js": ["backgroundPage/commonMethods.js", "contextScripts/homepage_loadAtEnd.js","contextScripts/loadvideoplayer.js", "contextScripts/videoplayer.js"],
+      "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatend.js","contextscripts/loadvideoplayer.js", "contextscripts/videoplayer.js"],
     "run_at": "document_end"
     },{
       "matches": [
@@ -66,7 +66,7 @@
 		"*://*.youtube.es/feed/*",
 		"*://*.youtube.it/feed/*"
 	  ],
-      "js": ["backgroundPage/commonMethods.js", "contextScripts/homepage_loadAtStart.js"],
+      "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatstart.js"],
     "run_at": "document_start"
     },{
       "matches": [
@@ -81,7 +81,7 @@
 		"*://*.youtube.es/watch*",
 		"*://*.youtube.it/watch*"
 	  ],
-    "js": ["backgroundPage/commonMethods.js","contextScripts/loadvideoplayer.js", "contextScripts/videoplayer.js"],
+    "js": ["backgroundpage/commonmethods.js","contextscripts/loadvideoplayer.js", "contextscripts/videoplayer.js"],
     "run_at": "document_end"
     }
   ]

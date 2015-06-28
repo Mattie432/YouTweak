@@ -3,7 +3,7 @@
  * 	elements in the document based on what options are set.
  */
 var v = document.createElement('script');
-v.src = chrome.extension.getURL("contextScripts/videoplayer.js");
+v.src = chrome.extension.getURL("contextscripts/videoplayer.js");
 
 var autoLike = document.createElement("span");
 autoLike.id = "autoLike";

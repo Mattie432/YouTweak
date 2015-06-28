@@ -21,7 +21,7 @@ chrome.storage.sync.get(['changeIconURL', 'iconURLTxt'], function(r) {
 
 		//embeds the video player class into the page
 		var v = document.createElement('script');
-		v.src = chrome.extension.getURL("contextScripts/videoplayer.js");
+		v.src = chrome.extension.getURL("contextscripts/videoplayer.js");
 	}
 
 }

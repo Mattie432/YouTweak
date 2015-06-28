@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', initialize);
 var xmlURL = "https://mattie432.com/YouTweak/message.xml";
 var lastOpenedOptionsPage;
+var debug = false;
 
 window.onbeforeunload = function() {
     save_options();
@@ -26,14 +27,25 @@ function checkMessages(){
 		var hoursBetweenChecks = 2;
 		var tmp = r.lastOpenedOptionsPage + (60 * 60 * hoursBetweenChecks);
     var currentTime = new Date().getTime() / 1000;
+
+
+    if(debug){
+      //enables always download message
+      tmp = currentTime - 1000;
+      //empty local message
+      chrome.storage.local.set({"keyMessage" : null});
+      chrome.storage.local.set({"keyDate" : null});
+    }
+
 		if( isNaN(tmp) |tmp==undefined | tmp==null | tmp == "" | tmp < currentTime){
 
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", xmlURL, true);
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4) {
+
 					var response = getMessages(xhr);
-          alert("checkttl =" + checkTTL(response.date, response.ttl) + "\n response.date=" + response.date + "\nttl = " + response.ttl) 
+          //alert("checkttl =" + checkTTL(response.date, response.ttl) + "\n response.date=" + response.date + "\nttl = " + response.ttl)
 					if(response.show == "true" && checkTTL(response.date, response.ttl)){
 						addMessageToPage(response.message,response.date);
 						//save message locally
@@ -68,6 +80,12 @@ function checkMessages(){
 
 }
 
+//add days to date
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
 /*
  * Checks if the current date is within the response date & the time to live of the message.
  */
@@ -103,7 +121,7 @@ function checkTTL(responseDate, ttl){
 
   var dateFrom = new Date(responseSplit[2], responseMonth, responseDay);
   var dateTo = new Date(responseSplit[2], responseMonth, responseDay);
-  dateTo.setDate(dateFrom.getDate() + ttl);
+  dateTo = addDays(dateTo, parseInt(ttl));
   var today = new Date();
 
   if( today >= dateFrom && today <= dateTo){

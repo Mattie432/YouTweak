@@ -46,7 +46,7 @@ function reviewNotify(decay) {
 			//30min = 1800000
 			decay = 10000;
 		}
-		var notification = webkitNotifications.createHTMLNotification("../notifications/notificationReview.html");
+		var notification = webkitNotifications.createHTMLNotification("../notifications/notificationreview.html");
 
 		//negative decay means the user will have to close the window manually.
 		if (decay != -1) {
@@ -81,7 +81,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
  *	Shows the options menu for the extension.
  */
 function showOptions() {
-	var options = chrome.extension.getURL("../optionsPage/options.html");
+	var options = chrome.extension.getURL("../optionspage/options.html");
 	window.open(options, '_newtab');
 }
 
