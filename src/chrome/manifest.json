@@ -1,6 +1,6 @@
 {
 "name": "YouTweak for YouTube\u2122 - Subscription Manager",
-"version": "3.232",
+"version": "3.233",
 "manifest_version": 2,
 
 "options_page": "/optionspage/options.html",
@@ -8,7 +8,8 @@
     "scripts": ["backgroundpage/eventpage.js"]
   },
 
-"permissions": ["notifications", "storage", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "*://mattie432.com/*"],
+"permissions": ["notifications", "storage", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "*://mattie432.com/*",
+"file://*/*"],
 
 "browser_action": {
     "default_icon": "images/icon.png"
@@ -34,7 +35,8 @@
   "*://*.youtube.ie/*",
   "*://*.youtube.co.uk/*",
   "*://*.youtube.es/*",
-  "*://*.youtube.it/*"
+  "*://*.youtube.it/*",
+  "file://*/*"
   ],
     "js": ["backgroundpage/commonmethods.js", "contextscripts/versioncheck.js", "/contextscripts/everypage.js"]
   },{
@@ -48,7 +50,8 @@
 		"*://*.youtube.ie/feed/*",
 		"*://*.youtube.co.uk/feed/*",
 		"*://*.youtube.es/feed/*",
-		"*://*.youtube.it/feed/*"
+		"*://*.youtube.it/feed/*",
+    "file://*/*"
 	  ],
       "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatend.js","contextscripts/loadvideoplayer.js", "contextscripts/videoplayer.js"],
     "run_at": "document_end"
@@ -64,7 +67,8 @@
 		"*://*.youtube.ie/feed/*",
 		"*://*.youtube.co.uk/feed/*",
 		"*://*.youtube.es/feed/*",
-		"*://*.youtube.it/feed/*"
+		"*://*.youtube.it/feed/*",
+    "file://*/*"
 	  ],
       "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatstart.js"],
     "run_at": "document_start"

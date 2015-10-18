@@ -84,7 +84,7 @@ function clearAllVideos() {
 
 		//get dismissal notice
 		var dismissalNotice = findVideoDismissalMessage(videoItems[i])
-		//dismissalNotice.remove();
+		dismissalNotice.remove();
 
 		//get the hide button
 		var vidHideBtn = findVideoHideButton(videoItems[i]);
@@ -105,21 +105,21 @@ function clearAllVideos() {
  * Returns an array of all video items on the page.
  */
 function findAllVideos(){
-	return searchForTagAndClass("div", "feed-item-container");
+	return searchForTagAndClass("li", "yt-shelf-grid-item");
 }
 
 /**
  * Finds the ascociated dismissal message for a video element item.
  */
 function findVideoDismissalMessage(videoElement){
-	return searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
+	return videoElement;
 }
 
 /**
  * Finds the hide button for a video element.
  */
 function findVideoHideButton(videoElement){
-	return searchAllChildrenFor(videoElement, "data-action", "hide", true)
+	return searchAllChildrenFor(videoElement, "data-action", "replace-enclosing-action", true)
 }
 
 /**
@@ -228,7 +228,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
 	//The div that surrounds the btn, used for css placement
 	var enclosingDiv = document.createElement("div");
 	enclosingDiv.className = "enclosingDiv";
-	enclosingDiv.style.height = "15px";
+	enclosingDiv.style.height = "20px";
 	enclosingDiv.appendChild(btn);
 
 	btn.onclick = function() {
@@ -253,7 +253,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
  * Find the location to append the rmo
  */
 function findRemoveButtonAppendLocation(videoElement){
-	return searchAllChildrenFor(videoElement, "class", "expanded-shelf", true)
+	return videoElement.firstChild
 }
 
 /**
@@ -273,10 +273,7 @@ function createRemoveBtn1() {
 	btn.style.fontSize = "11px";
 
 	// Style
-	btn.style.position = "absolute";
-	btn.style.right = "10px";
-	btn.style.bottom = "10px";
-
+	btn.style.marginTop = "1px";
 	btn.style.height = "20";
 	btn.style.width = "75";
 	btn.style.backgroundColor = "#B51D1D";
