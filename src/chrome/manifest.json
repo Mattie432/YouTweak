@@ -8,7 +8,7 @@
     "scripts": ["backgroundpage/eventpage.js"]
   },
 
-"permissions": ["notifications", "storage", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "*://mattie432.com/*",
+"permissions": ["notifications", "storage","webNavigation", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "*://mattie432.com/*",
 "file://*/*"],
 
 "browser_action": {

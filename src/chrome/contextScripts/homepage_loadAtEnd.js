@@ -109,7 +109,7 @@ function findAllVideos(){
 }
 
 /**
- * Finds the ascociated dismissal message for a video element item.
+ * Finds the associated dismissal message for a video element item.
  */
 function findVideoDismissalMessage(videoElement){
 	return videoElement;

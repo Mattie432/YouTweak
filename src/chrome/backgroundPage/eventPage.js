@@ -77,6 +77,33 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	}
 });
 
+chrome.webNavigation.onHistoryStateUpdated.addListener(
+    function(details){
+            //Callback function
+            alert("Im in the onHistoryStateUpdated");
+    },
+    {
+        //Listener filter
+        url:[{
+            hostEquals: "*youtube.com*"
+        }]
+    }
+);
+
+chrome.webNavigation.onCompleted.addListener(
+    function(details){
+            //Callback function
+            alert("Im in the onCompleted");
+    },
+    {
+        //Listener filter
+        url:[{
+            hostEquals: "*youtube.com*"
+        }]
+    }
+);
+
+
 /**
  *	Shows the options menu for the extension.
  */
