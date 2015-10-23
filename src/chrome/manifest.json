@@ -1,6 +1,6 @@
 {
 "name": "YouTweak for YouTube\u2122 - Subscription Manager",
-"version": "3.233",
+"version": "3.234",
 "manifest_version": 2,
 
 "options_page": "/optionspage/options.html",
@@ -35,8 +35,7 @@
   "*://*.youtube.ie/*",
   "*://*.youtube.co.uk/*",
   "*://*.youtube.es/*",
-  "*://*.youtube.it/*",
-  "file://*/*"
+  "*://*.youtube.it/*"
   ],
     "js": ["backgroundpage/commonmethods.js", "contextscripts/versioncheck.js", "/contextscripts/everypage.js"]
   },{
@@ -50,8 +49,7 @@
 		"*://*.youtube.ie/feed/*",
 		"*://*.youtube.co.uk/feed/*",
 		"*://*.youtube.es/feed/*",
-		"*://*.youtube.it/feed/*",
-    "file://*/*"
+		"*://*.youtube.it/feed/*"
 	  ],
       "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatend.js","contextscripts/loadvideoplayer.js", "contextscripts/videoplayer.js"],
     "run_at": "document_end"
@@ -67,8 +65,7 @@
 		"*://*.youtube.ie/feed/*",
 		"*://*.youtube.co.uk/feed/*",
 		"*://*.youtube.es/feed/*",
-		"*://*.youtube.it/feed/*",
-    "file://*/*"
+		"*://*.youtube.it/feed/*"
 	  ],
       "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatstart.js"],
     "run_at": "document_start"
