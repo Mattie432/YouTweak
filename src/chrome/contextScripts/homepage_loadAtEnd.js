@@ -1,11 +1,19 @@
 init();
+extensionVersionPrevious = false;
 
 /**
  *	Initialisation for the class.
  */
 function init() {
-	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels'], function(r) {
+	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels', 'extension2VersionPrevious'], function(r) {
 
+
+		if( r.extensionVersionPrevious != null &&
+			typeof r.extensionVersionPrevious != 'undefined' &&
+			typeof r.extensionVersionPrevious != "undefined" &&
+			r.extensionVersionPrevious != "" ){
+				extensionVersionPrevious = r.extensionVersionPrevious;
+		}
 		if (r.deleteSubsBtn) {
 			initRemoveSingleVideo();
 			setInterval(initRemoveSingleVideo, 1000);
@@ -76,50 +84,106 @@ var clearAllIntervalForClear;
  */
 function clearAllVideos() {
 
+	if(extensionVersionPrevious){
+
 	//Find all the video elements
-	var videoItems = findAllVideos();
+		var videoItems = findAllVideos();
 
-	//For each video
-	for (var i = 0; i < videoItems.length; i++) {
+		//For each video
+		for (var i = 0; i < videoItems.length; i++) {
 
-		//get dismissal notice
-		var dismissalNotice = findVideoDismissalMessage(videoItems[i])
-		dismissalNotice.remove();
+			//get dismissal notice
+			var dismissalNotice = findVideoDismissalMessage(videoItems[i])
+			//dismissalNotice.remove();
 
-		//get the hide button
-		var vidHideBtn = findVideoHideButton(videoItems[i]);
-		vidHideBtn.click();
+			//get the hide button
+			var vidHideBtn = findVideoHideButton(videoItems[i]);
+			vidHideBtn.click();
+
+		}
+
+		//scroll to top
+		try {
+			window.scrollTo(0, 0);
+		} catch(e) {
+			console.log("scroll error...");
+		}
+
+	}else{
+
+		//Find all the video elements
+		var videoItems = findAllVideos();
+
+		//For each video
+		for (var i = 0; i < videoItems.length; i++) {
+
+			//get dismissal notice
+			var dismissalNotice = findVideoDismissalMessage(videoItems[i])
+			dismissalNotice.remove();
+
+			//get the hide button
+			var vidHideBtn = findVideoHideButton(videoItems[i]);
+			vidHideBtn.click();
+
+		}
+
+		//scroll to top
+		try {
+			window.scrollTo(0, 0);
+		} catch(e) {
+			console.log("scroll error...");
+		}
 
 	}
-
-	//scroll to top
-	try {
-		window.scrollTo(0, 0);
-	} catch(e) {
-		console.log("scroll error...");
-	}
-
 }
 
 /**
  * Returns an array of all video items on the page.
  */
 function findAllVideos(){
-	return searchForTagAndClass("li", "yt-shelf-grid-item");
+
+	if(extensionVersionPrevious){
+
+		return searchForTagAndClass("div", "feed-item-container");
+
+	}else{
+
+		return searchForTagAndClass("li", "yt-shelf-grid-item");
+
+	}
 }
 
 /**
  * Finds the associated dismissal message for a video element item.
  */
 function findVideoDismissalMessage(videoElement){
-	return videoElement;
+
+	if(extensionVersionPrevious){
+
+		return searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
+
+	}else{
+
+		return videoElement;
+
+	}
 }
 
 /**
  * Finds the hide button for a video element.
  */
 function findVideoHideButton(videoElement){
-	return searchAllChildrenFor(videoElement, "data-action", "replace-enclosing-action", true)
+
+	if(extensionVersionPrevious){
+
+		return searchAllChildrenFor(videoElement, "data-action", "hide", true);
+
+	}else{
+
+		return searchAllChildrenFor(videoElement, "data-action", "replace-enclosing-action", true);
+
+	}
+
 }
 
 /**
@@ -217,6 +281,7 @@ function initRemoveSingleVideo() {
  * @param {Object} clickableHideBtn : element - expects the hideBtn of that video.
  */
 function addRemoveBtn(videoElement, clickableHideBtn) {
+
 	//Place where the new btn will be added.
 	var appendTo = findRemoveButtonAppendLocation(videoElement);
 
@@ -253,7 +318,16 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
  * Find the location to append the rmo
  */
 function findRemoveButtonAppendLocation(videoElement){
-	return videoElement.firstChild
+
+	if(extensionVersionPrevious) {
+
+		return searchAllChildrenFor(videoElement, "class", "expanded-shelf", true);
+	}else{
+
+		return videoElement.firstChild;
+
+	}
+
 }
 
 /**

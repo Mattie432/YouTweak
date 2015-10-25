@@ -120,9 +120,13 @@ function checkTTL(responseDate, ttl){
   }
 
   var dateFrom = new Date(responseSplit[2], responseMonth, responseDay);
-  var dateTo = new Date(responseSplit[2], responseMonth, responseDay);
-  dateTo = addDays(dateTo, parseInt(ttl));
-  var today = new Date();
+  //dateFrom = dateFrom.getTime();
+
+  var dateTo = new Date();
+  dateTo.setDate(dateFrom.getDate() + parseInt(ttl)) ;
+ // dateTo = dateTo.getTime();
+
+  var today = new Date().getTime();
 
   if( today >= dateFrom && today <= dateTo){
     return true;
@@ -275,6 +279,7 @@ function save_options() {
 	    autoLikeNames.replace(",","");
 	    autoLikeNames.replace(/[\n\r]/g,",");
 	var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
+	var versionSelectionPrevious = ((document.getElementById("selectVersionCombobox").value == "previous") ? true : false );
 	//seconds since last page opened
 
 	if(isValidURL(iconURLLink)){
@@ -292,7 +297,8 @@ function save_options() {
 		'removeRecomendedChannels' : removeRecomendedChannels,
 		'redirectYouTube' : redirectYouTube,
 		'autoLike' : autoLike,
-		'autoLikeNames' : autoLikeNames
+		'autoLikeNames' : autoLikeNames,
+		'extensionVersionPrevious' : versionSelectionPrevious
 	}, function() {
 	    // Notify that we saved.
 	});
@@ -309,7 +315,8 @@ function restore_options() {
 	chrome.storage.sync.get([ 'changeIconURL', 'removeWatchedVideos', 'linksInHD',
 							'deleteSubsBtn', 'iconURLTxt', 'pauseVideos', 'installDate','loadAllVideos',
 							'clearAllVideos','deleteWatchedVidsAutomated', 'removeRecomendedChannels','qualitySelect',
-							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames','lastOpenedOptionsPage'],
+							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames',
+							'lastOpenedOptionsPage', 'extensionVersionPrevious'],
 		function(r) {
 			lastOpenedOptionsPage = r.lastOpenedOptionsPage;
 			document.getElementById("autoLike").checked = (r.autoLike);
@@ -335,10 +342,16 @@ function restore_options() {
 
 			if (r.removeWatchedVideos) {
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
-          document.getElementById("deleteWatchedVidsAutomated").removeAttribute("disabled");
+          		document.getElementById("deleteWatchedVidsAutomated").removeAttribute("disabled");
 			}else{
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			}
+			if(r.extensionVersionPrevious) {
+				document.getElementById("selectVersionCombobox").value = "previous";
+			}else{
+				document.getElementById("selectVersionCombobox").value = "latest";
+			}
+
 	});
 
 }
