@@ -120,9 +120,13 @@ function checkTTL(responseDate, ttl){
   }
 
   var dateFrom = new Date(responseSplit[2], responseMonth, responseDay);
-  var dateTo = new Date(responseSplit[2], responseMonth, responseDay);
-  dateTo = addDays(dateTo, parseInt(ttl));
-  var today = new Date();
+  //dateFrom = dateFrom.getTime();
+
+  var dateTo = new Date();
+  //Need to set the date this way, adding time, other ways are buggy.
+  dateTo.setTime( dateFrom.getTime() + parseInt(ttl) * 86400000 );
+
+  var today = new Date().getTime();
 
   if( today >= dateFrom && today <= dateTo){
     return true;
@@ -275,6 +279,7 @@ function save_options() {
 	    autoLikeNames.replace(",","");
 	    autoLikeNames.replace(/[\n\r]/g,",");
 	var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
+	var versionSelectionPrevious = document.getElementById("selectVersionCombobox").value;
 	//seconds since last page opened
 
 	if(isValidURL(iconURLLink)){
@@ -292,7 +297,8 @@ function save_options() {
 		'removeRecomendedChannels' : removeRecomendedChannels,
 		'redirectYouTube' : redirectYouTube,
 		'autoLike' : autoLike,
-		'autoLikeNames' : autoLikeNames
+		'autoLikeNames' : autoLikeNames,
+		'extensionVersionToUse' : versionSelectionPrevious
 	}, function() {
 	    // Notify that we saved.
 	});
@@ -306,10 +312,20 @@ function save_options() {
 
 // Restores select box state to saved value from localStorage.
 function restore_options() {
+
+	if(debug){
+			chrome.storage.sync.set({
+        		'extensionVersionPrevious' : null
+        	}, function() {
+        	    // Notify that we saved.
+        	});
+	}
+
 	chrome.storage.sync.get([ 'changeIconURL', 'removeWatchedVideos', 'linksInHD',
 							'deleteSubsBtn', 'iconURLTxt', 'pauseVideos', 'installDate','loadAllVideos',
 							'clearAllVideos','deleteWatchedVidsAutomated', 'removeRecomendedChannels','qualitySelect',
-							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames','lastOpenedOptionsPage'],
+							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames',
+							'lastOpenedOptionsPage', 'extensionVersionToUse', 'extensionVersionPrevious'],
 		function(r) {
 			lastOpenedOptionsPage = r.lastOpenedOptionsPage;
 			document.getElementById("autoLike").checked = (r.autoLike);
@@ -335,10 +351,22 @@ function restore_options() {
 
 			if (r.removeWatchedVideos) {
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
-          document.getElementById("deleteWatchedVidsAutomated").removeAttribute("disabled");
+          		document.getElementById("deleteWatchedVidsAutomated").removeAttribute("disabled");
 			}else{
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			}
+			if(r.extensionVersionToUse) {
+				document.getElementById("selectVersionCombobox").value = r.extensionVersionToUse;
+			}
+			if(r.extensionVersionPrevious) {
+				var versions = document.getElementById("selectVersionCombobox").children;
+				for (var i = 0; i < versions.length; i++){
+					if(versions[i].value == r.extensionVersionPrevious){
+						versions[i].text = versions[i].text + " (Previously installed version)";
+					}
+				}
+			}
+
 	});
 
 }

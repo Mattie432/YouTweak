@@ -46,9 +46,28 @@
 
 			<div class="option">
 				<p class="optionDescription">
-					This adds a 'Remove' button next to each video from your subscriptions. When clicked the video is removed using YouTubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
+					Sometimes YouTube will roll out updates to their site in stages, one area will get the new update before another. This makes it difficult for me to update the extension and keep it working for all at the same time. This option allows you to select the previous version of the extension to use.
 				</p>
-				<p cass="optionDescription">
+				<p class="optionDescription">
+					This is useful to those people who are still on the 'old' version of YouTube when an update is not yet global. It allows them to temporarily revert to the previous version of the extension until they are also upgraded to the new version.
+				</p>
+				<p>
+					<div class="selection">
+						<select id="selectVersionCombobox">
+							<option value="3.234">v3.234 (Latest)</option>
+							<option value="3.233">v3.233</option>
+							<option value="3.232">v3.232</option>
+						</select>
+						Extension version to be used.
+					</div>
+				</p>
+			</div>
+
+			<div class="option">
+				<p class="optionDescription">
+					This adds a 'Remove' button next to each video from your subscriptions. When clicked the video is removed using YouTubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extension installed.
+				</p>
+				<p class="optionDescription">
 					There is no way to re-add removed videos to the "My Subscriptions" page, to find the video again you would have to search the YouTubers channel.
 				</p>
 				<div class="selection">
@@ -104,7 +123,7 @@
 				</p>
 				<div class="selection">
 					<input type="checkbox" id="clearAllVideos">
-					Enable "Clear all videos" button on subscripton page.
+					Enable "Clear all videos" button on subscription page.
 					</input>
 				</div>
 			</div>
@@ -320,6 +339,9 @@
 						Please read when reporting errors/bugs.
 					</p>
 					<p id="error_description" style="display: none">
+						Firstly please check that using the previous version of the extension (by the 'Version Selection' combobox does not fix your problem.
+						<br>
+						<br>
 						If you wish to contact me with any issues or suggestions then please leave me a message on the <a href="https://github.com/Mattie432/YouTweak/issues">Github Issues page</a> as this will be the place that I am most likely to see it.
 						<br>
 						<br>

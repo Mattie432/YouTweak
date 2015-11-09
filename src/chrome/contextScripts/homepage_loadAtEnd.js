@@ -1,11 +1,19 @@
 init();
+extensionVersion = 3.234;
 
 /**
  *	Initialisation for the class.
  */
 function init() {
-	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels'], function(r) {
+	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels', 'extensionVersionPrevious'], function(r) {
 
+
+		if( r.extensionVersionPrevious != null &&
+			typeof r.extensionVersionPrevious != 'undefined' &&
+			typeof r.extensionVersionPrevious != "undefined" &&
+			r.extensionVersionPrevious != "" ){
+				extensionVersion = parseFloat(r.extensionVersionPrevious);
+		}
 		if (r.deleteSubsBtn) {
 			initRemoveSingleVideo();
 			setInterval(initRemoveSingleVideo, 1000);
@@ -76,50 +84,106 @@ var clearAllIntervalForClear;
  */
 function clearAllVideos() {
 
+	if(extensionVersion <= 3.232){
+
 	//Find all the video elements
-	var videoItems = findAllVideos();
+		var videoItems = findAllVideos();
 
-	//For each video
-	for (var i = 0; i < videoItems.length; i++) {
+		//For each video
+		for (var i = 0; i < videoItems.length; i++) {
 
-		//get dismissal notice
-		var dismissalNotice = findVideoDismissalMessage(videoItems[i])
-		//dismissalNotice.remove();
+			//get dismissal notice
+			var dismissalNotice = findVideoDismissalMessage(videoItems[i])
+			//dismissalNotice.remove();
 
-		//get the hide button
-		var vidHideBtn = findVideoHideButton(videoItems[i]);
-		vidHideBtn.click();
+			//get the hide button
+			var vidHideBtn = findVideoHideButton(videoItems[i]);
+			vidHideBtn.click();
+
+		}
+
+		//scroll to top
+		try {
+			window.scrollTo(0, 0);
+		} catch(e) {
+			console.log("scroll error...");
+		}
+
+	}else{
+
+		//Find all the video elements
+		var videoItems = findAllVideos();
+
+		//For each video
+		for (var i = 0; i < videoItems.length; i++) {
+
+			//get dismissal notice
+			var dismissalNotice = findVideoDismissalMessage(videoItems[i])
+			dismissalNotice.remove();
+
+			//get the hide button
+			var vidHideBtn = findVideoHideButton(videoItems[i]);
+			vidHideBtn.click();
+
+		}
+
+		//scroll to top
+		try {
+			window.scrollTo(0, 0);
+		} catch(e) {
+			console.log("scroll error...");
+		}
 
 	}
-
-	//scroll to top
-	try {
-		window.scrollTo(0, 0);
-	} catch(e) {
-		console.log("scroll error...");
-	}
-
 }
 
 /**
  * Returns an array of all video items on the page.
  */
 function findAllVideos(){
-	return searchForTagAndClass("div", "feed-item-container");
+
+	if(extensionVersion <= 3.232 || extensionVersion <= 3.233){
+
+		return searchForTagAndClass("div", "feed-item-container");
+
+	}else{
+
+		return searchForTagAndClass("li", "yt-shelf-grid-item");
+
+	}
 }
 
 /**
- * Finds the ascociated dismissal message for a video element item.
+ * Finds the associated dismissal message for a video element item.
  */
 function findVideoDismissalMessage(videoElement){
-	return searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
+
+	if(extensionVersion <= 3.232){
+
+		return searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
+
+	}else{
+
+		return videoElement;
+
+	}
 }
 
 /**
  * Finds the hide button for a video element.
  */
 function findVideoHideButton(videoElement){
-	return searchAllChildrenFor(videoElement, "data-action", "hide", true)
+
+	if(extensionVersion <= 3.232){
+
+		return searchAllChildrenFor(videoElement, "data-action", "hide", true);
+
+	}else{
+
+		return searchAllChildrenFor(videoElement, "data-action", "replace-enclosing-action", true);
+
+	}
+
 }
 
 /**
@@ -217,6 +281,7 @@ function initRemoveSingleVideo() {
  * @param {Object} clickableHideBtn : element - expects the hideBtn of that video.
  */
 function addRemoveBtn(videoElement, clickableHideBtn) {
+
 	//Place where the new btn will be added.
 	var appendTo = findRemoveButtonAppendLocation(videoElement);
 
@@ -228,7 +293,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
 	//The div that surrounds the btn, used for css placement
 	var enclosingDiv = document.createElement("div");
 	enclosingDiv.className = "enclosingDiv";
-	enclosingDiv.style.height = "15px";
+	enclosingDiv.style.height = "20px";
 	enclosingDiv.appendChild(btn);
 
 	btn.onclick = function() {
@@ -253,7 +318,16 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
  * Find the location to append the rmo
  */
 function findRemoveButtonAppendLocation(videoElement){
-	return searchAllChildrenFor(videoElement, "class", "expanded-shelf", true)
+
+	if(extensionVersion <= 3.232) {
+
+		return searchAllChildrenFor(videoElement, "class", "expanded-shelf", true);
+	}else{
+
+		return videoElement.firstChild;
+
+	}
+
 }
 
 /**
@@ -273,9 +347,11 @@ function createRemoveBtn1() {
 	btn.style.fontSize = "11px";
 
 	// Style
+	btn.style.marginTop = "1px";
 	btn.style.position = "absolute";
 	btn.style.right = "10px";
 	btn.style.bottom = "10px";
+
 
 	btn.style.height = "20";
 	btn.style.width = "75";
