@@ -129,7 +129,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
 	chrome.storage.sync.get(['extensionVersionCurrent'], function(r) {
 		var previousVersion = r.extensionVersionCurrent;
-	};
+	});
 
 
 	chrome.storage.sync.set({
@@ -137,7 +137,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
     		'extensionVersionPrevious' : previousVersion
     	}, function() {
     	    // Notify that we saved.
-    	});
+    });
 });
 
 /**

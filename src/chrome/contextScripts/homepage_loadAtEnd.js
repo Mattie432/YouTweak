@@ -5,14 +5,15 @@ extensionVersion = 3.234;
  *	Initialisation for the class.
  */
 function init() {
-	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels', 'extensionVersionPrevious'], function(r) {
+	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated',
+							 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels', 'extensionVersionToUse'], function(r) {
 
 
-		if( r.extensionVersionPrevious != null &&
-			typeof r.extensionVersionPrevious != 'undefined' &&
-			typeof r.extensionVersionPrevious != "undefined" &&
-			r.extensionVersionPrevious != "" ){
-				extensionVersion = parseFloat(r.extensionVersionPrevious);
+		if( r.extensionVersionToUse != null &&
+			typeof r.extensionVersionToUse != 'undefined' &&
+			typeof r.extensionVersionToUse != "undefined" &&
+			r.extensionVersionToUse != "" ){
+				extensionVersion = parseFloat(r.extensionVersionToUse);
 		}
 		if (r.deleteSubsBtn) {
 			initRemoveSingleVideo();

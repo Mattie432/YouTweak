@@ -10,7 +10,7 @@ function initialize() {
 	arrangePage();
 	restore_options();
 	checkForDate();
-  toggleRemoveAutomated()
+  	toggleRemoveAutomated()
 	document.getElementById("changeIconURL").addEventListener("click", arrangePage,false);
 	document.getElementById("save").addEventListener("click", function(){window.close();},false);
 	document.getElementById("contact").addEventListener("click", contactShow,false);
