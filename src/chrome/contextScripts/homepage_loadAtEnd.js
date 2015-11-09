@@ -1,18 +1,18 @@
 init();
-extensionVersionPrevious = false;
+extensionVersion = 3.234;
 
 /**
  *	Initialisation for the class.
  */
 function init() {
-	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels', 'extension2VersionPrevious'], function(r) {
+	chrome.storage.sync.get(['deleteSubsBtn', 'removeWatchedVideos', 'deleteWatchedVidsAutomated', 'loadAllVideos', 'clearAllVideos', 'removeRecomendedChannels', 'extensionVersionPrevious'], function(r) {
 
 
 		if( r.extensionVersionPrevious != null &&
 			typeof r.extensionVersionPrevious != 'undefined' &&
 			typeof r.extensionVersionPrevious != "undefined" &&
 			r.extensionVersionPrevious != "" ){
-				extensionVersionPrevious = r.extensionVersionPrevious;
+				extensionVersion = parseFloat(r.extensionVersionPrevious);
 		}
 		if (r.deleteSubsBtn) {
 			initRemoveSingleVideo();
@@ -84,7 +84,7 @@ var clearAllIntervalForClear;
  */
 function clearAllVideos() {
 
-	if(extensionVersionPrevious){
+	if(extensionVersion <= 3.232){
 
 	//Find all the video elements
 		var videoItems = findAllVideos();
@@ -142,7 +142,7 @@ function clearAllVideos() {
  */
 function findAllVideos(){
 
-	if(extensionVersionPrevious){
+	if(extensionVersion <= 3.232 || extensionVersion <= 3.233){
 
 		return searchForTagAndClass("div", "feed-item-container");
 
@@ -158,7 +158,7 @@ function findAllVideos(){
  */
 function findVideoDismissalMessage(videoElement){
 
-	if(extensionVersionPrevious){
+	if(extensionVersion <= 3.232){
 
 		return searchAllChildrenFor(videoElement, "class", "feed-item-dismissal-notices", true);
 
@@ -174,7 +174,7 @@ function findVideoDismissalMessage(videoElement){
  */
 function findVideoHideButton(videoElement){
 
-	if(extensionVersionPrevious){
+	if(extensionVersion <= 3.232){
 
 		return searchAllChildrenFor(videoElement, "data-action", "hide", true);
 
@@ -319,7 +319,7 @@ function addRemoveBtn(videoElement, clickableHideBtn) {
  */
 function findRemoveButtonAppendLocation(videoElement){
 
-	if(extensionVersionPrevious) {
+	if(extensionVersion <= 3.232) {
 
 		return searchAllChildrenFor(videoElement, "class", "expanded-shelf", true);
 	}else{
@@ -348,6 +348,11 @@ function createRemoveBtn1() {
 
 	// Style
 	btn.style.marginTop = "1px";
+	btn.style.position = "absolute";
+	btn.style.right = "10px";
+	btn.style.bottom = "10px";
+
+
 	btn.style.height = "20";
 	btn.style.width = "75";
 	btn.style.backgroundColor = "#B51D1D";

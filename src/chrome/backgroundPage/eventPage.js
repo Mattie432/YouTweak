@@ -122,6 +122,22 @@ chrome.runtime.onInstalled.addListener(function(details) {
 	} else if (details.reason == "update") {
 		notify("Update installed!", "YouTweak has just been updated, please click here to visit the options menu & enable any new settings.", "10000", "showOptionsPage");
 	}
+
+	var manifest = chrome.runtime.getManifest();
+	var currentVersion = manifest.version;
+	console.log("New Youtweak install, version = " + currentVersion);
+
+	chrome.storage.sync.get(['extensionVersionCurrent'], function(r) {
+		var previousVersion = r.extensionVersionCurrent;
+	};
+
+
+	chrome.storage.sync.set({
+			'extensionVersionCurrent' : currentVersion,
+    		'extensionVersionPrevious' : previousVersion
+    	}, function() {
+    	    // Notify that we saved.
+    	});
 });
 
 /**
