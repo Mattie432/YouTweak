@@ -13,6 +13,8 @@ This feature makes it easier to delete unwanted videos from your YouTube homepag
 * #### Remove Watched Videos
 This feature makes your homepage much cleaner by removing any subscription videos that you have already watched. When activated you will notice a new button added to the left navigation column of the homepage. When clicked any videos in your current subscriptions are removed.
 
+ **Please note:** you need to have "Watch History" unpaused for this feature to work as it uses YouTube's data to see if a video has been watched or not. This can be enabled in your [History](https://www.youtube.com/feed/history) tab.
+
 * #### Youtube Subscriptions as Default Page
 Automatically redirects you to Uploads only of your subscriptions. This changes the URL that the icon at the top left of every YouTube page links to. The default link is to "youtube.com" which shows all of your subscriptions and recommended videos mixed together. By default the app redirects to "youtube.com/feed/subscriptions" which only shows your subscriptions videos (but this can be set manually to any URL).
 
