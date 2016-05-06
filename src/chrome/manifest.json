@@ -1,26 +1,38 @@
 {
+
   "name": "YouTweak for YouTube\u2122 - Subscription Manager",
-  "version": "3.235",
+  "version": "4.000",
   "manifest_version": 2,
 
   "options_page": "/optionspage/options.html",
   "background": {
-    "scripts": ["backgroundpage/eventpage.js"]
+    "scripts": ["BackgroundScripts/s_EventPage.js"]
   },
 
-  "permissions": ["notifications", "storage", "*://youtube.com/*","*://*.youtube.com/*", "tabs", "*://mattie432.com/*"],
+  "permissions": [
+    "notifications",
+    "storage",
+    "*://youtube.com/*",
+    "*://*.youtube.com/*",
+    "tabs",
+    "*://mattie432.com/*"
+  ],
 
   "browser_action": {
     "default_icon": "images/icon.png"
   },
 
-  "icons": { "16": "images/icon.png",
+  "icons": {
+    "16": "images/icon.png",
     "48": "images/icon.png",
-    "128": "images/icon.png" },
+    "128": "images/icon.png"
+  },
 
   "description": "Adds many useful tweaks to pages on the youtube site. Remove subscriptions, clear watched videos & more!",
 
-  "web_accessible_resources": ["images/icon.png", "contextscripts/videoplayer.js"],
+  "web_accessible_resources": [
+    "images/icon.png"
+  ],
 
   "content_scripts": [
     {
@@ -34,9 +46,14 @@
         "*://*.youtube.ie/*",
         "*://*.youtube.co.uk/*",
         "*://*.youtube.es/*",
-        "*://*.youtube.it/*"
+        "*://*.youtube.it/*",
+        "*://localhost/*"
       ],
-      "js": ["backgroundpage/commonmethods.js", "contextscripts/versioncheck.js", "/contextscripts/everypage.js"]
+      "js": [
+        "BackgroundScripts/s_CommonMethods.js",
+        "ContentScripts/s_VersionCheck.js",
+        "ContentScripts/f_RedirectYoutubeIcon.js"
+      ]
     },{
       "matches": [
         "*://*.youtube.com/feed/*",
@@ -48,40 +65,17 @@
         "*://*.youtube.ie/feed/*",
         "*://*.youtube.co.uk/feed/*",
         "*://*.youtube.es/feed/*",
-        "*://*.youtube.it/feed/*"
+        "*://*.youtube.it/feed/*",
+        "*://localhost/*"
       ],
-      "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatend.js","contextscripts/loadvideoplayer.js", "contextscripts/videoplayer.js"],
-      "run_at": "document_end"
-    },{
-      "matches": [
-
-        "*://*.youtube.com/feed/*",
-        "*://*.youtube.com.br/feed/*",
-        "*://*.youtube.fr/feed/*",
-        "*://*.youtube.jp/feed/*",
-        "*://*.youtube.nl/feed/*",
-        "*://*.youtube.pl/feed/*",
-        "*://*.youtube.ie/feed/*",
-        "*://*.youtube.co.uk/feed/*",
-        "*://*.youtube.es/feed/*",
-        "*://*.youtube.it/feed/*"
+      "js": [
+        "BackgroundScripts/s_CommonMethods.js",
+        "ContentScripts/f_RemoveVideoButton.js",
+        "ContentScripts/f_ClearAllVideos.js",
+        "ContentScripts/f_LoadAllVideos.js",
+        "ContentScripts/f_CollapseSubscriptionVideos.js",
+        "ContentScripts/f_RemoveWatchedVideos.js"
       ],
-      "js": ["backgroundpage/commonmethods.js", "contextscripts/homepage_loadatstart.js"],
-      "run_at": "document_start"
-    },{
-      "matches": [
-        "*://*.youtube.com/watch*",
-        "*://*.youtube.com.br/watch*",
-        "*://*.youtube.fr/watch*",
-        "*://*.youtube.jp/watch*",
-        "*://*.youtube.nl/watch*",
-        "*://*.youtube.pl/watch*",
-        "*://*.youtube.ie/watch*",
-        "*://*.youtube.co.uk/watch*",
-        "*://*.youtube.es/watch*",
-        "*://*.youtube.it/watch*"
-      ],
-      "js": ["backgroundpage/commonmethods.js","contextscripts/loadvideoplayer.js", "contextscripts/videoplayer.js"],
       "run_at": "document_end"
     }
   ]

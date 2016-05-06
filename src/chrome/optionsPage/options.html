@@ -11,23 +11,6 @@
 				<div id="site_title">
 					<a href="">You<span>TWEAK</span></a>
 				</div>
-				<!--
-				<div id="menu" class="menu">
-					<ul>
-						<li>
-							<a href="http://youtube.com/mattie432">Youtube</a>
-						</li>
-						<li>
-							<a href="http://twitter.com/mattie432">Twitter</a>
-						</li>
-						<li>
-							<a href="https://mattie432.com/">Website</a>
-						</li>
-						<li>
-							<a href="https://www.facebook.com/pages/Youtweak/126246684237377">Facebook</a>
-						</li>
-					</ul>
-				</div>-->
 			</div>
 			<!-- END of header -->
 		</div>
@@ -43,25 +26,6 @@
 		</div>
 
 		<div id="main">
-
-			<div class="option">
-				<p class="optionDescription">
-					Sometimes YouTube will roll out updates to their site in stages, one area will get the new update before another. This makes it difficult for me to update the extension and keep it working for all at the same time. This option allows you to select the previous version of the extension to use.
-				</p>
-				<p class="optionDescription">
-					This is useful to those people who are still on the 'old' version of YouTube when an update is not yet global. It allows them to temporarily revert to the previous version of the extension until they are also upgraded to the new version.
-				</p>
-				<p>
-					<div class="selection">
-						<select id="selectVersionCombobox">
-							<option value="3.235">v3.235 (Latest)</option>
-							<option value="3.233">v3.233</option>
-							<option value="3.232">v3.232</option>
-						</select>
-						Extension version to be used.
-					</div>
-				</p>
-			</div>
 
 			<div class="option">
 				<p class="optionDescription">
@@ -166,108 +130,20 @@
 
 			<div class="option">
 				<p class="optionDescription">
-					This removes the "Recommended Channels" box from the "My Subscriptions" page increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
+					Adds a 'collapse' button to each group of videos in the subscriptions grid feed. Pressing this button will toggle the visibility of the group on the homepage.
 				</p>
 				<div class="selection">
-					<input type="checkbox" id="removeRecomendedChannels">
-					Remove "Recomended Channels" from the "My Subscriptions" page.
+					<input type="checkbox" id="collapseSubscriptionVideos">
+					Adds the 'collapse' button to subscription groups.
+					</input></br>
+				</div>
+				<br>
+				<div class="selection">
+					<input type="checkbox" id="collapseStartOldHidden" >
+					Collapse videos older than 'This Week' on page load.
 					</input>
 				</div>
 			</div>
-
-			<div class="option">
-				<p class="optionDescription">
-					Upon watching a video from a user with their name in this list the video is automatically 'liked'. Useful to help out those youtubers that you constantly watch content from.
-
-					<br><br><b>
-					Please add one per line. These <u>are</u> case sensitive.</b>
-				</p>
-				<textarea id="autoLikeTextBox" rows="10" cols="50"></textarea>
-				<div class="selection">
-					<input type="checkbox" id="autoLike">
-					Enable autolike.
-					</input>
-				</div>
-			</div>
-
-			<!--		<div class="option">
-			<p class="optionDescription">
-			This allows you to specify the quality that YouTube videos will play in. If the quality you selected is not available for a specific video then the next best quality will be used (this 'next best' quality will always be lower than the one you selected).
-			</p>
-			<div class="selection">
-			<input type="checkbox" id="setPlaybackQuality">
-			<select id="qualitySelect">
-			<option value="highres">>1080p</option>
-			<option value="hd1080">1080p</option>
-			<option value="hd720">720p</option>
-			<option value="large">480p</option>
-			<option value="medium">360p</option>
-			<option value="small">240p</option>
-			</select>
-			Set the defult playback quality.
-			</input>
-
-			</div>
-			</div>
-
-			<div class="option">
-			<p class="optionDescription">
-			This allows you to specify the size that YouTube videos will play in. The YouTube player will automatically be expanded to that size when you start to watch any YouTube video.
-			</p>
-			<div class="selection">
-			<input type="checkbox" id="setVideoSizeCheck">
-			<select id="setVideoSize">
-			<option value="large">Large</option>
-			<option value="small">Small</option>
-			</select>
-			Set the defult playback size.
-			</input>
-			</div>
-			</div>
-
-			<div class="option">
-			<p class="optionDescription">
-			This disables YouTubes auto play feature when opening a new YouTube video but still allows the video to be buffered. This means that the video will still load and be ready for you when you click play.
-			</p>
-			<div class="selection">
-			<input type="checkbox" id="pauseVideos">
-			Stop autoplay of videos.
-			</input>
-			</div>
-			</div>
-
-			<div class="option">
-			<p class="optionDescription">
-			This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
-			</p>
-			<div class="selection">
-			<input type="checkbox" id="removeRecomendedChannels">
-			Remove "Recomended Channels" from the homepage.
-			</input>
-			</div>
-			</div>
-
-			<div class="option">
-			<p class="optionDescription">
-			This adds a button below the video player (next to the like/dislike buttons) which is a toggle button. When clicked the playing video will loop back to the beginning when it reaches the end and will continue playing.
-			</p>
-			<div class="selection">
-			<input type="checkbox" id="repeatVideos">
-			Repeat video button.
-			</input>
-			</div>
-			</div>
-
-			<div class="option">
-			<p class="optionDescription">
-			This center aligns the home/subscriptions page so that the white space is even on either side.
-			</p>
-			<div class="selection">
-			<input type="checkbox" id="centerHomePage">
-			Center the home page.
-			</input>
-			</div>
-			</div>-->
 
 			<div>
 				<button id="save">

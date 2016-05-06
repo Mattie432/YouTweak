@@ -24,10 +24,10 @@ This adds a button to the homepage which when clicked will cycle through all of 
 * #### Load all subscription videos
 This adds a button to the homepage which when clicked loads all of the pages of your subscriptions into view, allowing you to browse them all without having to reload the page. This can make it easier when removing videos you do not want to watch.
 
-* #### Remove "Recommended Channels"
+* #### ~~Remove "Recommended Channels"~~ (Feature removed Apr 2016)
 This removes the "Recommended Channels" box from the homepage increasing the amount of screen space used for your subscriptions by a substantial amount. This works on not only the "Uploads" feed but also the "All activity" feed making it easier to view your content.
 
-* #### Auto like videos
+* #### ~~Auto like videos~~ (Feature removed Apr 2016)
 This feature allows you to enter the names of channels you wish to automatically like upon watching their video
 
 ## Updates

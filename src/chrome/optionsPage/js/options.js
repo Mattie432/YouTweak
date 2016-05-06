@@ -273,13 +273,15 @@ function save_options() {
 	var clearAllVideos = document.getElementById("clearAllVideos").checked;
 	var loadAllVideos = document.getElementById("loadAllVideos").checked;
 	var deleteWatchedVidsAutomated = document.getElementById("deleteWatchedVidsAutomated").checked;
-	var autoLike = document.getElementById("autoLike").checked;
-	var autoLikeNames = document.getElementById("autoLikeTextBox").value;
-	    autoLikeNames.replace(" ","");
-	    autoLikeNames.replace(",","");
-	    autoLikeNames.replace(/[\n\r]/g,",");
-	var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
-	var versionSelectionPrevious = document.getElementById("selectVersionCombobox").value;
+	//var autoLike = document.getElementById("autoLike").checked;
+	//var autoLikeNames = document.getElementById("autoLikeTextBox").value;
+	//    autoLikeNames.replace(" ","");
+	//    autoLikeNames.replace(",","");
+	//    autoLikeNames.replace(/[\n\r]/g,",");
+	//var removeRecomendedChannels = document.getElementById("removeRecomendedChannels").checked;
+	//var versionSelectionPrevious = document.getElementById("selectVersionCombobox").value;
+	var collapseSubscriptionVideos = document.getElementById("collapseSubscriptionVideos").checked;
+	var collapseStartOldHidden = document.getElementById("collapseStartOldHidden").checked;
 	//seconds since last page opened
 
 	if(isValidURL(iconURLLink)){
@@ -294,11 +296,13 @@ function save_options() {
 		'clearAllVideos' : clearAllVideos,
 		'loadAllVideos' : loadAllVideos,
 		'deleteWatchedVidsAutomated' : deleteWatchedVidsAutomated,
-		'removeRecomendedChannels' : removeRecomendedChannels,
+		//'removeRecomendedChannels' : removeRecomendedChannels,
 		'redirectYouTube' : redirectYouTube,
-		'autoLike' : autoLike,
-		'autoLikeNames' : autoLikeNames,
-		'extensionVersionToUse' : versionSelectionPrevious
+		//'autoLike' : autoLike,
+		//'autoLikeNames' : autoLikeNames,
+		//'extensionVersionToUse' : versionSelectionPrevious,
+		'collapseSubscriptionVideos' : collapseSubscriptionVideos,
+		'collapseStartOldHidden' : collapseStartOldHidden
 	}, function() {
 	    // Notify that we saved.
 	});
@@ -325,24 +329,26 @@ function restore_options() {
 							'deleteSubsBtn', 'iconURLTxt', 'pauseVideos', 'installDate','loadAllVideos',
 							'clearAllVideos','deleteWatchedVidsAutomated', 'removeRecomendedChannels','qualitySelect',
 							'repeatVideos','redirectYouTube','setVideoSize', 'centerHomePage','autoLike','autoLikeNames',
-							'lastOpenedOptionsPage', 'extensionVersionToUse', 'extensionVersionPrevious'],
+							'lastOpenedOptionsPage', 'extensionVersionToUse', 'extensionVersionPrevious', 'collapseSubscriptionVideos', 'collapseStartOldHidden'],
 		function(r) {
 			lastOpenedOptionsPage = r.lastOpenedOptionsPage;
-			document.getElementById("autoLike").checked = (r.autoLike);
-			document.getElementById("autoLikeTextBox").value =(function() {
-																if (r.autoLikeNames !== "" && r.autoLikeNames !== null && r.autoLikeNames !== undefined){
-																	return r.autoLikeNames.replace(",", /\n/);
-																}else{
-																	return "";
-																}
-															})();
+			//document.getElementById("autoLike").checked = (r.autoLike);
+			//document.getElementById("autoLikeTextBox").value =(function() {
+			//													if (r.autoLikeNames !== "" && r.autoLikeNames !== null && r.autoLikeNames !== undefined){
+			//														return r.autoLikeNames.replace(",", /\n/);
+			//													}else{
+			//														return "";
+			//													}
+			//												})();
 			document.getElementById("changeIconURL").checked = (r.changeIconURL);
 			document.getElementById("deleteSubsBtn").checked = (r.deleteSubsBtn);
 			document.getElementById("clearAllVideos").checked = (r.clearAllVideos);
 			document.getElementById("loadAllVideos").checked = (r.loadAllVideos);
 			document.getElementById("deleteWatchedVidsAutomated").checked = (r.deleteWatchedVidsAutomated);
-			document.getElementById("removeRecomendedChannels").checked = (r.removeRecomendedChannels);
+			//document.getElementById("removeRecomendedChannels").checked = (r.removeRecomendedChannels);
 			document.getElementById("redirectYouTube").checked = (r.redirectYouTube);
+			document.getElementById("collapseSubscriptionVideos").checked = (r.collapseSubscriptionVideos);
+			document.getElementById("collapseStartOldHidden").checked = (r.collapseStartOldHidden);
 			if(r.iconURLTxt === undefined || r.iconURLTxt == ""){
 				 document.getElementById("iconURL").value = "http://www.youtube.com/feed/subscriptions";
 			}else{
@@ -355,18 +361,18 @@ function restore_options() {
 			}else{
 			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			}
-			if(r.extensionVersionToUse) {
-				document.getElementById("selectVersionCombobox").value = r.extensionVersionToUse;
-			}
-			if(r.extensionVersionPrevious) {
-				var versions = document.getElementById("selectVersionCombobox").children;
-				for (var i = 0; i < versions.length; i++){
-					if(versions[i].value == r.extensionVersionPrevious){
-						versions[i].text = versions[i].text + " (Previously installed version)";
-					}
-				}
-			}
-
+	//		if(r.extensionVersionToUse) {
+	//			document.getElementById("selectVersionCombobox").value = r.extensionVersionToUse;
+	//		}
+	//		if(r.extensionVersionPrevious) {
+	//			var versions = document.getElementById("selectVersionCombobox").children;
+	//			for (var i = 0; i < versions.length; i++){
+	//				if(versions[i].value == r.extensionVersionPrevious){
+	//					versions[i].text = versions[i].text + " (Previously installed version)";
+	//				}
+	//			}
+	//		}
+    //
 	});
 
 }

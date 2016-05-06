@@ -74,6 +74,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		retrieveXML(request.url);
 	} else if (request.method == "getTabUrl") {
 		redirectYouTube();
+	} else if (request.method == "openYouTweakOptions" ) {
+		showOptions();
 	}
 });
 
@@ -127,6 +129,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 	var currentVersion = manifest.version;
 	console.log("New Youtweak install, version = " + currentVersion);
 
+	var previousVersion = "";
 	chrome.storage.sync.get(['extensionVersionCurrent'], function(r) {
 		var previousVersion = r.extensionVersionCurrent;
 	});
