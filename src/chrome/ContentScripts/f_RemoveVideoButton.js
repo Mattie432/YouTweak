@@ -153,6 +153,7 @@ function createButton_RemoveVideo2() {
     btn.style.width = "20px";
     btn.style.height = "20px";
     btn.style.padding = "0px";
+    btn.setAttribute("data-tooltip-text", "Delete Video");
     btn.className = "yt-uix-button yt-uix-button-size-small yt-uix-button-default yt-uix-button-empty yt-uix-button-has-icon video-actions no-icon-markup spf-nolink hide-until-delayloaded yt-uix-tooltip video-actions-leftAlign addto-button-Delete";
     //addto-button addto-queue-button addto-tv-queue-button video-actions
     return btn;
