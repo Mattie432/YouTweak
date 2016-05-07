@@ -262,14 +262,10 @@ function addCSS_Rule(sheet, selector, rules, index) {
 }
 
 function addCSS_Sheet() {
-	var sheet = document.getElementById("YouTweak_CSS_Sheet");
-	if(!undefinedVariable(sheet))
-		return sheet;
-
 	var sheet = (function() {
 		// Create the <style> tag
 		var style = document.createElement("style");
-		style.id = "YouTweak_CSS_Sheet";
+		style.class = "YouTweak_CSS_Sheet";
 
 		// Add a media (and/or media query) here if you'd like!
 		// style.setAttribute("media", "screen")
