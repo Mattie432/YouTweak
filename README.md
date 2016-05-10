@@ -8,10 +8,10 @@ This extension aims to fix some fundamental problems that I have with youtube (y
 ## Features
 
 * #### Remove Subscription Videos
-This feature makes it easier to delete unwanted videos from your YouTube homepage. The current YouTube layout seems to discourage the use of the 'Hide video' option previous layouts featured prominently. This feature intends to fix this, giving the user a per-video dedicated button for the removal of the video. This button instigates YouTube's own hide video feature which means that hiding it with this app also hides it if you were to sign in from a different computer without the app. (Please read the [notes](##Notes) section when using this feature).
+This feature makes it easier to delete unwanted videos from your YouTube homepage. The current YouTube layout seems to discourage the use of the 'Hide video' option previous layouts featured prominently. This feature intends to fix this, giving the user a per-video dedicated button for the removal of the video. This button instigates YouTube's own hide video feature which means that hiding it with this app also hides it if you were to sign in from a different computer without the app. (Please read the [notes](#notes) section when using this feature).
 
 * #### Remove Watched Videos
-This feature makes your homepage much cleaner by removing any subscription videos that you have already watched. When activated you will notice a new button added to the left navigation column of the homepage. When clicked any videos in your current subscriptions are removed. (Please read the [notes](##Notes) section when using this feature).
+This feature makes your homepage much cleaner by removing any subscription videos that you have already watched. When activated you will notice a new button added to the left navigation column of the homepage. When clicked any videos in your current subscriptions are removed. (Please read the [notes](#notes) section when using this feature).
 
  **Please note:** you need to have "Watch History" unpaused for this feature to work as it uses YouTube's data to see if a video has been watched or not. This can be enabled in your [History](https://www.youtube.com/feed/history) tab.
 
@@ -39,7 +39,7 @@ Due to the constant changes implemented by YouTube it will be necessary to updat
 The code for this extension is open source and will be commited to this GutHub repo whenever there is an update or a significant change has been made.
 
 ## Notes
-Please understand that this extension relies on YouTube's ability to hide videos from their homepage. If for some reason the site has a problem with this feature then this extension may not function properly. If this is the case then we both have to wait for YouTube to fix their problem. The functionality of **Remove Subscription Videos** & **Remove Watched Videos** is currently compromised by an ongoing (\**read intentional\*) issue with YouTube which has been present for many since 2014. Please see [this issue](https://github.com/Mattie432/YouTweak/issues/31) for more details. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh. I suggest using the *Collapsible Subscription Groups* feature to automatically collapse videos which cant be hidden. 
+Please understand that this extension relies on YouTube's ability to hide videos from their homepage. If for some reason the site has a problem with this feature then this extension may not function properly. If this is the case then we both have to wait for YouTube to fix their problem. The functionality of **Remove Subscription Videos** & **Remove Watched Videos** is currently compromised by an ongoing (\*read intentional\*) issue with YouTube which has been present for many since 2014. Please see [this issue](https://github.com/Mattie432/YouTweak/issues/31) for more details. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh. I suggest using the *Collapsible Subscription Groups* feature to automatically collapse videos which cant be hidden. 
  
 ## Links
 [Download from Chrome Webstore](https://chrome.google.com/webstore/detail/youtweak-for-youtube-remo/cfgpigllcihcpkbokdnmpkjobnebflgh)
