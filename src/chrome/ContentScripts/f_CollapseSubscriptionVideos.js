@@ -33,7 +33,8 @@ function updateFeedListWithCollapseButtons() {
             if(undefinedVariable(feedListContent) || undefinedVariable(feedListName))
                 return;
 
-            var defaultToHide = collapseStartOldHidden && (feedListName != "Today" && feedListName != "Yesterday" && feedListName != "This week" );
+            var defaultToHide = collapseStartOldHidden && (feedListName != "Today" && feedListName != "Yesterday"
+                && feedListName != "This week" && feedListName != "Recent"  );
             if(defaultToHide) feedListContent.style.display = "none";
 
             console.log(feedListName);
