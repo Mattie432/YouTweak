@@ -46,7 +46,7 @@ function reviewNotify(decay) {
 			//30min = 1800000
 			decay = 10000;
 		}
-		var notification = webkitNotifications.createHTMLNotification("../notifications/notificationreview.html");
+		var notification = webkitNotifications.createHTMLNotification("../notifications/notificationReview.html");
 
 		//negative decay means the user will have to close the window manually.
 		if (decay != -1) {
