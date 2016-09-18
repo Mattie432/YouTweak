@@ -1,10 +1,10 @@
-{
+ {
 
   "name": "YouTweak for YouTube\u2122 - Subscription Manager",
-  "version": "4.103",
+  "version": "4.104",
   "manifest_version": 2,
 
-  "options_page": "/optionspage/options.html",
+  "options_page": "/OptionsPage/options.html",
   "background": {
     "scripts": ["BackgroundScripts/s_EventPage.js"]
   },

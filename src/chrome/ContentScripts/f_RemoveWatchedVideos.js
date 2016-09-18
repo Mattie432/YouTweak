@@ -29,7 +29,7 @@ function initremoveAllWatchedVideos() {
  */
 function initremoveWatchedVideosAutomated() {
     //Remove all watched now.
-    removeAllWatched();
+    removeAllWatched(false);
 
     //Callback when loading more videos
     addListener_LoadMoreVideos( function() {
@@ -54,6 +54,44 @@ var countRemovedWatchedVideosAutomated = 0;
  * @param {Object} scrollToTop : Boolean - scroll to top of page after.
  */
 function removeAllWatched(scrollToTop, optionalCallback) {
+    //Find all the video elements
+    var videoItems = find_AllFeedVideos();
+
+    for( var i = 0; i < videoItems.length; i++ ) {
+        var video = videoItems[i];
+        var watched = find_FeedVideoWatchedBadge(video);
+        if (watched != null) {
+            //Video has been watched
+
+            //get the hide button
+            var vidHideBtn = find_FeedVideoHideButton(video);
+            vidHideBtn.click();
+
+            //get dismissal notice
+            video.remove();
+        }
+    }
+
+    if (scrollToTop != false) {
+        //scroll to top
+        try {
+            window.scrollTo(0, 0);
+        } catch(e) {
+            console.log("scroll error...");
+        }
+    }
+
+    //Invoke callback if its there
+    if (typeof optionalCallback !== 'undefined') {
+        optionalCallback();
+    }
+}
+
+/**
+ *  Remove all watched videos from the homescreen.
+ * @param {Object} scrollToTop : Boolean - scroll to top of page after.
+ */
+function removeAllWatched_old(scrollToTop, optionalCallback) {
     //Find all the video elements
     var videoItems = find_AllFeedVideos();
 
@@ -83,7 +121,7 @@ function removeAllWatched(scrollToTop, optionalCallback) {
                 optionalCallback();
             }
         }
-    }, 5 );
+    }, 0 );
 
     if (scrollToTop != false) {
         //scroll to top
@@ -94,8 +132,6 @@ function removeAllWatched(scrollToTop, optionalCallback) {
         }
     }
 }
-
-
 
 /**
  * Get the watched badge for a video element.

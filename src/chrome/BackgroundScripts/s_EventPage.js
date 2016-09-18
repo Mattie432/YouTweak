@@ -110,7 +110,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
  *	Shows the options menu for the extension.
  */
 function showOptions() {
-	var options = chrome.extension.getURL("../optionspage/options.html");
+	var options = chrome.extension.getURL("../OptionsPage/options.html");
 	window.open(options, '_newtab');
 }
 

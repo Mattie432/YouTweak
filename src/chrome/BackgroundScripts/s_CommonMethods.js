@@ -223,7 +223,7 @@ function addMenu_Sidebar() {
 	var guide_toplevel = searchAllChildrenFor(document, "class", "guide-toplevel", true);
 
 	//Get options page URL
-	var optionsPage = chrome.extension.getURL("optionspage/options.html");
+	var optionsPage = chrome.extension.getURL("OptionsPage/options.html");
 
 	//Create youtweak menu
 	var section = document.createElement("li");
