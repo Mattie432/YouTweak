@@ -40,7 +40,7 @@ function checkMessages(){
 
 					var response = getMessages(xhr);
           //alert("checkttl =" + checkTTL(response.date, response.ttl) + "\n response.date=" + response.date + "\nttl = " + response.ttl)
-					if(response.show == "true" && checkTTL(response.date, response.ttl)){
+					if((response.show == "true" && checkTTL(response.date, response.ttl)) || debug == true ){
 						addMessageToPage(response.message,response.date);
 						//save message locally
 					  chrome.storage.local.set({"keyMessage" : response.message});
