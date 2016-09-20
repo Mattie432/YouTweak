@@ -1,251 +1,403 @@
-<html>
-	<head>
-		<title>YouTweak Options</title>
-		<link href="../styles/OptionsPage.css" rel="stylesheet" type="text/css">
-		<script src="js/options.js"></script>
-	</head>
+<!DOCTYPE html>
+<html lang="en">
 
-	<body>
-		<div id="header_wrapper">
-			<div id="header">
-				<div id="site_title">
-					<a href="">You<span>TWEAK</span></a>
-				</div>
-			</div>
-			<!-- END of header -->
-		</div>
+<!-- Header info -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<div id="top_note">
-			<div  class="note">
-				<p style="font-weight:bold">
-					This page saves automatically upon exit.
-				</p>
+  <title>YouTweak Options</title>
 
-			</div>
+  <meta name="description" content="Options page for the YouTweak extension.">
+  <meta name="author" content="Mattie432">
 
-		</div>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
 
-		<div id="main">
+<body>
+<div class="container-fluid">
 
-			<div class="option">
-				<p class="optionDescription">
-					This adds a 'Remove' button next to each video from your subscriptions. When clicked the video is removed using YouTubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extension installed.
-				</p>
-				<p class="optionDescription">
-					There is no way to re-add removed videos to the "My Subscriptions" page, to find the video again you would have to search the YouTubers channel.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="deleteSubsBtn">
-					Enable the 'Remove' button next to each video on subscripton page.
-					</input>
-				</div>
-			</div>
+    <!-- START of collection 1 -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1 >
+                    YouTweak
+                    <small><i>The</i> subscription manager</small>
+                </h1>
 
-			<div class="option">
-				<p class="optionDescription">
-					This adds a "Remove Watched Videos" button to the side menu on the "My Subscriptions" page. When clicked this will remove all videos that have already been watched from the visible videos on the homepage.
-				</p>
-				<p class="optionDescription">
-					This removes the videos using YouTubes 'Hide video' option. This means that it will remain hidden if viewed from a browser without this extention installed.
-				</p>
-				<p class="optionDescription">
-					This will only remove watched videos that are currently visible to the user, if you want to remove all of your watched videos you can combine this button with the "Load All Videos" button.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="deleteWatchedVids">
-					Enable "Remove all watched videos" button on subscripton page.
-					</input></br>
-				</div>
-				<br>
-				<p class="optionDescription">
-					Enableing this option will, instead of adding a button to the side menu, automatically remove watched videos from the "My Subscriptions" page when the page is first loaded.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="deleteWatchedVidsAutomated" disabled="">
-					Automatically remove watched videos.
-					</input>
-				</div>
-			</div>
+                <span id="AlertsAddedBelowHere"></span>
 
-			<div class="option">
-				<p class="optionDescription">
-					This will add a button to the side menu of the "My Subscriptions" page named "Load all videos". When clicked this will load all available subscription videos onto one page for you to browse in one continuous feed.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="loadAllVideos">
-					Load all videos to your subscription page.
-					</input>
-				</div>
-			</div>
+                <p class="text-left">
+                  Hi, thanks for downloading YouTweak! This extension aims to provide an improved experience for the 'heavy' subscription user, the majority of these tweaks change how you interact with your subscriptions page. If you would like automatic quality select, full buffering and many more features focused more around <i>watching</i> videos I suggest you look at one of the <a href="https://github.com/YePpHa/YouTubeCenter/wiki">many extensions</a> which already accomplish this.
+                  <br><br>
+                  Development on this extension is ongoing but sporadic as I have had a full time job for the past year &amp; am now returning to uni. The source code is available on <a href="https://github.com/Mattie432/YouTweak">GitHub</a> and I welcome any bug fixes or feature suggestions you might have.
+                </p>
 
-			<div class="option">
-				<p class="optionDescription">
-					This will add a button to the side menu of the "My Subscriptions" page named "Clear All Videos". When clicked this will clear <strong>all</strong> videos from your subscriptions using YouTubes 'Hide video' option.
-				</p>
-				<p class="optioniDescription">
-					Clearing all your subscription videos can be useful if your homepage has become cluttered or if you simply wish to start afreash. (There is a confirmation box which will appear before your videos are cleared)
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="clearAllVideos">
-					Enable "Clear all videos" button on subscription page.
-					</input>
-				</div>
-			</div>
+                <div class="_9b5ef6-textarea_btn _9b5ef6-not_focused">
+                    <div class="_9b5ef6-transform_wrap">
+                        <div class="_9b5ef6-status">
+                        </div>
+                    </div>
+                </div>
 
-			<div class="option">
-				<p class="optionDescription">
-					Change the URL of the YouTube icon (top left of every page) to the URL specified in the text box below. By default the icon will take you to the "Whats New" page but this extension allows you to change that to a URL of your choice.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="changeIconURL">
-					Change the YouTube icon URL.
-					</input>
-					<br><br>
-				</div>
+            </div>
+        </div>
+    </div>
+    <!-- END of collection 1 -->
 
-				<p class="optionDescription">
-					Enabling "Redirect youtube.com" will, whenever you access "YouTube.com" it will redirect you to the URL specified in the text box below.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="redirectYouTube">
-					Redirect "YouTube.com"
-					</input>
-					<br>
-				</div>
+    <!-- START of collection 2 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Extension Settings
+                <br>
+                <small>This page saves automatically on exit!</small>
+            </h3>
+            <div class="page-header">
 
-				<p class="optionDescription">
-					This is the URL that both of the above options will redirect you to. By default this is set to the "My Subscriptions" page but you can change this to any URL you wish. Clicking "Restore default" will restore the URL to the "My Subscriptions" link.
-				</p>
-				<div class="selection">
-					<input id="iconURL" type="text" name="fname" disabled="true" value="http://www.youtube.com/feed/subscriptions">
-					<button id="editTxt">
-						Edit
-					</button>
-					<button id="resetTxt"disabled="true">
-						Restore default
-					</button>
-					<br>
-				</div>
-			</div>
+                <!-- START feature panel group -->
+                <div class="panel-group" id="panel-group-1">
 
-			<div class="option">
-				<p class="optionDescription">
-					Adds a 'collapse' button to each group of videos in the subscriptions grid feed. Pressing this button will toggle the visibility of the group on the homepage.
-				</p>
-				<div class="selection">
-					<input type="checkbox" id="collapseSubscriptionVideos">
-					Adds the 'collapse' button to subscription groups.
-					</input></br>
-				</div>
-				<br>
-				<div class="selection">
-					<input type="checkbox" id="collapseStartOldHidden" >
-					Collapse videos older than 'This Week' on page load.
-					</input>
-				</div>
-			</div>
+                    <!-- Item 1 -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-group-1" href="#panel-element-1">Remove individual subscription video</a>
+                        </div>
+                        <div id="panel-element-1" class="panel-collapse collapse">
+                            <div class="panel-body">
 
-			<div>
-				<button id="save">
-					Save
-				</button>
-				<button id="contact">
+                            <p>This feature makes it easier to delete unwanted videos from your YouTube homepage. The current YouTube layout seems to discourage the use of the 'Hide video' option previous layouts featured prominently. This feature intends to fix this, giving the user a per-video dedicated button for the removal of the video. This button instigates YouTube's own hide video feature which means that hiding it with this app also hides it if you were to sign in from a different computer without the app, however this does mean there is no way to recover a deleted video to your subscriptions page.</p>
+
+                            <p>Enabling this feature will add an <i>'X'</i> into the bottom left of each video thumbnail on your subscriptions page. Clicking this button will remove the video.</p>
+
+                            <!-- Alert -->
+                            <div class="alert alert-dismissable alert-info">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4>
+                                    Potential issues notice! #1
+                                </h4>
+                                Please understand that this extension relies on YouTube's ability to hide videos from their homepage. From time to time, YouTube seem to 'mess up' this feature which causes videos to not be removed when the user tries to delete them. If that is the case then this feature of the extension may not function properly as YouTweak relies on this functionality. If this is the case then there is nothing which I can do to fix the extension to work &amp; the only solution is to wait for YouTube to fix it their end.
+                            </div>
+                            <!-- Alert -->
+                            <div class="alert alert-dismissable alert-info">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4>
+                                    Potential issues notice! #2
+                                </h4>
+                                The functionality of removing subscription videos is currently compromised by an ongoing <strong>(*read intentional*)</strong> issue with YouTube which has been present for many since 2014. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh &amp; refuse to be deleted. As this is a problem with YouTubes delete mechanisms there is little I can do to fix this &amp; I suggest using the <i>Collapsible Subscription Groups</i> feature to automatically collapse videos which cant be hidden. Please see <a href="https://github.com/Mattie432/YouTweak/issues/31">this issue</a> for more details.
+                            </div>
+
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input type="checkbox" id="deleteSubsBtn">
+                                <div class="slider round"></div>
+                                <label class="switch_description enabled"> Enabled </label>
+                                <label class="switch_description disabled"> Disabled </label>
+                            </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-group-1" href="#panel-element-2">Remove watched videos</a>
+                        </div>
+                        <div id="panel-element-2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>This feature makes your homepage much cleaner by removing any subscription videos that you have already watched. When activated you will notice a new button added to the left navigation column of the homepage. When clicked any previously watched videos in your current subscriptions are removed. This button instigates YouTube's own hide video feature which means that hiding it with this app also hides it if you were to sign in from a different computer without the app, however this does mean there is no way to recover a deleted video to your subscriptions page.</p>
+                                <p>Enabling the <i>automatic video removal</i> feature will remove the button from the left menu &amp; instead continually check for any newly watched videos &amp; remove them as soon as they are found. </p>
+
+                                <p><strong>Please note!</strong> You need to have "Watch History" unpaused for this feature to work as it uses YouTube's data to see if a video has been watched or not. This can be enabled in your <a href="https://www.youtube.com/feed/history">History tab</a>.</p>
+
+                                <!-- Alert -->
+                                <div class="alert alert-dismissable alert-info">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h4>
+                                        Potential issues notice! #1
+                                    </h4>
+                                    Please understand that this extension relies on YouTube's ability to hide videos from their homepage. From time to time, YouTube seem to 'mess up' this feature which causes videos to not be removed when the user tries to delete them. If that is the case then this feature of the extension may not function properly as YouTweak relies on this functionality. If this is the case then there is nothing which I can do to fix the extension to work &amp; the only solution is to wait for YouTube to fix it their end.
+                                </div>
+                                <!-- Alert -->
+                                <div class="alert alert-dismissable alert-info">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h4>
+                                        Potential issues notice! #2
+                                    </h4>
+                                    The functionality of removing subscription videos is currently compromised by an ongoing <strong>(*read intentional*)</strong> issue with YouTube which has been present for many since 2014. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh &amp; refuse to be deleted. As this is a problem with YouTubes delete mechanisms there is little I can do to fix this &amp; I suggest using the <i>Collapsible Subscription Groups</i> feature to automatically collapse videos which cant be hidden. Please see <a href="https://github.com/Mattie432/YouTweak/issues/31">this issue</a> for more details.
+                                </div>
+
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="deleteWatchedVids">
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled watched video deletion </label>
+                                    <label class="switch_description disabled"> Disabled watched video deletion </label>
+                                </label>
+                                <br>
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="deleteWatchedVidsAutomated" disabled="">
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled automatic watched video deletion </label>
+                                    <label class="switch_description disabled"> Disabled automatic watched video deletion </label>
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-group-1" href="#panel-element-3">Load all subscription videos</a>
+                        </div>
+                        <div id="panel-element-3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>This adds a button to the homepage which when clicked loads all of the pages of your subscriptions into view, allowing you to browse them all without having to reload the page. When clicked this will load all available subscription videos onto the page for you to browse in one continuous feed.</p>
+
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="loadAllVideos" >
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled load all videos button </label>
+                                    <label class="switch_description disabled"> Disabled load all videos button </label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Item 4 -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-group-1" href="#panel-element-4">Remove all subscription videos</a>
+                        </div>
+                        <div id="panel-element-4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>This adds a button to the homepage which when clicked will cycle through all of your subscriptions and remove them, leaving you with a clean homepage ready for new subscriptions to be easily visible. (Example for use could be after returning from holiday and clearing the weeks of subscription buildup, or when a channel uploads many videos that clog-up your subscription feed)</p>
+                                <!-- Alert -->
+                                <div class="alert alert-dismissable alert-info">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h4>
+                                        Potential issues notice! #1
+                                    </h4>
+                                    The functionality of removing subscription videos is currently compromised by an ongoing <strong>(*read intentional*)</strong> issue with YouTube which has been present for many since 2014. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh &amp; refuse to be deleted.
+                                    <br><br>
+                                    Therefore, this feature will currently only remove all videos within the last week. I suggest using the <i>Collapsible Subscription Groups</i> feature to automatically collapse videos which cant be hidden. Please see <a href="https://github.com/Mattie432/YouTweak/issues/31">this issue</a> for more details.
+                                </div>
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="clearAllVideos" >
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled remove all videos button </label>
+                                    <label class="switch_description disabled"> Disabled remove all videos button </label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-group-1" href="#panel-element-5">YouTube Subscriptions as default home page</a>
+                        </div>
+                        <div id="panel-element-5" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>This changes the URL that the YouTube icon at the top left of every YouTube page links to. The default link is to "youtube.com" which shows all of your subscriptions and recommended videos mixed together. By default the app redirects to "youtube.com/feed/subscriptions" which only shows your subscriptions videos (but this can be set manually to any URL).</p>
+
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="changeIconURL" >
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled change YouTube icon URL </label>
+                                    <label class="switch_description disabled"> Disabled change YouTube icon URL </label>
+                                </label>
+                                <br>
+                                <div class="">
+                                    <input type="text" class="form-control" id="iconURL" value="http://www.youtube.com/feed/subscriptions">
+                                    <button type="submit" class="btn btn-default" id="resetTxt">Reset</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-group-1" href="#panel-element-6">Collapsible Subscription Groups</a>
+                        </div>
+                        <div id="panel-element-6" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>This allows you to collapse the 'Today', 'Yesterday', etc subscription groups which are present on the grid subscription view. A collapse button will be added to the left of the group name which will toggle the visible state of the groups videos. You can also elect to have videos older than 'This Week' automatically collapsed when the page loads.</p>
+
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="collapseSubscriptionVideos" >
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled add collapse button to subscription groups </label>
+                                    <label class="switch_description disabled"> Disabled add collapse button to subscription groups </label>
+                                </label>
+                                <br>
+
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="collapseStartOldHidden" disabled >
+                                    <div class="slider round"></div>
+                                    <label class="switch_description enabled"> Enabled Collapse videos older than 'This Week' on page load. </label>
+                                    <label class="switch_description disabled"> Disabled Collapse videos older than 'This Week' on page load. </label>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- END feature panel group -->
+        </div>
+    </div>
+    <!-- END of collection 2 -->
+
+    <!-- START of collection 3 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Updates
+            </h3>
+            <div class="page-header">
+                <p>Due to the constant changes implemented by YouTube it will be necessary to update this extension to reflect these changes. The code for this extension is open source and will be commited to my <a href="https://github.com/Mattie432/YouTweak">GitHub repo</a> whenever there is an update or a significant change has been made.</p>
+            </div>
+
+
+            <div class="_9b5ef6-textarea_btn _9b5ef6-not_focused">
+                <div class="_9b5ef6-transform_wrap">
+                    <div class="_9b5ef6-status">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END of collection 3 -->
+
+
+    <!-- START of collection 4 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Issues/bug reports &amp; feature suggestions
+            </h3>
+            <div class="page-header">
+                <p>If you wish to contact me with any issues or suggestions then please leave me a message on the <a href="https://github.com/Mattie432/YouTweak/issues">Github Issues page</a> as this will be the place that I am most likely to see it.</p>
+                <p>Leaving a problem on the chrome webstore is not the best solution as I do not recieve any notification when a new problem is listed and it may be a while before I see it. </P>
+                <p>Finally, if you would prefer to email me then you can at <a href="mailto:matt@mattie432.com">matt@mattie432.com</a> or online <a href="https://mattie432.com/#contact">here</a>.</p>
+            </div>
+
+
+            <div class="_9b5ef6-textarea_btn _9b5ef6-not_focused">
+                <div class="_9b5ef6-transform_wrap">
+                    <div class="_9b5ef6-status">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END of collection 4 -->
+
+
+    <!-- START of collection 5 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Hide the extension icon
+            </h3>
+            <div class="page-header">
+                <p>Follow <a href="http://www.howtogeek.com/howto/37911/google-chrome-adds-two-ways-to-hide-extension-icons/">this guide</a> to learn how to remove the icon from the top of chrome (Options menu still acessable from the extensions tab).</p>
+            </div>
+
+
+            <div class="_9b5ef6-textarea_btn _9b5ef6-not_focused">
+                <div class="_9b5ef6-transform_wrap">
+                    <div class="_9b5ef6-status">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END of collection 5 -->
+
+
+    <!-- START of collection 6 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Useful links
+            </h3>
+            <div class="page-header">
+                <dl class="dl-horizontal">
+				<dt>
 					Contact me
-				</button>
-				<button id="review">
+				</dt>
+				<dd>
+					<a href="https://mattie432.com/aboutSoftware/">List of the best ways to contact me.</a>.
+				</dd>
+				<dt>
 					Leave a review
-				</button>
-				<button id="errorBtn" style="float: right;margin-right: 15px">
-					Error Reports
-				</button>
-				<button id="changelogBtn" style="float: right;margin-right: 15px">
+				</dt>
+				<dd>
+					<a href="https://chrome.google.com/webstore/detail/youtweak-for-youtube-subs/cfgpigllcihcpkbokdnmpkjobnebflgh/reviews">Tell others what you feel about the extension.</a>
+				</dd>
+				<dt>
 					Changelog
-				</button>
-				<button id="bugsFixesBtn" style="float: right;margin-right: 15px">
-					FAQ
-				</button>
+				</dt>
+				<dd>
+					<a href="https://github.com/Mattie432/YouTweak/commits/master">Check out any recent commits to GitHub.</a>
+				</dd>
+				<dt>
+					Personal Website
+				</dt>
+				<dd>
+					<a href="https://mattie432.com/">More info about the developer and links to some other projects I have worked on.</a>
+				</dd>
+			</dl>
+            </div>
 
-			</div>
 
-			<div id="faq_message_container">
-				<div  class="message_container">
-					<p style="font-weight:bold">
-						FAQ's and Bug's
-					</p>
-					<div id="faq_description" style="display: none">
+            <div class="_9b5ef6-textarea_btn _9b5ef6-not_focused">
+                <div class="_9b5ef6-transform_wrap">
+                    <div class="_9b5ef6-status">
+                    </div>
+                </div>
+            </div>
 
-						<div class="faqListItem" style="text-align: left; margin-left: 15px">
-							<p style="font-weight: bold;margin-bottom:0">
-								About this extension.
-							</p>
-							<p style="margin-top: 0">
-								This extension is focused around the 'heavy' subscription user, the majority of these tweaks change how you interact with your subscriptions videos. If you would like automatic quality select, full buffering and many more features focused more around watching videos I suggest you look at the <a href="https://github.com/YePpHa/YouTubeCenter/wiki">Youtube Center extension.</a>
-							</p>
-						</div>
+        </div>
+    </div>
+    <!-- END of collection 6 -->
 
-						<div class="separator"></div>
-						<br />
+</div>
 
-						<div class="faqListItem" style="text-align: left; margin-left: 15px">
-							<p style="font-weight: bold;margin-bottom:0">
-								Hide the extension icon.
-							</p>
-							<p style="margin-top: 0">
-								Follow <a href="http://www.howtogeek.com/howto/37911/google-chrome-adds-two-ways-to-hide-extension-icons/">this guide</a> to learn how to remove the icon from the top of chrome (Options menu still acessable from the extensions tab).
-							</p>
-						</div>
-
-						<div class="faqListItem" style="text-align: left; margin-left: 15px">
-							<p style="font-weight: bold;margin-bottom:0">
-								Settings not saving
-							</p>
-							<p style="margin-top: 0">
-								This can be caused by a sync error between local and cloud storage for the settings of the extension. For a fix for this please look <a href="https://docs.google.com/document/d/16uFMdNrVSBAo6wMZVB8RPS4bmApqWqgjB1kl7OsD1sg/edit?usp=sharing">here.</a>
-							</p>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
-			<div id="error_message_container">
-				<div  class="message_container">
-					<p style="font-weight:bold">
-						Please read when reporting errors/bugs.
-					</p>
-					<p id="error_description" style="display: none">
-						If you wish to contact me with any issues or suggestions then please leave me a message on the <a href="https://github.com/Mattie432/YouTweak/issues">Github Issues page</a> as this will be the place that I am most likely to see it.
-						<br>
-						<br>
-						Leaving a problem on the chrome webstore is not the best solution as I do not recieve any notification when a new problem is listed and it may be a while before I see it.
-						<br>
-						<br>
-						Finally, if you would prefer to email me then you can at <a href="mailto:matt@mattie432.com">matt@mattie432.com</a> or online <a href="https://mattie432.com/#contact">here</a>.
-					</p>
-
-				</div>
-			</div>
-
-		</div>
-
-		<div id="footer_wrapper">
-			<div id="footer">
-				<ul>
-					<li>
-						Chrome YouTube extention
-					</li>
-					<li>
-						&#169 2015
-					</li>
-					<li>
-						Extension Webpage
-					</li>
-				</ul>
-				<div class="footerDescription">
-					This extension was created my Mattie432. Hope you enjoy and feel free to contact me with suggestions ;)
-				</div>
-			</div>
-		</div>
-	</body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/options.js"></script>
+  </body>
 </html>

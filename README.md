@@ -15,7 +15,7 @@ This feature makes your homepage much cleaner by removing any subscription video
 
  **Please note:** you need to have "Watch History" unpaused for this feature to work as it uses YouTube's data to see if a video has been watched or not. This can be enabled in your [History](https://www.youtube.com/feed/history) tab.
 
-* #### Youtube Subscriptions as Default Page
+* #### YouTube Subscriptions as Default Page
 Automatically redirects you to Uploads only of your subscriptions. This changes the URL that the icon at the top left of every YouTube page links to. The default link is to "youtube.com" which shows all of your subscriptions and recommended videos mixed together. By default the app redirects to "youtube.com/feed/subscriptions" which only shows your subscriptions videos (but this can be set manually to any URL).
 
 * #### Remove all subscription videos
@@ -39,8 +39,8 @@ Due to the constant changes implemented by YouTube it will be necessary to updat
 The code for this extension is open source and will be commited to this GutHub repo whenever there is an update or a significant change has been made.
 
 ## Notes
-Please understand that this extension relies on YouTube's ability to hide videos from their homepage. If for some reason the site has a problem with this feature then this extension may not function properly. If this is the case then we both have to wait for YouTube to fix their problem. The functionality of **Remove Subscription Videos** & **Remove Watched Videos** is currently compromised by an ongoing (\*read intentional\*) issue with YouTube which has been present for many since 2014. Please see [this issue](https://github.com/Mattie432/YouTweak/issues/31) for more details. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh. I suggest using the *Collapsible Subscription Groups* feature to automatically collapse videos which cant be hidden. 
- 
+Please understand that this extension relies on YouTube's ability to hide videos from their homepage. If for some reason the site has a problem with this feature then this extension may not function properly. If this is the case then we both have to wait for YouTube to fix their problem. The functionality of **Remove Subscription Videos** & **Remove Watched Videos** is currently compromised by an ongoing (\*read intentional\*) issue with YouTube which has been present for many since 2014. Please see [this issue](https://github.com/Mattie432/YouTweak/issues/31) for more details. While the button to remove videos will still be present, videos older than a week may 'pop back' on page refresh. I suggest using the *Collapsible Subscription Groups* feature to automatically collapse videos which cant be hidden.
+
 ## Links
 [Download from Chrome Webstore](https://chrome.google.com/webstore/detail/youtweak-for-youtube-remo/cfgpigllcihcpkbokdnmpkjobnebflgh)
 

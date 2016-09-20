@@ -8,15 +8,9 @@ window.onbeforeunload = function() {
 };
 function initialize() {
 	arrangePage();
+  	toggleSecondaryButtons()
 	restore_options();
 	checkForDate();
-  	toggleRemoveAutomated()
-	document.getElementById("changeIconURL").addEventListener("click", arrangePage,false);
-	document.getElementById("save").addEventListener("click", function(){window.close();},false);
-	document.getElementById("contact").addEventListener("click", contactShow,false);
-
-
-
 	checkMessages();
 };
 
@@ -136,21 +130,38 @@ function checkTTL(responseDate, ttl){
 
 }
 
-function toggleRemoveAutomated(){
-  document.getElementById("deleteWatchedVids").addEventListener('click', function(){
-    automated = document.getElementById("deleteWatchedVidsAutomated");
-    if(automated.getAttribute("disabled") == "true"){
-        automated.setAttribute("disabled","");
-        automated.checked = false;
-    }else{
-        automated.removeAttribute("disabled");
-    }
+function toggleSecondaryButtons(){
+    //For the automatically remove videos button
+    var removeButton = document.getElementById("deleteWatchedVids");
+    removeButton.addEventListener('click', function(){
+        var automated = document.getElementById("deleteWatchedVidsAutomated");
+
+        if (removeButton.checked == true) {
+            automated.removeAttribute("disabled");
+        } else {
+            automated.setAttribute("disabled","");
+            automated.checked = false
+        }
   });
+
+  //for the collapse subscriptions groups buttons
+  var collapseSubscriptionButton = document.getElementById("collapseSubscriptionVideos");
+  collapseSubscriptionButton.addEventListener('click', function(){
+      var automated = document.getElementById("collapseStartOldHidden");
+
+      if (collapseSubscriptionButton.checked == true) {
+          automated.removeAttribute("disabled");
+      } else {
+          automated.setAttribute("disabled","");
+          automated.checked = false
+      }
+});
+
 }
 
 function addMessageToPage(message,messageDate){
 	var child = document.createElement("div");
-	child.setAttribute("class", "alert note");
+	child.setAttribute("class", "alert alert-dismissable alert-danger");
 
 	var icon = document.createElement("div");
 	icon.setAttribute("class", "alertIcon");
@@ -161,16 +172,15 @@ function addMessageToPage(message,messageDate){
 
 	var br = document.createElement("div");
 
-	var date = document.createElement("div");
-	date.innerText = messageDate;
+	var date = document.createElement("h4");
+	date.innerHTML = "<strong>Alert!</strong> - " + messageDate;
 
 	br.appendChild(date);
 	br.appendChild(text);
 
-	child.appendChild(icon);
 	child.appendChild(br);
 
-	var note = document.getElementById("top_note");
+	var note = document.getElementById("AlertsAddedBelowHere");
 	note.insertBefore(child, note.firstElementChild);
 
 }
@@ -268,7 +278,7 @@ function save_options() {
 	var changeIconURLState = document.getElementById("changeIconURL").checked;
 	var removeWatchedVideosState = document.getElementById("deleteWatchedVids").checked;
 	var iconURLLink = document.getElementById("iconURL").value;
-	var redirectYouTube = document.getElementById("redirectYouTube").checked;
+	//var redirectYouTube = document.getElementById("redirectYouTube").checked;
 	var details = chrome.runtime.getManifest();
 	var clearAllVideos = document.getElementById("clearAllVideos").checked;
 	var loadAllVideos = document.getElementById("loadAllVideos").checked;
@@ -297,7 +307,7 @@ function save_options() {
 		'loadAllVideos' : loadAllVideos,
 		'deleteWatchedVidsAutomated' : deleteWatchedVidsAutomated,
 		//'removeRecomendedChannels' : removeRecomendedChannels,
-		'redirectYouTube' : redirectYouTube,
+		//'redirectYouTube' : redirectYouTube,
 		//'autoLike' : autoLike,
 		//'autoLikeNames' : autoLikeNames,
 		//'extensionVersionToUse' : versionSelectionPrevious,
@@ -346,8 +356,11 @@ function restore_options() {
 			document.getElementById("loadAllVideos").checked = (r.loadAllVideos);
 			document.getElementById("deleteWatchedVidsAutomated").checked = (r.deleteWatchedVidsAutomated);
 			//document.getElementById("removeRecomendedChannels").checked = (r.removeRecomendedChannels);
-			document.getElementById("redirectYouTube").checked = (r.redirectYouTube);
+			// document.getElementById("redirectYouTube").checked = (r.redirectYouTube);
 			document.getElementById("collapseSubscriptionVideos").checked = (r.collapseSubscriptionVideos);
+            if(r.collapseSubscriptionVideos) {
+                document.getElementById("collapseStartOldHidden").removeAttribute("disabled");
+            }
 			document.getElementById("collapseStartOldHidden").checked = (r.collapseStartOldHidden);
 			if(r.iconURLTxt === undefined || r.iconURLTxt == ""){
 				 document.getElementById("iconURL").value = "http://www.youtube.com/feed/subscriptions";
@@ -355,11 +368,9 @@ function restore_options() {
 				 document.getElementById("iconURL").value  = r.iconURLTxt;
 			}
 
+            document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			if (r.removeWatchedVideos) {
-			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
           		document.getElementById("deleteWatchedVidsAutomated").removeAttribute("disabled");
-			}else{
-			    document.getElementById("deleteWatchedVids").checked = (r.removeWatchedVideos);
 			}
 	//		if(r.extensionVersionToUse) {
 	//			document.getElementById("selectVersionCombobox").value = r.extensionVersionToUse;
@@ -413,23 +424,7 @@ function convertDateToDays(date){
 function arrangePage(){
 	document.getElementById("iconURL").value = "http://www.youtube.com/feed/subscriptions";
 	document.getElementById("resetTxt").addEventListener("click", restoreTxt, false);
-	document.getElementById("editTxt").addEventListener("click", editTxt, false);
 	document.getElementById("deleteWatchedVids").addEventListener("click", toggleDeleteWatchedVidsAutomatic, false);
-	//document.getElementById("setPlaybackQuality").addEventListener("click", function(){toggleEnabled(document.getElementById("qualitySelect"));}, false);
-	//document.getElementById("setVideoSizeCheck").addEventListener("click", function(){toggleEnabled(document.getElementById("setVideoSize"));}, false);
-	//document.getElementById("qualitySelect").setAttribute("disabled","true");
-	document.getElementById("errorBtn").addEventListener("click", function(){
-	    document.getElementById("error_description").removeAttribute("style");
-	}, false);
-	document.getElementById("bugsFixesBtn").addEventListener("click", function(){
-	    document.getElementById("faq_description").removeAttribute("style");
-	}, false);
-	document.getElementById("changelogBtn").addEventListener("click", function(){
-    window.open("https://github.com/Mattie432/YouTweak/commits/master",'_newtab');
-	}, false);
-	document.getElementById("review").addEventListener("click",function() {
-	    window.open("https://chrome.google.com/webstore/detail/youtweak-for-youtube/cfgpigllcihcpkbokdnmpkjobnebflgh/reviews",'_newtab');
-	    },false);
 }
 function isValidURL(url){
     var RegExp = /^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/;
