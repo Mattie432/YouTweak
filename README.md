@@ -1,5 +1,7 @@
 # YouTweak
 
+[![Join the chat at https://gitter.im/YouTweak/Lobby](https://badges.gitter.im/YouTweak/Lobby.svg)](https://gitter.im/YouTweak/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Overview
 This extension aims to fix some fundamental problems that I have with youtube (you can see all of the additons listed below). It is currently available as a Chrome Extension and there are plans to expand to FireFox as well.
 
